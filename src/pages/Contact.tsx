@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Mail, Contact, Users } from "lucide-react";
+import { Mail, Phone, Users } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -55,7 +55,7 @@ const Contact = () => {
               <Card className="hover:shadow-lg transition-shadow">
                 <CardHeader>
                   <CardTitle className="flex items-center space-x-2">
-                    <Contact className="w-5 h-5 text-blue-600" />
+                    <Phone className="w-5 h-5 text-blue-600" />
                     <span>Office Details</span>
                   </CardTitle>
                 </CardHeader>
