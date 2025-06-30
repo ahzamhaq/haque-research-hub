@@ -1,21 +1,37 @@
-
 import { Link, useLocation } from "react-router-dom";
 import { Mail, Users, Book, FileText } from "lucide-react";
-
-const Layout = ({ children }: { children: React.ReactNode }) => {
+const Layout = ({
+  children
+}: {
+  children: React.ReactNode;
+}) => {
   const location = useLocation();
-  
-  const navigation = [
-    { name: "Home", href: "/", icon: null },
-    { name: "About", href: "/about", icon: Users },
-    { name: "Research", href: "/research", icon: FileText },
-    { name: "Publications", href: "/publications", icon: Book },
-    { name: "Teaching", href: "/teaching", icon: Users },
-    { name: "Contact", href: "/contact", icon: Mail },
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+  const navigation = [{
+    name: "Home",
+    href: "/",
+    icon: null
+  }, {
+    name: "About",
+    href: "/about",
+    icon: Users
+  }, {
+    name: "Research",
+    href: "/research",
+    icon: FileText
+  }, {
+    name: "Publications",
+    href: "/publications",
+    icon: Book
+  }, {
+    name: "Teaching",
+    href: "/teaching",
+    icon: Users
+  }, {
+    name: "Contact",
+    href: "/contact",
+    icon: Mail
+  }];
+  return <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Navigation */}
       <nav className="bg-white/90 backdrop-blur-sm border-b border-blue-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,28 +42,18 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </div>
               <div className="hidden sm:block">
                 <h1 className="text-xl font-bold text-gray-900">Prof. Rizwanul Haque</h1>
-                <p className="text-sm text-gray-600">Dean, CUSB | Research Scientist</p>
+                <p className="text-sm text-gray-600"></p>
               </div>
             </Link>
             
             <div className="hidden md:flex space-x-8">
-              {navigation.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <Link
-                    key={item.name}
-                    to={item.href}
-                    className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      location.pathname === item.href
-                        ? "text-blue-700 bg-blue-50"
-                        : "text-gray-700 hover:text-blue-700 hover:bg-blue-50"
-                    }`}
-                  >
+              {navigation.map(item => {
+              const Icon = item.icon;
+              return <Link key={item.name} to={item.href} className={`flex items-center space-x-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${location.pathname === item.href ? "text-blue-700 bg-blue-50" : "text-gray-700 hover:text-blue-700 hover:bg-blue-50"}`}>
                     {Icon && <Icon className="w-4 h-4" />}
                     <span>{item.name}</span>
-                  </Link>
-                );
-              })}
+                  </Link>;
+            })}
             </div>
           </div>
         </div>
@@ -91,8 +97,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Layout;
