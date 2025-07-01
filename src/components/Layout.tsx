@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from "react-router-dom";
-import { Mail, Users, Book, FileText, Home, User } from "lucide-react";
+import { Mail, Users, Book, FileText, Home, User, PenTool } from "lucide-react";
 
 const Layout = ({
   children
@@ -15,6 +15,7 @@ const Layout = ({
     { name: "Research", href: "/research", icon: FileText },
     { name: "Publications", href: "/publications", icon: Book },
     { name: "Teaching", href: "/teaching", icon: Users },
+    { name: "Blog", href: "/blog", icon: PenTool },
     { name: "Contact", href: "/contact", icon: Mail },
   ];
 
