@@ -1,6 +1,5 @@
-
 import { Link } from "react-router-dom";
-import { ArrowUp, Book, FileText, Mail, Users, ArrowRight, Star } from "lucide-react";
+import { ArrowUp, Book, FileText, Mail, Users, ArrowRight, Star, Calendar, Eye } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
@@ -12,6 +11,32 @@ const Index = () => {
     { label: "Citations", value: "4200+", icon: FileText },
     { label: "PhD Students", value: "9", icon: Users },
   ];
+
+  const recentPosts = [
+    {
+      id: 1,
+      title: "Annual Biotechnology Research Symposium 2024",
+      excerpt: "Highlights from our recent symposium featuring groundbreaking research presentations.",
+      date: "2024-06-15",
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
+      views: 245
+    },
+    {
+      id: 2,
+      title: "ICMR Funded Project Meeting",
+      excerpt: "Progress review meeting for our iPSC-derived T cells research project.",
+      date: "2024-06-10",
+      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=250&fit=crop",
+      views: 189
+    }
+  ];
+
+  const formatDate = (dateString: string) => {
+    return new Date(dateString).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric'
+    });
+  };
 
   return (
     <Layout>
@@ -156,6 +181,70 @@ const Index = () => {
                 className="relative rounded-3xl shadow-2xl w-full transform hover:scale-105 transition-transform duration-300"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Blog Preview Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Latest Updates</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Research Blog</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Stay updated with our latest meetings, research progress, and collaborative endeavors
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            {recentPosts.map((post) => (
+              <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden border-0 bg-white shadow-lg">
+                <div className="relative">
+                  <img 
+                    src={post.image} 
+                    alt={post.title}
+                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-gray-800">
+                      {formatDate(post.date)}
+                    </div>
+                  </div>
+                </div>
+                
+                <CardContent className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  
+                  <p className="text-gray-600 mb-4 leading-relaxed line-clamp-2">
+                    {post.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-1 text-sm text-gray-500">
+                      <Eye className="w-4 h-4" />
+                      <span>{post.views}</span>
+                    </div>
+                    
+                    <Link to="/blog">
+                      <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                        Read More
+                      </Button>
+                    </Link>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Link to="/blog">
+              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
+                View All Blog Posts
+                <ArrowRight className="w-5 h-5 ml-2" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
