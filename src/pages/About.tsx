@@ -1,6 +1,7 @@
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+
 const About = () => {
   const education = [{
     degree: "Ph.D. in Immunotoxicology",
@@ -15,9 +16,59 @@ const About = () => {
     institution: "Aligarh Muslim University",
     year: "1996"
   }];
+
+  const employment = [{
+    position: "Professor",
+    institution: "Centre for Biological Science (Biotechnology), Department of Biotechnology, Central University of South Bihar, Bihar, India",
+    period: "2015-Till date"
+  }, {
+    position: "Associate Professor",
+    institution: "Centre for Biological Science (Biotechnology) Central University of South Bihar, Bihar, India",
+    period: "2012-2015"
+  }, {
+    position: "Post-Doctoral Research Scientist",
+    institution: "Pennsylvania State University College of Medicine, Hershey, PA, USA",
+    period: "2003-2012"
+  }];
+
+  const foreignVisits = ["USA", "Canada", "Austria", "Japan", "UAE", "Nepal"];
+
+  const currentRoles = [
+    "Dean: School of Earth Biological & Environmental Sciences, CUSB, 31/01/2025 to till date.",
+    "Chairman. Central Purchase Committee, CUSB, 07-02-2025 to till date.",
+    "In-charge: Central Instrumentation facility, CUSB, 16/04-2025 to till date",
+    "Chairman: Faculty Project Approval Committee of SEBES March 2025 to till date",
+    "Convener: Amendment of University Manual of Sponsored Research Projects (MSRP), CUSB. (Notification dated 12-02-2025)",
+    "Chairman: Grievance Redressal Committee for Teacher, CUSB, 16/12/0224 to till date.",
+    "Chairman: Committee for framing Policy for implementation of UGC Guidelines on the Optimal Utilisation of the Resources, CUSB, 08/05/2024.",
+    "Chairman: Institutional Biosafety Committee, CUSB, since 2012- till date.",
+    "Chairman. Minority Cell, CUSB since 13-09-2021.",
+    "Anti-discriminating Officer of CUSB since 14-12-2021.",
+    "Member: Committee for implementation of UGC Guidelines for Institutional Development Plans for Higher Education Institutions (HEIS) Since 08/03/2024 to till date.",
+    "Member: Corporate Social Responsibility Cell of CUSB, since 10-10-2022.",
+    "Co-convener: Collaboration and Community, Research Advisory Council, Research and Development Cell CUSB- since May -24-2022- till date.",
+    "Member: School Board (SEBES, CUSB) April 2021-till date.",
+    "Member: Board of Examiner of Department Environmental Sciences Since 2022",
+    "Member: PhD admission committee for Department of Pharmacy Since 2023",
+    "Member: Board of Study, Department of Biotechnology, August 2021-till date.",
+    "Elected Member: University Court, since 2019.",
+    "Member Project Purchase committee of RP-105 (Dr. Nitish Kumar) from 03042024, Department of Biotechnology, CUSB",
+    "Member Project Purchase committee of RP-106 (Dr. Rizwanul Haque) from 2024, Department of Biotechnology, CUSB",
+    "Member Project Purchase committee of RP-112 (Dr. Rizwanul Haque) from 2025, Department of Biotechnology, CUSB"
+  ];
+
+  const outsideRoles = [
+    "Outside Member for Ph.D student, SRAC, SPER, JAMIA HAMDARD, New Delhi, May 2023. (Attended several meeting online and offline mode).",
+    "Outside Member: Internal Quality Assurance Cell, Jamia Hamdard, New Delhi, since 23/03/2023- till date. (Attended several meeting online and offline mode)",
+    "Outside expert: Institutional Biosafety Committee, Mahatma Gandhi Central University (MGCU), Bihar, since May -17-2022- till date. Attended meeting offline mode",
+    "Outside expert: Institutional Biosafety Committee, Vastu Vihar Biotech Pvt. Ltd., Gaya, since August -05-2022- till date. Attended several meeting offline mode"
+  ];
+
   const expertise = ["Stem Cell Biology", "T-cell Immunotherapy", "Cancer Research", "Immunotoxicology", "Biotechnology", "Regenerative Medicine", "Molecular Diagnostics", "Telomerase Research"];
   const awards = ["Best Postdoctoral Fellow (2009, USA)", "CSIR Travel Award", "CCRUM Research Grant", "Bharat Seva Trust Award", "Multiple Research Excellence Awards"];
-  return <Layout>
+
+  return (
+    <Layout>
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
@@ -50,11 +101,30 @@ const About = () => {
                   <CardTitle className="text-xl text-blue-900">Current Position</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="font-semibold text-gray-900">Professor & Dean (SEBES) & Former Head (Dept. of Biotechnology)</p>
-                  <p className="text-gray-600">School of Earth Biological & Environmental Sciences</p>
-                  <p className="text-gray-600">Central University of South Bihar</p>
-                  <p className="text-gray-600 mt-2 text-base px-[3px] py-px mx-0 text-left font-normal">NH-120, Gaya-Panchanpur Road, Post Fatehpur, Gaya, 824236 
-IDs: https://orcid.org/0000-0002-5759-4140/Scopus Author ID: 57203184276</p>
+                  <p className="font-semibold text-gray-900 mb-4">Currently serving as:</p>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    {currentRoles.map((role, index) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-blue-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>{role}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <p className="font-semibold text-gray-900 mt-6 mb-3">Member of different committee outside CUSB:</p>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                    {outsideRoles.map((role, index) => (
+                      <li key={index} className="flex items-start space-x-2">
+                        <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0"></div>
+                        <span>{role}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 pt-4 border-t border-gray-200">
+                    <p className="text-gray-600 text-sm">Central University of South Bihar</p>
+                    <p className="text-gray-600 text-sm">NH-120, Gaya-Panchanpur Road, Post Fatehpur, Gaya, 824236</p>
+                    <p className="text-gray-600 text-sm mt-2">ORCID: https://orcid.org/0000-0002-5759-4140</p>
+                    <p className="text-gray-600 text-sm">Scopus Author ID: 57203184276</p>
+                  </div>
                 </CardContent>
               </Card>
 
@@ -86,17 +156,53 @@ IDs: https://orcid.org/0000-0002-5759-4140/Scopus Author ID: 57203184276</p>
             </div>
           </div>
 
+          {/* Employment History */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Employment</h2>
+            <div className="space-y-6">
+              {employment.map((job, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex justify-between items-start mb-3">
+                      <h3 className="font-semibold text-lg text-blue-900">{job.position}</h3>
+                      <Badge variant="outline" className="ml-4">{job.period}</Badge>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{job.institution}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Foreign Visits */}
+          <div className="mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Foreign Visits</h2>
+            <Card>
+              <CardContent className="p-6">
+                <div className="flex flex-wrap justify-center gap-3">
+                  {foreignVisits.map((country, index) => (
+                    <Badge key={index} className="text-sm py-2 px-4 bg-green-100 text-green-800 hover:bg-green-200">
+                      {country}
+                    </Badge>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Education */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Education</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {education.map((item, index) => <Card key={index} className="hover:shadow-lg transition-shadow">
+              {education.map((item, index) => (
+                <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardContent className="p-6 text-center">
                     <h3 className="font-semibold text-lg text-blue-900 mb-2">{item.degree}</h3>
                     <p className="text-gray-600 mb-2">{item.institution}</p>
                     <Badge variant="outline">{item.year}</Badge>
                   </CardContent>
-                </Card>)}
+                </Card>
+              ))}
             </div>
           </div>
 
@@ -104,9 +210,11 @@ IDs: https://orcid.org/0000-0002-5759-4140/Scopus Author ID: 57203184276</p>
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Areas of Expertise</h2>
             <div className="flex flex-wrap justify-center gap-3">
-              {expertise.map((skill, index) => <Badge key={index} className="text-sm py-2 px-4 bg-blue-100 text-blue-800 hover:bg-blue-200">
+              {expertise.map((skill, index) => (
+                <Badge key={index} className="text-sm py-2 px-4 bg-blue-100 text-blue-800 hover:bg-blue-200">
                   {skill}
-                </Badge>)}
+                </Badge>
+              ))}
             </div>
           </div>
 
@@ -116,16 +224,20 @@ IDs: https://orcid.org/0000-0002-5759-4140/Scopus Author ID: 57203184276</p>
             <Card>
               <CardContent className="p-6">
                 <ul className="space-y-3">
-                  {awards.map((award, index) => <li key={index} className="flex items-center space-x-3">
+                  {awards.map((award, index) => (
+                    <li key={index} className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
                       <span className="text-gray-700">{award}</span>
-                    </li>)}
+                    </li>
+                  ))}
                 </ul>
               </CardContent>
             </Card>
           </div>
         </div>
       </div>
-    </Layout>;
+    </Layout>
+  );
 };
+
 export default About;
