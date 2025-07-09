@@ -3,60 +3,59 @@ import { ArrowUp, Book, FileText, Mail, Users, ArrowRight, Star, Calendar, Eye }
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
-
 const Index = () => {
-  const stats = [
-    { label: "Publications", value: "63+", icon: Book },
-    { label: "H-Index", value: "25", icon: ArrowUp },
-    { label: "Citations", value: "4200+", icon: FileText },
-    { label: "PhD Students", value: "9", icon: Users },
-  ];
-
-  const recentPosts = [
-    {
-      id: 1,
-      title: "Annual Biotechnology Research Symposium 2024",
-      excerpt: "Highlights from our recent symposium featuring groundbreaking research presentations.",
-      date: "2024-06-15",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
-      views: 245
-    },
-    {
-      id: 2,
-      title: "ICMR Funded Project Meeting",
-      excerpt: "Progress review meeting for our iPSC-derived T cells research project.",
-      date: "2024-06-10",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=250&fit=crop",
-      views: 189
-    }
-  ];
-
+  const stats = [{
+    label: "Publications",
+    value: "63+",
+    icon: Book
+  }, {
+    label: "H-Index",
+    value: "25",
+    icon: ArrowUp
+  }, {
+    label: "Citations",
+    value: "4200+",
+    icon: FileText
+  }, {
+    label: "PhD Students",
+    value: "9",
+    icon: Users
+  }];
+  const recentPosts = [{
+    id: 1,
+    title: "Annual Biotechnology Research Symposium 2024",
+    excerpt: "Highlights from our recent symposium featuring groundbreaking research presentations.",
+    date: "2024-06-15",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
+    views: 245
+  }, {
+    id: 2,
+    title: "ICMR Funded Project Meeting",
+    excerpt: "Progress review meeting for our iPSC-derived T cells research project.",
+    date: "2024-06-10",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=250&fit=crop",
+    views: 189
+  }];
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric'
     });
   };
-
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
         <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <div className="mb-12">
             <div className="w-56 h-56 mx-auto mb-8 relative">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full animate-pulse opacity-20"></div>
               <div className="relative w-full h-full bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm rounded-full border border-white/20 overflow-hidden shadow-2xl">
-                <img 
-                  src="/lovable-uploads/e008a4dd-627d-4765-878b-33dd956c2926.png" 
-                  alt="Prof. Rizwanul Haque"
-                  className="w-full h-full object-cover"
-                />
+                <img src="/lovable-uploads/e008a4dd-627d-4765-878b-33dd956c2926.png" alt="Prof. Rizwanul Haque" className="w-full h-full object-cover" />
               </div>
             </div>
             
@@ -76,7 +75,7 @@ const Index = () => {
                 </p>
                 <div className="flex items-center justify-center space-x-2 text-yellow-400">
                   <Star className="w-5 h-5 fill-current" />
-                  <span className="text-sm font-medium">40 Years of Excellence</span>
+                  <span className="text-sm font-medium">23 years research experience  and 13 year teaching experience</span>
                   <Star className="w-5 h-5 fill-current" />
                 </div>
               </div>
@@ -120,9 +119,8 @@ const Index = () => {
           
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => {
-              const Icon = stat.icon;
-              return (
-                <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+            const Icon = stat.icon;
+            return <Card key={index} className="text-center hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                   <CardContent className="p-8">
                     <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg">
                       <Icon className="w-8 h-8 text-white" />
@@ -130,9 +128,8 @@ const Index = () => {
                     <div className="text-4xl font-black text-gray-900 mb-2">{stat.value}</div>
                     <div className="text-gray-600 font-medium">{stat.label}</div>
                   </CardContent>
-                </Card>
-              );
-            })}
+                </Card>;
+          })}
           </div>
         </div>
       </section>
@@ -175,11 +172,7 @@ const Index = () => {
             
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-500 rounded-3xl transform rotate-3 opacity-20"></div>
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" 
-                alt="Research Laboratory"
-                className="relative rounded-3xl shadow-2xl w-full transform hover:scale-105 transition-transform duration-300"
-              />
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Research Laboratory" className="relative rounded-3xl shadow-2xl w-full transform hover:scale-105 transition-transform duration-300" />
             </div>
           </div>
         </div>
@@ -197,14 +190,9 @@ const Index = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {recentPosts.map((post) => (
-              <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden border-0 bg-white shadow-lg">
+            {recentPosts.map(post => <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden border-0 bg-white shadow-lg">
                 <div className="relative">
-                  <img 
-                    src={post.image} 
-                    alt={post.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  <img src={post.image} alt={post.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
                   <div className="absolute top-4 left-4">
                     <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-gray-800">
                       {formatDate(post.date)}
@@ -234,8 +222,7 @@ const Index = () => {
                     </Link>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           
           <div className="text-center">
@@ -252,8 +239,8 @@ const Index = () => {
       {/* Research Highlights */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white relative overflow-hidden">
         <div className="absolute inset-0 opacity-40" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-        }}></div>
+        backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
+      }}></div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -303,8 +290,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Index;
