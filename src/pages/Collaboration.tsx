@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom";
-import { Users, MapPin, Calendar, ExternalLink, Mail, Globe, Award, BookOpen } from "lucide-react";
+import { Users, MapPin, Calendar, ExternalLink, Mail, Globe, Award, BookOpen, Microscope, FlaskConical, Dna, Building, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/Layout";
@@ -13,7 +13,6 @@ const Collaboration = () => {
       position: "Professor of Molecular Biology",
       institution: "Harvard Medical School",
       location: "Boston, USA",
-      image: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=200&h=200&fit=crop&crop=face",
       specialization: "Cancer Immunotherapy",
       email: "sarah.johnson@hms.harvard.edu",
       collaborationYears: "2018-Present"
@@ -24,7 +23,6 @@ const Collaboration = () => {
       position: "Director, Stem Cell Research Center",
       institution: "University of Tokyo",
       location: "Tokyo, Japan",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face",
       specialization: "iPSC Technology",
       email: "h.tanaka@u-tokyo.ac.jp",
       collaborationYears: "2019-Present"
@@ -35,7 +33,6 @@ const Collaboration = () => {
       position: "Senior Research Scientist",
       institution: "Max Planck Institute",
       location: "Munich, Germany",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face",
       specialization: "Regenerative Medicine",
       email: "m.rodriguez@mpi.de",
       collaborationYears: "2020-Present"
@@ -46,7 +43,6 @@ const Collaboration = () => {
       position: "Head of Biotechnology Department",
       institution: "IIT Delhi",
       location: "New Delhi, India",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face",
       specialization: "Biomedical Engineering",
       email: "r.kumar@iitd.ac.in",
       collaborationYears: "2017-Present"
@@ -56,33 +52,57 @@ const Collaboration = () => {
   const projects = [
     {
       id: 1,
-      title: "International iPSC Consortium for Cancer Research",
-      description: "Multi-institutional project developing iPSC-derived T cells for hepatocellular carcinoma treatment",
-      partners: ["Harvard Medical School", "University of Tokyo", "Central University of South Bihar"],
-      funding: "NIH & ICMR Joint Grant",
-      duration: "2020-2025",
+      title: "Generation of hepatocellular carcinoma reactive designer T cells based on induced pluripotent stem cells",
+      description: "ICMR funded project developing iPSC-derived T cells for liver cancer treatment",
+      partners: ["ICMR", "Central University of South Bihar"],
+      funding: "ICMR Grant: 92 Lakhs",
+      duration: "2024-2027",
       status: "Active",
-      publications: 8
+      publications: 8,
+      grantNumber: "IIRPSG-2024-01-05271"
     },
     {
       id: 2,
-      title: "Indo-German Collaboration on Regenerative Medicine",
-      description: "Advanced research on stem cell applications in tissue engineering and organ regeneration",
-      partners: ["Max Planck Institute", "IIT Delhi", "Central University of South Bihar"],
-      funding: "DST-DAAD Partnership",
-      duration: "2019-2024",
+      title: "Evaluation of Unani Drug on FoxP3 expressing in Regulatory T cells in the Modulation of Rheumatoid Arthritis",
+      description: "Research on FoxP3 modulation in Rheumatoid Arthritis using traditional Unani medicine",
+      partners: ["CCRUM", "Ministry of Ayush", "Central University of South Bihar"],
+      funding: "CCRUM Grant: 30.15 Lakhs",
+      duration: "2024-2027",
       status: "Active",
-      publications: 12
+      publications: 5,
+      grantNumber: "F.No-TECH-21013/11/2024-CCRUM-HQ"
     },
     {
       id: 3,
-      title: "South Asian Biotechnology Research Network",
-      description: "Regional consortium focusing on biotechnology solutions for healthcare challenges",
-      partners: ["Multiple Universities across India, Bangladesh, Sri Lanka"],
-      funding: "SAARC Development Fund",
-      duration: "2018-2023",
-      status: "Completed",
-      publications: 15
+      title: "Study of the Telomerase Regulation in Female Breast Cancer Patient of Arsenic Affected region of Bihar",
+      description: "Investigating telomerase activity in breast cancer patients from arsenic-affected areas",
+      partners: ["Bihar Council on Science & Technology", "Central University of South Bihar"],
+      funding: "BCST Grant: 2 Lakhs",
+      duration: "2022-2024",
+      status: "Active",
+      publications: 3,
+      grantNumber: "BCST-RD=01/2022-769"
+    }
+  ];
+
+  const consultancy = [
+    {
+      id: 1,
+      title: "Antioxidants and Sex differences study in free radical mediated brain stroke",
+      country: "Kingdom of Saudi Arabia",
+      organization: "National Science, Technology and Innovation Plan (KACST)",
+      year: "2015",
+      status: "Approved",
+      focus: "Hormonal and oxidative stress signaling in stroke"
+    },
+    {
+      id: 2,
+      title: "Protective role of adenosine Kinase inhibition in Traumatic Optic Neuropathy",
+      country: "Kingdom of Saudi Arabia", 
+      organization: "King Abdul Aziz University",
+      year: "2016",
+      status: "Submitted",
+      focus: "Neuroprotective mechanisms"
     }
   ];
 
@@ -93,8 +113,7 @@ const Collaboration = () => {
       date: "March 15-17, 2024",
       location: "New Delhi, India",
       type: "International Conference",
-      role: "Keynote Speaker",
-      image: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=400&h=250&fit=crop"
+      role: "Keynote Speaker"
     },
     {
       id: 2,
@@ -102,17 +121,42 @@ const Collaboration = () => {
       date: "January 22-24, 2024",
       location: "Boston, USA",
       type: "Research Collaboration",
-      role: "Panel Discussion",
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=250&fit=crop"
+      role: "Panel Discussion"
     },
     {
       id: 3,
-      title: "European Society for Medical Oncology Conference",
-      date: "October 10-14, 2023",
-      location: "Munich, Germany",
-      type: "Academic Exchange",
-      role: "Research Presentation",
-      image: "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=400&h=250&fit=crop"
+      title: "4th Asian Congress for Alternatives to Animal Experiments",
+      date: "December 12-14, 2024",
+      location: "Jamia Hamdard, New Delhi",
+      type: "Academic Conference",
+      role: "Invited Speaker"
+    },
+    {
+      id: 4,
+      title: "Immuncon-2023 Golden Jubilee Conference",
+      date: "October 5-8, 2023",
+      location: "AIIMS, New Delhi",
+      type: "National Conference",
+      role: "National Speaker"
+    }
+  ];
+
+  const patents = [
+    {
+      id: 1,
+      title: "Establishment of a Maurine Stromal Cell Line Expressing Two Notch Ligands and MHC-II protein",
+      university: "Pennsylvania State University",
+      number: "2012-3908",
+      inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
+      year: "2012"
+    },
+    {
+      id: 2,
+      title: "Generation of tumor-specific T lymphocytes from induced pluripotent stem cells",
+      university: "Pennsylvania State University", 
+      number: "2011-3814",
+      inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
+      year: "2011"
     }
   ];
 
@@ -160,12 +204,8 @@ const Collaboration = () => {
             {collaborators.map((collaborator) => (
               <Card key={collaborator.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-gray-50 to-blue-50">
                 <CardContent className="p-6 text-center">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-lg">
-                    <img 
-                      src={collaborator.image} 
-                      alt={collaborator.name}
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                    />
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg">
+                    <span className="text-white font-bold text-xl">{collaborator.name.split(' ').map(n => n[0]).join('')}</span>
                   </div>
                   
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{collaborator.name}</h3>
@@ -197,13 +237,13 @@ const Collaboration = () => {
         </div>
       </section>
 
-      {/* Collaborative Projects Section */}
+      {/* Active Research Projects */}
       <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Collaborative Projects</h2>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Active Research Projects</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Major multi-institutional research initiatives driving innovation in biotechnology
+              Current major research initiatives with significant funding and impact
             </p>
           </div>
           
@@ -217,11 +257,7 @@ const Collaboration = () => {
                       <p className="text-gray-600 leading-relaxed mb-4">{project.description}</p>
                     </div>
                     <div className="flex-shrink-0 lg:ml-8">
-                      <div className={`inline-flex px-4 py-2 rounded-full text-sm font-medium ${
-                        project.status === 'Active' 
-                          ? 'bg-green-100 text-green-800' 
-                          : 'bg-blue-100 text-blue-800'
-                      }`}>
+                      <div className="inline-flex px-4 py-2 rounded-full text-sm font-medium bg-green-100 text-green-800">
                         {project.status}
                       </div>
                     </div>
@@ -257,6 +293,9 @@ const Collaboration = () => {
                           <BookOpen className="w-4 h-4 mr-2 text-gray-400" />
                           {project.publications} Publications
                         </div>
+                        <div className="text-xs text-gray-500">
+                          Grant: {project.grantNumber}
+                        </div>
                       </div>
                     </div>
                     
@@ -274,6 +313,79 @@ const Collaboration = () => {
         </div>
       </section>
 
+      {/* Research Consultancy */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">International Research Consultancy</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Advisory roles and consultation services for international research projects
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {consultancy.map((item) => (
+              <Card key={item.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <Building className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm font-medium text-blue-600">{item.country}</span>
+                    </div>
+                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                      item.status === 'Approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
+                    }`}>
+                      {item.status}
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
+                  <p className="text-sm text-gray-600 mb-3">{item.organization}</p>
+                  <p className="text-sm text-gray-700 mb-4">{item.focus}</p>
+                  
+                  <div className="flex items-center text-sm text-gray-500">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    {item.year}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Patents Section */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Patent Portfolio</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Intellectual property contributions to stem cell and immunotherapy research
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {patents.map((patent) => (
+              <Card key={patent.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
+                <CardContent className="p-6">
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="flex items-center space-x-2">
+                      <GraduationCap className="w-5 h-5 text-blue-600" />
+                      <span className="text-sm font-medium text-blue-600">{patent.university}</span>
+                    </div>
+                    <div className="text-sm text-gray-500">{patent.year}</div>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-gray-900 mb-3">{patent.title}</h3>
+                  <p className="text-sm text-gray-600 mb-3">Patent No: {patent.number}</p>
+                  <p className="text-sm text-gray-700">Inventors: {patent.inventors}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Recent Meetings & Conferences */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -284,23 +396,14 @@ const Collaboration = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {meetings.map((meeting) => (
-              <Card key={meeting.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 overflow-hidden border-0 bg-white shadow-lg">
-                <div className="relative">
-                  <img 
-                    src={meeting.image} 
-                    alt={meeting.title}
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute top-4 right-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-gray-800">
-                      {meeting.type}
-                    </div>
-                  </div>
-                </div>
-                
+              <Card key={meeting.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-white shadow-lg">
                 <CardContent className="p-6">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl mb-4 flex items-center justify-center">
+                    <Microscope className="w-6 h-6 text-white" />
+                  </div>
+                  
                   <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {meeting.title}
                   </h3>
