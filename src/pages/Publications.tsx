@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,10 +7,23 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Book, FileText, Award, ExternalLink } from "lucide-react";
 import { useState } from "react";
 
+interface Publication {
+  number: number;
+  title: string;
+  authors: string;
+  journal: string;
+  year: string;
+  impactFactor: string;
+  doi?: string;
+  pmid?: string;
+  issn?: string;
+  status?: string;
+}
+
 const Publications = () => {
   const [showAllPublications, setShowAllPublications] = useState(false);
 
-  const fullLengthPublications = [
+  const fullLengthPublications: Publication[] = [
     {
       number: 63,
       title: "Promoter methylation correlates with reduced SMAD4 expression in patients with breast cancer",
@@ -71,7 +83,7 @@ const Publications = () => {
     // ... continuing with more publications
   ];
 
-  const morePublications = [
+  const morePublications: Publication[] = [
     {
       number: 57,
       title: "Reactive oxygen species mediated apoptosis induction in human liver cancer cells by Emblica officinalis (Amla): a new trend in liver cancer treatment",
