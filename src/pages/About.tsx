@@ -5,7 +5,7 @@ import { Badge } from "@/components/ui/badge";
 const About = () => {
   const education = [{
     degree: "Ph.D. in Immunotoxicology",
-    institution: "Jamia Hamdard University",
+    institution: "Jamia Hamdard University", 
     year: "2003"
   }, {
     degree: "M.Sc. in Biochemistry",
@@ -22,7 +22,7 @@ const About = () => {
     institution: "Centre for Biological Science (Biotechnology), Department of Biotechnology, Central University of South Bihar, Bihar, India",
     period: "2015-Till date"
   }, {
-    position: "Associate Professor",
+    position: "Associate Professor", 
     institution: "Centre for Biological Science (Biotechnology) Central University of South Bihar, Bihar, India",
     period: "2012-2015"
   }, {
@@ -65,7 +65,28 @@ const About = () => {
   ];
 
   const expertise = ["Stem Cell Biology", "T-cell Immunotherapy", "Cancer Research", "Immunotoxicology", "Biotechnology", "Regenerative Medicine", "Molecular Diagnostics", "Telomerase Research"];
-  const awards = ["Best Postdoctoral Fellow (2009, USA)", "CSIR Travel Award", "CCRUM Research Grant", "Bharat Seva Trust Award", "Multiple Research Excellence Awards"];
+  const awards = [
+    "2024: Interacted and motivated the Students of Biotechnology about the scope of Biotechnology of Gandhi Faiz-E-Aam College, Shahjahanpur, UP, 10/01/2025.",
+    "2023: Interacted to guide and motivated the newly appointed faculty, College of Agriculture Biotechnology, Bihar Agriculture University, Sabour, Bhagalpur, Bihar for promoting research collaboration. 29/11/2023.",
+    "2023: Received Certificate of Honour and Kaifi Azmi National Award-2023 in the field of Education in one-day National Seminar and All India Mushaira dated 10/05/2023 organized by Viplavi Library, Godargawan, Begusarai-Bihar.",
+    "2022: Felicitated for successfully organizing DST-STUTI Sponsored Hands on Training Program on Advanced Immunological Tools and Techniques\" September 19-25, 2022. Department of Biotechnology CUSB by Jamia Hamdard PMU in 19th training programme at Jamia Hamdard, New Delhi, Feb 2023",
+    "2022: Invited as distinguished Alumni of School of Chemical and Life Science, Jamia Hamdard University, New Delhi to address the Induction porgramme 2022 for Bachelor of Science (FYUP).",
+    "2022: Invited for discussion on collaboration with my laboratory under the framework of creating 3D in-vitro models such as Organoids, Spheroids and regenerative medicine. 02/05/2022 NIPER, Hajipur.",
+    "2019: Invited as a Chief Guest ERA University, Lucknow in Guest lecture by Dr. Saif Khan from Barrow Neurological Institute, USA. October 2019",
+    "2017: Inaugurated Exhibition on Application of Stem Cell Technology at Patna Women's College, Patna University to commemorate Nation Science Day on 23-02-2017.",
+    "2016: Invited to participate in valedictory function on one-day symposium Technical Rajbhasa, in the Regional Research Institute of Unani Medicine, Patna, CCRUM, Ministry of AYUSH, Govt. of India, 30-03-2016 Topic: Clean India & Healthy India",
+    "2011: Recipient of American Association of Immunologist Travel Grant for 98th Annual Meeting of IMMUNOLOGY 2011 for oral presentation, May 13-17, San Francisco, USA.",
+    "2010: Recipient of 2010 American Association of Immunologist Travel Grant for the 14th International Congress of Immunology held in Kobe, Japan, August 22-27, 2010.",
+    "2009: Nomination & Recognition Award for best postdoctoral fellow of the year 2009 to present his work in Data & Dine 2009, held at Penn State University College of Medicine.",
+    "2009: Recognition award: Certificate of recognition and appreciation for the commitment for 5 years of service by Penn State Milton Hershey Medical Center, Penn State College of Medicine held in May 2009",
+    "2007: Invited oral presenters: 2007 DIGE user meeting fully sponsored by GE Healthcare held at Athens Georgia on January 17-18, 2007.",
+    "2006: Poster selected discussions in a special section of poster discussion at Physiological Genomics and Proteomics of Lung Disease held at Fort Lauderdale, Florida on November 2-5, 2006.",
+    "2003-2001: Recipient of the award of Senior Research Fellowship (SRF) from Council for Scientific and Industrial Research (CSIR), Government of India from Nov 2001 to July 2003.",
+    "2001-1999: Recipient of Senior Research Fellowship from the Central Council for Research in Unani Medicine (CCRUM), Government of India from Aug 1999 to Nov 2001.",
+    "2000-2001: Awarded Sports Science Fellowship, Govt. of India for the year 2000-2001.",
+    "1996-1994: Received Bharat Sewa Trust Merit Scholarship, Govt. of India 1994-1996.",
+    "1993: Secured first position in college at 10+2 levels 1993."
+  ];
 
   return (
     <Layout>
@@ -225,8 +246,8 @@ const About = () => {
               <CardContent className="p-6">
                 <ul className="space-y-3">
                   {awards.map((award, index) => (
-                    <li key={index} className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                    <li key={index} className="flex items-start space-x-3">
+                      <div className="w-2 h-2 bg-yellow-500 rounded-full mt-2 flex-shrink-0"></div>
                       <span className="text-gray-700">{award}</span>
                     </li>
                   ))}

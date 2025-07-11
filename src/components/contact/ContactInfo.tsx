@@ -1,7 +1,8 @@
 
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Mail, Phone, Users } from "lucide-react";
+import { Mail, Phone, Users, ExternalLink } from "lucide-react";
 
 const ContactInfo = () => {
   return (
@@ -61,14 +62,29 @@ const ContactInfo = () => {
           </CardTitle>
         </CardHeader>
         <CardContent className="space-y-3">
-          <Button variant="outline" className="w-full justify-start">
-            Google Scholar
+          <Button variant="outline" className="w-full justify-between" asChild>
+            <a href="https://scholar.google.com/citations?user=upsNfz0AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+              <span>Google Scholar</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </Button>
-          <Button variant="outline" className="w-full justify-start">
-            ResearchGate
+          <Button variant="outline" className="w-full justify-between" asChild>
+            <a href="https://www.researchgate.net/profile/Rizwanul_Haque5/2" target="_blank" rel="noopener noreferrer">
+              <span>ResearchGate</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </Button>
-          <Button variant="outline" className="w-full justify-start">
-            LinkedIn
+          <Button variant="outline" className="w-full justify-between" asChild>
+            <a href="https://www.scopus.com/authid/detail.uri?authorId=57203184276" target="_blank" rel="noopener noreferrer">
+              <span>Scopus Profile</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
+          </Button>
+          <Button variant="outline" className="w-full justify-between" asChild>
+            <a href="https://www.linkedin.com/in/rizwanul-haque-62250122" target="_blank" rel="noopener noreferrer">
+              <span>LinkedIn</span>
+              <ExternalLink className="w-4 h-4" />
+            </a>
           </Button>
         </CardContent>
       </Card>
@@ -88,3 +104,4 @@ const ContactInfo = () => {
 };
 
 export default ContactInfo;
+

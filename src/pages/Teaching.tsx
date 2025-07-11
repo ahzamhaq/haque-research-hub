@@ -1,10 +1,10 @@
 
+
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Users, Book, X } from "lucide-react";
 import { useState } from "react";
 
@@ -63,50 +63,6 @@ const Teaching = () => {
     { year: "2022", name: "Vikas Kumar", fellowship: "DBT-SRF" },
     { year: "2024", name: "Naina Sakshi", fellowship: "Non-Net Fellow" },
     { year: "2024", name: "Srishti Shriya", fellowship: "CSIR-NET, Non-Net Fellow" }
-  ];
-
-  const currentProjectFellows = [
-    { year: "2024", name: "Rashid Lateef", position: "Senior Research Fellow", project: "CCRUM project" },
-    { year: "2025", name: "Antriksha Banik", position: "Project Research Scientist - I (Non-Medical)", project: "ICMR Project" }
-  ];
-
-  const pastProjectFellows = [
-    { year: "2019", name: "Ankita Kumari" },
-    { year: "2021", name: "Sadhan Kumar" }
-  ];
-
-  const invitedPresentations = [
-    {
-      year: "2025",
-      title: "Modern Trends In Research",
-      venue: "Maulana Azad National Urdu University College of Teacher Education, Darbhanga",
-      date: "14-05-2025"
-    },
-    {
-      year: "2024",
-      title: "Generation of Immune Cells through in vitro Cell Culture Methods",
-      venue: "4th Asian Congress for Alternatives to Animal Experiments, Jamia Hamdard, New Delhi",
-      date: "December 12th-14th, 2024"
-    },
-    {
-      year: "2024",
-      title: "Complexities of Telomere and Telomerase in Liver Cancer",
-      venue: "International Conference on Recent Trends in Biosciences and Healthcare, Patna University",
-      date: "22nd-23rd November 2024"
-    },
-    {
-      year: "2024",
-      title: "Effect of Ozone on Human Health and its Impact on Lung Inflammation and Injury",
-      venue: "National Seminar on Current Environmental Issues and Sustainable Development, MU Gaya",
-      date: "September 11-12, 2024"
-    },
-    {
-      year: "2024",
-      title: "Panel Discussion on Computational Oncology",
-      venue: "3-day Workshop on Computational Oncology (WoCOn 2024), IIT Patna",
-      date: "April 19-21, 2024"
-    }
-    // ... (truncated for brevity, but full list would be included)
   ];
 
   const thesisEvaluations = {
@@ -220,39 +176,6 @@ const Teaching = () => {
             </div>
           </div>
 
-          {/* Current Project Fellows */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Current Project Fellows in Funded Grants</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {currentProjectFellows.map((fellow, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline">{fellow.year}</Badge>
-                    </div>
-                    <h3 className="text-lg font-semibold text-blue-900 mb-2">{fellow.name}</h3>
-                    <p className="text-gray-700 mb-1">{fellow.position}</p>
-                    <p className="text-gray-600 text-sm">{fellow.project}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-            
-            <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-4">Past Project Fellows</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {pastProjectFellows.map((fellow, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-4">
-                    <div className="flex justify-between items-center">
-                      <span className="font-medium text-gray-900">{fellow.name}</span>
-                      <Badge variant="outline">{fellow.year}</Badge>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-
           {/* Areas of Specialization */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Teaching Specializations</h2>
@@ -262,33 +185,6 @@ const Teaching = () => {
                   {spec}
                 </Badge>
               ))}
-            </div>
-          </div>
-
-          {/* Invited Presentations */}
-          <div className="mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Invited Presentations</h2>
-            <div className="space-y-4">
-              {invitedPresentations.slice(0, 5).map((presentation, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardContent className="p-6">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline">{presentation.year}</Badge>
-                    </div>
-                    <h3 className="text-lg font-semibold text-blue-900 mb-2">{presentation.title}</h3>
-                    <p className="text-gray-700 mb-1">{presentation.venue}</p>
-                    <p className="text-gray-600 text-sm">{presentation.date}</p>
-                  </CardContent>
-                </Card>
-              ))}
-              <div className="text-center">
-                <button 
-                  onClick={() => setSelectedModal('allPresentations')}
-                  className="text-blue-600 hover:text-blue-800 font-medium"
-                >
-                  View All Presentations ({invitedPresentations.length} total)
-                </button>
-              </div>
             </div>
           </div>
 
@@ -454,41 +350,10 @@ const Teaching = () => {
             ))}
           </TableBody>
         </Table>
-        
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Research Advisory Committee Memberships</h3>
-          <Accordion type="single" collapsible className="w-full">
-            <AccordionItem value="current-rac">
-              <AccordionTrigger>Current RAC Memberships</AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2">
-                  <li>1. Ankita Kumari (Biotechnology)</li>
-                  <li>2. Surbhi Kumari (Life Science)</li>
-                  <li>3. Ananta (Life Science)</li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-            <AccordionItem value="past-rac">
-              <AccordionTrigger>Past RAC Memberships</AccordionTrigger>
-              <AccordionContent>
-                <ul className="space-y-2">
-                  <li>1. Abhay Pandit (Biotechnology)</li>
-                  <li>2. Priya Kumari (Biotechnology)</li>
-                </ul>
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
-        </div>
-
-        <div className="mt-8">
-          <h3 className="text-xl font-semibold text-gray-900 mb-4">Patent Submitted</h3>
-          <div className="bg-gray-50 p-4 rounded-lg">
-            <p><strong>PSU Patent:</strong> Establishment of a Maurine Stromal Cell Line Expressing Two Notch Ligands and MHC-II protein.</p>
-          </div>
-        </div>
       </Modal>
     </Layout>
   );
 };
 
 export default Teaching;
+

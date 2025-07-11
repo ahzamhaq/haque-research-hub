@@ -1,3 +1,4 @@
+
 import { Link, useLocation } from "react-router-dom";
 import { Mail, Users, Book, FileText, Home, User, PenTool, Handshake } from "lucide-react";
 const Layout = ({
@@ -123,21 +124,33 @@ const Layout = ({
               <h3 className="text-lg font-bold mb-6 text-blue-400">Academic Links</h3>
               <ul className="space-y-3 text-gray-300">
                 <li>
-                  <a href="https://orcid.org/0000-0002-5759-4140" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
+                  <a href="https://orcid.org/0000-0002-5759-4140" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
                     <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     <span>ORCID Profile</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
+                  <a href="https://scholar.google.com/citations?user=upsNfz0AAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
                     <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     <span>Google Scholar</span>
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
+                  <a href="https://www.researchgate.net/profile/Rizwanul_Haque5/2" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
                     <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
                     <span>ResearchGate</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.scopus.com/authid/detail.uri?authorId=57203184276" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                    <span>Scopus Profile</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/rizwanul-haque-62250122" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors flex items-center space-x-2">
+                    <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
+                    <span>LinkedIn</span>
                   </a>
                 </li>
               </ul>
