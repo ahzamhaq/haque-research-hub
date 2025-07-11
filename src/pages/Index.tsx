@@ -83,8 +83,9 @@ const Index = () => {
               </h1>
               
               <div className="max-w-2xl mx-auto space-y-4">
-                <p className="text-2xl md:text-3xl font-light text-blue-100">Professor & Dean (SEBES) & Former Head (Dept. of Biotechnology) </p>
-                <p className="text-lg text-blue-200/80 font-medium">School of Earth Biological & Environmental Sciences 
+                <p className="text-2xl md:text-3xl font-light text-blue-100">Professor &amp; Dean (SEBES) &amp; 
+Former Head (Dept. of Biotechnology) </p>
+                <p className="text-lg text-blue-200/80 font-medium">School of Earth Biological & Environmental Sciences  
 Department of Biotechnology</p>
                 <p className="text-lg text-blue-200/80 font-medium">
                   Central University of South Bihar
