@@ -1,4 +1,3 @@
-
 import { Link } from "react-router-dom";
 import { Users, MapPin, Calendar, ExternalLink, Mail, Globe, Award, BookOpen, Microscope, FlaskConical, Dna, Building, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,43 +8,84 @@ const Collaboration = () => {
   const collaborators = [
     {
       id: 1,
-      name: "Dr. Sarah Johnson",
-      position: "Professor of Molecular Biology",
-      institution: "Harvard Medical School",
-      location: "Boston, USA",
-      specialization: "Cancer Immunotherapy",
-      email: "sarah.johnson@hms.harvard.edu",
-      collaborationYears: "2018-Present"
+      name: "Dr. Jianxun (Jim) Song, PhD",
+      position: "R.L. Bricker Endowed Professor", 
+      institution: "Texas A&M University",
+      specialization: "Stem Cell Research",
+      image: "https://medicine.tamu.edu/images/people/jim-song1.jpg",
+      profileLink: "https://medicine.tamu.edu/faculty-listings/song.html"
     },
     {
       id: 2,
-      name: "Prof. Hiroshi Tanaka",
-      position: "Director, Stem Cell Research Center",
-      institution: "University of Tokyo",
-      location: "Tokyo, Japan",
-      specialization: "iPSC Technology",
-      email: "h.tanaka@u-tokyo.ac.jp",
-      collaborationYears: "2019-Present"
+      name: "Dr. Saif Ahmad, PhD",
+      position: "Assistant Professor",
+      institution: "Barrow Neurological Institute",
+      specialization: "Stroke, VCID, TBI",
+      image: "https://www.barrowneuro.org/wp-content/uploads/Ahmad-Saif-200810-green-screen-600x600.jpg",
+      profileLink: "https://www.barrowneuro.org/person/saif-ahmad-phd/"
     },
     {
       id: 3,
-      name: "Dr. Maria Rodriguez",
-      position: "Senior Research Scientist",
-      institution: "Max Planck Institute",
-      location: "Munich, Germany",
-      specialization: "Regenerative Medicine",
-      email: "m.rodriguez@mpi.de",
-      collaborationYears: "2020-Present"
+      name: "Syed Shadab Raza",
+      position: "Ph.D., FRSB, Associate Professor & PI",
+      institution: "Laboratory for Stem Cell & Restorative Neurology",
+      specialization: "Stem Cell & Restorative Neurology",
+      image: "https://elmcindia.org/assets/images/shadab.jpg",
+      profileLink: "https://elmcindia.org/stemcell"
     },
     {
       id: 4,
-      name: "Prof. Rajesh Kumar",
-      position: "Head of Biotechnology Department",
-      institution: "IIT Delhi",
-      location: "New Delhi, India",
-      specialization: "Biomedical Engineering",
-      email: "r.kumar@iitd.ac.in",
-      collaborationYears: "2017-Present"
+      name: "Lokendra Sharma",
+      position: "Associate Professor",
+      institution: "Sanjay Gandhi Postgraduate Institute of Medical Sciences",
+      specialization: "Medical Sciences",
+      image: "",
+      profileLink: "https://www.linkedin.com/in/lokendra-sharma-3b455632/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+    },
+    {
+      id: 5,
+      name: "Mohammad Shamsul Ola",
+      position: "Professor, Faculty",
+      institution: "King Saud University - كلية العلوم",
+      specialization: "Sciences",
+      image: "http://faculty.ksu.edu.sa/sites/default/files/styles/prof_list_image/public/photo_13.jpg?itok=jFSLgYqq",
+      profileLink: "https://faculty.ksu.edu.sa/en/mola"
+    },
+    {
+      id: 6,
+      name: "Dr. Murali Kumarasamy",
+      position: "Assistant Professor",
+      institution: "Department of Biotechnology, NIPER Hajipur",
+      specialization: "Biotechnology",
+      image: "https://www.niperhajipur.ac.in/wp-content/uploads/2023/11/Murali-696x686.jpg",
+      profileLink: "https://www.niperhajipur.ac.in/murali-kumarasamy/#"
+    },
+    {
+      id: 7,
+      name: "Md. Margoob Ahmad",
+      position: "Doctor of Philosophy, Scientist-II",
+      institution: "Indira Gandhi Institute of Medical Sciences",
+      specialization: "Medical Research",
+      image: "https://i1.rgstatic.net/ii/profile.image/11431281232593801-1711733346412_Q512/Md-Ahmad-19.jpg",
+      profileLink: "https://www.researchgate.net/profile/Md-Ahmad-19"
+    },
+    {
+      id: 8,
+      name: "Dr. Mohd Akram",
+      position: "Professor, Department of Preventive and Social Medicine",
+      institution: "School of Unani Medical Education",
+      specialization: "Unani Medicine",
+      image: "https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=qL2r1zQAAAAJ&citpid=3",
+      profileLink: "https://scholar.google.com/citations?user=qL2r1zQAAAAJ&hl=en&authuser=1"
+    },
+    {
+      id: 9,
+      name: "Vahab Ali",
+      position: "Research Scientist",
+      institution: "Rajendra Memorial Research Institute of Medical Sciences",
+      specialization: "Medical Research",
+      image: "https://www.rmrims.org.in/staff/img/vali.jpg",
+      profileLink: "https://scholar.google.com/citations?user=afantZoAAAAJ&hl=en&oi=ao"
     }
   ];
 
@@ -200,35 +240,44 @@ const Collaboration = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {collaborators.map((collaborator) => (
               <Card key={collaborator.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-gray-50 to-blue-50">
                 <CardContent className="p-6 text-center">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center shadow-lg">
-                    <span className="text-white font-bold text-xl">{collaborator.name.split(' ').map(n => n[0]).join('')}</span>
+                  <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-lg bg-gray-200">
+                    {collaborator.image ? (
+                      <img 
+                        src={collaborator.image} 
+                        alt={collaborator.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          target.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                    ) : null}
+                    <div className={`w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center ${collaborator.image ? 'hidden' : ''}`}>
+                      <span className="text-white font-bold text-xl">{collaborator.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</span>
+                    </div>
                   </div>
                   
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{collaborator.name}</h3>
                   <p className="text-sm text-blue-600 font-medium mb-1">{collaborator.position}</p>
                   <p className="text-sm text-gray-600 mb-3">{collaborator.institution}</p>
                   
-                  <div className="flex items-center justify-center text-xs text-gray-500 mb-3">
-                    <MapPin className="w-3 h-3 mr-1" />
-                    {collaborator.location}
-                  </div>
-                  
                   <div className="bg-blue-100 rounded-lg p-3 mb-4">
                     <p className="text-xs text-blue-800 font-medium">Specialization</p>
                     <p className="text-sm text-blue-900">{collaborator.specialization}</p>
                   </div>
                   
-                  <div className="text-xs text-gray-500 mb-4">
-                    Collaboration: {collaborator.collaborationYears}
-                  </div>
-                  
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Contact
+                  <Button 
+                    size="sm" 
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
+                    onClick={() => window.open(collaborator.profileLink, '_blank')}
+                  >
+                    <ExternalLink className="w-4 h-4 mr-2" />
+                    Check out profile
                   </Button>
                 </CardContent>
               </Card>
