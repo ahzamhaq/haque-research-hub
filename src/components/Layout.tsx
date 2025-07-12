@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Sheet,
@@ -7,7 +8,6 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ModeToggle } from "@/components/ModeToggle";
 import { Link } from "react-router-dom";
 import { Menu } from "lucide-react";
 
@@ -59,9 +59,6 @@ const Layout = ({ children }: Props) => {
             <Link to="/" className="font-bold">
               Rizwanul Haque
             </Link>
-          </div>
-          <div className="flex items-center gap-2">
-            <ModeToggle />
           </div>
         </div>
       </header>
