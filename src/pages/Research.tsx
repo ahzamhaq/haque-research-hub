@@ -1,4 +1,3 @@
-
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -52,16 +51,6 @@ const Research = () => {
       role: "Co-PI"
     },
     {
-      title: "Corporate Autoimmune Research",
-      funding: "VV Biotech Pvt. Ltd.",
-      amount: "₹1.25 Lakhs",
-      duration: "2020-2024",
-      description: "Characterization and preclinical investigation of our molecules against autoimmune diseases",
-      status: "Ongoing",
-      category: "Drug Development",
-      role: "PI"
-    },
-    {
       title: "DST-FIST Infrastructure Development",
       funding: "DST",
       amount: "₹59 Lakhs",
@@ -83,6 +72,16 @@ const Research = () => {
       description: "Mechanism of telomerase regulation in response of arsenic in liver cancer",
       status: "Completed",
       category: "Cancer Biology",
+      role: "PI"
+    },
+    {
+      title: "Corporate funding",
+      funding: "VV Biotech Pvt. Ltd.",
+      amount: "₹1.25 Lakhs",
+      duration: "2020-2024",
+      description: "Characterization and preclinical investigation of our molecules against autoimmune diseases",
+      status: "Completed",
+      category: "Drug Development",
       role: "PI"
     }
   ];
@@ -196,6 +195,72 @@ const Research = () => {
             </p>
           </div>
 
+          {/* Research Impact */}
+          <div className="mb-16">
+            <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white text-center">
+              <h2 className="text-3xl font-bold mb-8">Research Impact & Recognition</h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
+                <div>
+                  <div className="text-3xl font-bold text-yellow-400">63+</div>
+                  <div className="text-blue-100">Publications</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-yellow-400">4200+</div>
+                  <div className="text-blue-100">Citations</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-yellow-400">25</div>
+                  <div className="text-blue-100">H-Index</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-yellow-400">41</div>
+                  <div className="text-blue-100">i10-Index</div>
+                </div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <div className="text-2xl font-bold text-yellow-400">265+</div>
+                  <div className="text-blue-100">Total Impact Factor</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-yellow-400">10+</div>
+                  <div className="text-blue-100">Book Chapters</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-yellow-400">2</div>
+                  <div className="text-blue-100">Patents</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Awards & Recognition */}
+            <Card className="bg-gradient-to-r from-amber-50 to-yellow-50 border-amber-200 mt-8">
+              <CardHeader>
+                <CardTitle className="text-2xl text-amber-900">Awards & Recognition</CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-white rounded-lg shadow-sm">
+                    <h4 className="font-semibold text-amber-800">Best Postdoctoral Fellow (2009)</h4>
+                    <p className="text-sm text-gray-600">Recognition for outstanding research contributions</p>
+                  </div>
+                  <div className="p-4 bg-white rounded-lg shadow-sm">
+                    <h4 className="font-semibold text-amber-800">International Travel Awards</h4>
+                    <p className="text-sm text-gray-600">Japan, California, and various US universities</p>
+                  </div>
+                  <div className="p-4 bg-white rounded-lg shadow-sm">
+                    <h4 className="font-semibold text-amber-800">Multiple Awards</h4>
+                    <p className="text-sm text-gray-600">CSIR, CCRUM, and Bharat Seva Trust</p>
+                  </div>
+                  <div className="p-4 bg-white rounded-lg shadow-sm">
+                    <h4 className="font-semibold text-amber-800">International Recognition</h4>
+                    <p className="text-sm text-gray-600">High global citation impact in stem cell research</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+
           {/* Research Contribution Overview */}
           <div className="mb-16">
             <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
@@ -226,13 +291,12 @@ const Research = () => {
 
           {/* Main Content Tabs */}
           <Tabs defaultValue="projects" className="w-full">
-            <TabsList className="grid w-full grid-cols-6">
+            <TabsList className="grid w-full grid-cols-5">
               <TabsTrigger value="projects">Projects</TabsTrigger>
               <TabsTrigger value="interests">Research Focus</TabsTrigger>
               <TabsTrigger value="patents">Patents</TabsTrigger>
               <TabsTrigger value="consultancy">Consultancy</TabsTrigger>
               <TabsTrigger value="usa-grants">USA Grants</TabsTrigger>
-              <TabsTrigger value="impact">Impact</TabsTrigger>
             </TabsList>
 
             <TabsContent value="projects" className="space-y-8">
@@ -290,7 +354,7 @@ const Research = () => {
                         <div className="text-xs text-gray-500 space-y-1">
                           <div><strong>Amount:</strong> {project.amount}</div>
                           <div><strong>Duration:</strong> {project.duration}</div>
-                          <div><strong>Grant:</strong> {project.grantNumber}</div>
+                          {project.grantNumber && <div><strong>Grant:</strong> {project.grantNumber}</div>}
                         </div>
                       </CardContent>
                     </Card>
@@ -372,72 +436,6 @@ const Research = () => {
                   </Card>
                 ))}
               </div>
-            </TabsContent>
-
-            <TabsContent value="impact" className="space-y-8">
-              {/* Research Impact */}
-              <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg p-8 text-white text-center">
-                <h2 className="text-3xl font-bold mb-8">Research Impact & Recognition</h2>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8">
-                  <div>
-                    <div className="text-3xl font-bold text-yellow-400">63+</div>
-                    <div className="text-blue-100">Publications</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-yellow-400">4200+</div>
-                    <div className="text-blue-100">Citations</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-yellow-400">25</div>
-                    <div className="text-blue-100">H-Index</div>
-                  </div>
-                  <div>
-                    <div className="text-3xl font-bold text-yellow-400">41</div>
-                    <div className="text-blue-100">i10-Index</div>
-                  </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <div className="text-2xl font-bold text-yellow-400">265+</div>
-                    <div className="text-blue-100">Total Impact Factor</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-yellow-400">10+</div>
-                    <div className="text-blue-100">Book Chapters</div>
-                  </div>
-                  <div>
-                    <div className="text-2xl font-bold text-yellow-400">2</div>
-                    <div className="text-blue-100">Patents</div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Awards & Recognition */}
-              <Card className="bg-gradient-to-r from-amber-50 to-yellow-50 border-amber-200">
-                <CardHeader>
-                  <CardTitle className="text-2xl text-amber-900">Awards & Recognition</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div className="p-4 bg-white rounded-lg shadow-sm">
-                      <h4 className="font-semibold text-amber-800">Best Postdoctoral Fellow (2009)</h4>
-                      <p className="text-sm text-gray-600">Recognition for outstanding research contributions</p>
-                    </div>
-                    <div className="p-4 bg-white rounded-lg shadow-sm">
-                      <h4 className="font-semibold text-amber-800">International Travel Awards</h4>
-                      <p className="text-sm text-gray-600">Japan, California, and various US universities</p>
-                    </div>
-                    <div className="p-4 bg-white rounded-lg shadow-sm">
-                      <h4 className="font-semibold text-amber-800">Multiple Awards</h4>
-                      <p className="text-sm text-gray-600">CSIR, CCRUM, and Bharat Seva Trust</p>
-                    </div>
-                    <div className="p-4 bg-white rounded-lg shadow-sm">
-                      <h4 className="font-semibold text-amber-800">International Recognition</h4>
-                      <p className="text-sm text-gray-600">High global citation impact in stem cell research</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
             </TabsContent>
           </Tabs>
         </div>

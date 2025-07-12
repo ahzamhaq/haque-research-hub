@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo } from 'react';
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -6,72 +5,20 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Book, FileText, Award, ExternalLink, Download, BarChart3 } from "lucide-react";
+import { Book, FileText, Award, ExternalLink, BarChart3 } from "lucide-react";
 import { fullLengthPublications, bookChapters, books, researchMetrics } from '@/data/publicationsData';
-import PublicationFilters from '@/components/publications/PublicationFilters';
 import PublicationCard from '@/components/publications/PublicationCard';
 import PublicationPagination from '@/components/publications/PublicationPagination';
 import PublicationStats from '@/components/publications/PublicationStats';
 
 const Publications = () => {
-  // Filter and search states
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('All Categories');
-  const [selectedYear, setSelectedYear] = useState('');
-  const [sortBy, setSortBy] = useState('number');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  const [showFilters, setShowFilters] = useState(false);
+  // Simplified states - removed filtering
   const [showStats, setShowStats] = useState(false);
-
-  // Pagination states
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
 
-  // Filter and sort publications
-  const filteredPublications = useMemo(() => {
-    let filtered = fullLengthPublications.filter(pub => {
-      const matchesSearch = !searchTerm || 
-        pub.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pub.authors.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        pub.journal.toLowerCase().includes(searchTerm.toLowerCase());
-      
-      const matchesCategory = selectedCategory === 'All Categories' || 
-        pub.category === selectedCategory;
-      
-      const matchesYear = !selectedYear || pub.year === selectedYear;
-      
-      return matchesSearch && matchesCategory && matchesYear;
-    });
-
-    // Sort publications
-    filtered.sort((a, b) => {
-      let compareValue = 0;
-      
-      switch (sortBy) {
-        case 'number':
-          compareValue = a.number - b.number;
-          break;
-        case 'year':
-          compareValue = parseInt(a.year) - parseInt(b.year);
-          break;
-        case 'impact':
-          compareValue = parseFloat(a.impactFactor) - parseFloat(b.impactFactor);
-          break;
-        case 'title':
-          compareValue = a.title.localeCompare(b.title);
-          break;
-        case 'journal':
-          compareValue = a.journal.localeCompare(b.journal);
-          break;
-        default:
-          compareValue = 0;
-      }
-      
-      return sortOrder === 'asc' ? compareValue : -compareValue;
-    });
-
-    return filtered;
-  }, [searchTerm, selectedCategory, selectedYear, sortBy, sortOrder]);
+  // Use all publications without filtering
+  const filteredPublications = fullLengthPublications;
 
   // Paginate results
   const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
@@ -79,14 +26,6 @@ const Publications = () => {
     const startIndex = (currentPage - 1) * itemsPerPage;
     return filteredPublications.slice(startIndex, startIndex + itemsPerPage);
   }, [filteredPublications, currentPage, itemsPerPage]);
-
-  // Clear all filters
-  const clearFilters = () => {
-    setSearchTerm('');
-    setSelectedCategory('All Categories');
-    setSelectedYear('');
-    setCurrentPage(1);
-  };
 
   // Handle pagination changes
   const handlePageChange = (page: number) => {
@@ -163,36 +102,11 @@ const Publications = () => {
                     <BarChart3 className="w-4 h-4" />
                     <span>{showStats ? 'Hide' : 'Show'} Analytics</span>
                   </Button>
-                  <Button 
-                    variant="outline"
-                    className="flex items-center space-x-2"
-                  >
-                    <Download className="w-4 h-4" />
-                    <span>Export</span>
-                  </Button>
                 </div>
               </div>
 
               {/* Analytics Dashboard */}
               {showStats && <PublicationStats publications={filteredPublications} />}
-
-              {/* Filters */}
-              <PublicationFilters
-                searchTerm={searchTerm}
-                setSearchTerm={setSearchTerm}
-                selectedCategory={selectedCategory}
-                setSelectedCategory={setSelectedCategory}
-                selectedYear={selectedYear}
-                setSelectedYear={setSelectedYear}
-                sortBy={sortBy}
-                setSortBy={setSortBy}
-                sortOrder={sortOrder}
-                setSortOrder={setSortOrder}
-                showFilters={showFilters}
-                setShowFilters={setShowFilters}
-                totalResults={filteredPublications.length}
-                onClearFilters={clearFilters}
-              />
 
               {/* Publications List */}
               <div className="space-y-4">
@@ -200,16 +114,6 @@ const Publications = () => {
                   <PublicationCard key={pub.number} publication={pub} />
                 ))}
               </div>
-
-              {/* No Results */}
-              {filteredPublications.length === 0 && (
-                <div className="text-center py-12">
-                  <FileText className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">No publications found</h3>
-                  <p className="text-gray-600 mb-4">Try adjusting your search or filter criteria</p>
-                  <Button onClick={clearFilters} variant="outline">Clear all filters</Button>
-                </div>
-              )}
 
               {/* Pagination */}
               <PublicationPagination
@@ -354,27 +258,33 @@ const Publications = () => {
             </TabsContent>
           </Tabs>
 
-          {/* External Links */}
+          {/* External Links - Fixed */}
           <div className="mt-16 bg-gray-50 rounded-lg p-8 text-center">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">Research Profiles & Academic Links</h2>
             <div className="flex flex-wrap justify-center gap-4">
-              <Button variant="outline" className="flex items-center space-x-2">
-                <ExternalLink className="w-4 h-4" />
+              <Button asChild variant="outline" className="flex items-center space-x-2">
                 <a href="https://orcid.org/0000-0002-5759-4140" target="_blank" rel="noopener noreferrer">
-                  ORCID Profile
+                  <ExternalLink className="w-4 h-4" />
+                  <span>ORCID Profile</span>
                 </a>
               </Button>
-              <Button variant="outline" className="flex items-center space-x-2">
-                <ExternalLink className="w-4 h-4" />
-                <span>Google Scholar</span>
+              <Button asChild variant="outline" className="flex items-center space-x-2">
+                <a href="https://scholar.google.com/citations?user=upsNfz0AAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Google Scholar</span>
+                </a>
               </Button>
-              <Button variant="outline" className="flex items-center space-x-2">
-                <ExternalLink className="w-4 h-4" />
-                <span>ResearchGate</span>
+              <Button asChild variant="outline" className="flex items-center space-x-2">
+                <a href="https://www.researchgate.net/profile/Rizwanul_Haque5/2" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4" />
+                  <span>ResearchGate</span>
+                </a>
               </Button>
-              <Button variant="outline" className="flex items-center space-x-2">
-                <ExternalLink className="w-4 h-4" />
-                <span>Scopus Profile</span>
+              <Button asChild variant="outline" className="flex items-center space-x-2">
+                <a href="https://www.scopus.com/authid/detail.uri?authorId=57203184276" target="_blank" rel="noopener noreferrer">
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Scopus Profile</span>
+                </a>
               </Button>
             </div>
           </div>

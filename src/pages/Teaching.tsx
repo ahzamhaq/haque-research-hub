@@ -1,5 +1,3 @@
-
-
 import Layout from "@/components/Layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -31,6 +29,21 @@ const Teaching = () => {
       level: "Master's Program",
       degree: "M.Sc. in Bioinformatics",
       subjects: ["Computational Biology", "Sequence Analysis", "Structural Biology", "Systems Biology"]
+    },
+    {
+      level: "Bachelor's Program",
+      degree: "B.Sc. BEd",
+      subjects: ["Microbiology", "Immunology", "Animal Biotechnology"]
+    },
+    {
+      level: "Bachelor's Program",
+      degree: "B.Sc. LLB",
+      subjects: ["Immunology", "Reproductive Technology", "Animal Biotechnology"]
+    },
+    {
+      level: "Integrated Program",
+      degree: "Integrated MPhil-Ph.D.",
+      subjects: ["Foundation Course", "Instrumentation", "Research Methodology", "Stem Cell Technology (Biotechnology, Bioinformatics & Life Science programs)"]
     }
   ];
 
@@ -188,7 +201,7 @@ const Teaching = () => {
             </div>
           </div>
 
-          {/* Thesis Evaluation Work */}
+          {/* Thesis Evaluation Work - Removed "View All" button */}
           <div className="mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-8">Thesis Evaluation Work for Outside CUSB</h2>
             <Tabs defaultValue="external-phd" className="w-full">
@@ -212,14 +225,6 @@ const Teaching = () => {
                       </CardContent>
                     </Card>
                   ))}
-                  <div className="text-center">
-                    <button 
-                      onClick={() => setSelectedModal('allThesis')}
-                      className="text-blue-600 hover:text-blue-800 font-medium"
-                    >
-                      View All Thesis Evaluations
-                    </button>
-                  </div>
                 </div>
               </TabsContent>
               
@@ -356,4 +361,3 @@ const Teaching = () => {
 };
 
 export default Teaching;
-
