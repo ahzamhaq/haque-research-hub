@@ -3,205 +3,173 @@ import { Users, MapPin, Calendar, ExternalLink, Mail, Globe, Award, BookOpen, Mi
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/Layout";
-
 const Collaboration = () => {
-  const collaborators = [
-    {
-      id: 1,
-      name: "Dr. Jianxun (Jim) Song, PhD",
-      position: "R.L. Bricker Endowed Professor", 
-      institution: "Texas A&M University",
-      specialization: "Stem Cell Research",
-      image: "https://medicine.tamu.edu/images/people/jim-song1.jpg",
-      profileLink: "https://medicine.tamu.edu/faculty-listings/song.html"
-    },
-    {
-      id: 2,
-      name: "Dr. Saif Ahmad, PhD",
-      position: "Assistant Professor",
-      institution: "Barrow Neurological Institute",
-      specialization: "Stroke, VCID, TBI",
-      image: "https://www.barrowneuro.org/wp-content/uploads/Ahmad-Saif-200810-green-screen-600x600.jpg",
-      profileLink: "https://www.barrowneuro.org/person/saif-ahmad-phd/"
-    },
-    {
-      id: 3,
-      name: "Syed Shadab Raza",
-      position: "Ph.D., FRSB, Associate Professor & PI",
-      institution: "Laboratory for Stem Cell & Restorative Neurology",
-      specialization: "Stem Cell & Restorative Neurology",
-      image: "https://elmcindia.org/assets/images/shadab.jpg",
-      profileLink: "https://elmcindia.org/stemcell"
-    },
-    {
-      id: 4,
-      name: "Lokendra Sharma",
-      position: "Associate Professor",
-      institution: "Sanjay Gandhi Postgraduate Institute of Medical Sciences",
-      specialization: "Medical Sciences",
-      image: "",
-      profileLink: "https://www.linkedin.com/in/lokendra-sharma-3b455632/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-    },
-    {
-      id: 5,
-      name: "Mohammad Shamsul Ola",
-      position: "Professor, Faculty",
-      institution: "King Saud University - كلية العلوم",
-      specialization: "Sciences",
-      image: "http://faculty.ksu.edu.sa/sites/default/files/styles/prof_list_image/public/photo_13.jpg?itok=jFSLgYqq",
-      profileLink: "https://faculty.ksu.edu.sa/en/mola"
-    },
-    {
-      id: 6,
-      name: "Dr. Murali Kumarasamy",
-      position: "Assistant Professor",
-      institution: "Department of Biotechnology, NIPER Hajipur",
-      specialization: "Biotechnology",
-      image: "https://www.niperhajipur.ac.in/wp-content/uploads/2023/11/Murali-696x686.jpg",
-      profileLink: "https://www.niperhajipur.ac.in/murali-kumarasamy/#"
-    },
-    {
-      id: 7,
-      name: "Md. Margoob Ahmad",
-      position: "Doctor of Philosophy, Scientist-II",
-      institution: "Indira Gandhi Institute of Medical Sciences",
-      specialization: "Medical Research",
-      image: "https://i1.rgstatic.net/ii/profile.image/11431281232593801-1711733346412_Q512/Md-Ahmad-19.jpg",
-      profileLink: "https://www.researchgate.net/profile/Md-Ahmad-19"
-    },
-    {
-      id: 8,
-      name: "Dr. Mohd Akram",
-      position: "Professor, Department of Preventive and Social Medicine",
-      institution: "School of Unani Medical Education",
-      specialization: "Unani Medicine",
-      image: "https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=qL2r1zQAAAAJ&citpid=3",
-      profileLink: "https://scholar.google.com/citations?user=qL2r1zQAAAAJ&hl=en&authuser=1"
-    },
-    {
-      id: 9,
-      name: "Vahab Ali",
-      position: "Research Scientist",
-      institution: "Rajendra Memorial Research Institute of Medical Sciences",
-      specialization: "Medical Research",
-      image: "https://www.rmrims.org.in/staff/img/vali.jpg",
-      profileLink: "https://scholar.google.com/citations?user=afantZoAAAAJ&hl=en&oi=ao"
-    }
-  ];
-
-  const projects = [
-    {
-      id: 1,
-      title: "Generation of hepatocellular carcinoma reactive designer T cells based on induced pluripotent stem cells",
-      description: "ICMR funded project developing iPSC-derived T cells for liver cancer treatment",
-      partners: ["ICMR", "Central University of South Bihar"],
-      funding: "ICMR Grant: 92 Lakhs",
-      duration: "2024-2027",
-      status: "Active",
-      publications: 8,
-      grantNumber: "IIRPSG-2024-01-05271"
-    },
-    {
-      id: 2,
-      title: "Evaluation of Unani Drug on FoxP3 expressing in Regulatory T cells in the Modulation of Rheumatoid Arthritis",
-      description: "Research on FoxP3 modulation in Rheumatoid Arthritis using traditional Unani medicine",
-      partners: ["CCRUM", "Ministry of Ayush", "Central University of South Bihar"],
-      funding: "CCRUM Grant: 30.15 Lakhs",
-      duration: "2024-2027",
-      status: "Active",
-      publications: 5,
-      grantNumber: "F.No-TECH-21013/11/2024-CCRUM-HQ"
-    },
-    {
-      id: 3,
-      title: "Study of the Telomerase Regulation in Female Breast Cancer Patient of Arsenic Affected region of Bihar",
-      description: "Investigating telomerase activity in breast cancer patients from arsenic-affected areas",
-      partners: ["Bihar Council on Science & Technology", "Central University of South Bihar"],
-      funding: "BCST Grant: 2 Lakhs",
-      duration: "2022-2024",
-      status: "Active",
-      publications: 3,
-      grantNumber: "BCST-RD=01/2022-769"
-    }
-  ];
-
-  const consultancy = [
-    {
-      id: 1,
-      title: "Antioxidants and Sex differences study in free radical mediated brain stroke",
-      country: "Kingdom of Saudi Arabia",
-      organization: "National Science, Technology and Innovation Plan (KACST)",
-      year: "2015",
-      status: "Approved",
-      focus: "Hormonal and oxidative stress signaling in stroke"
-    },
-    {
-      id: 2,
-      title: "Protective role of adenosine Kinase inhibition in Traumatic Optic Neuropathy",
-      country: "Kingdom of Saudi Arabia", 
-      organization: "King Abdul Aziz University",
-      year: "2016",
-      status: "Submitted",
-      focus: "Neuroprotective mechanisms"
-    }
-  ];
-
-  const meetings = [
-    {
-      id: 1,
-      title: "Annual Indo-US Biotechnology Summit 2024",
-      date: "March 15-17, 2024",
-      location: "New Delhi, India",
-      type: "International Conference",
-      role: "Keynote Speaker"
-    },
-    {
-      id: 2,
-      title: "Global Stem Cell Research Symposium",
-      date: "January 22-24, 2024",
-      location: "Boston, USA",
-      type: "Research Collaboration",
-      role: "Panel Discussion"
-    },
-    {
-      id: 3,
-      title: "4th Asian Congress for Alternatives to Animal Experiments",
-      date: "December 12-14, 2024",
-      location: "Jamia Hamdard, New Delhi",
-      type: "Academic Conference",
-      role: "Invited Speaker"
-    },
-    {
-      id: 4,
-      title: "Immuncon-2023 Golden Jubilee Conference",
-      date: "October 5-8, 2023",
-      location: "AIIMS, New Delhi",
-      type: "National Conference",
-      role: "National Speaker"
-    }
-  ];
-
-  const patents = [
-    {
-      id: 1,
-      title: "Establishment of a Maurine Stromal Cell Line Expressing Two Notch Ligands and MHC-II protein",
-      university: "Pennsylvania State University",
-      number: "2012-3908",
-      inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
-      year: "2012"
-    },
-    {
-      id: 2,
-      title: "Generation of tumor-specific T lymphocytes from induced pluripotent stem cells",
-      university: "Pennsylvania State University", 
-      number: "2011-3814",
-      inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
-      year: "2011"
-    }
-  ];
-
-  return (
-    <Layout>
+  const collaborators = [{
+    id: 1,
+    name: "Dr. Jianxun (Jim) Song, PhD",
+    position: "R.L. Bricker Endowed Professor",
+    institution: "Texas A&M University",
+    specialization: "Stem Cell Research",
+    image: "https://medicine.tamu.edu/images/people/jim-song1.jpg",
+    profileLink: "https://medicine.tamu.edu/faculty-listings/song.html"
+  }, {
+    id: 2,
+    name: "Dr. Saif Ahmad, PhD",
+    position: "Assistant Professor",
+    institution: "Barrow Neurological Institute",
+    specialization: "Stroke, VCID, TBI",
+    image: "https://www.barrowneuro.org/wp-content/uploads/Ahmad-Saif-200810-green-screen-600x600.jpg",
+    profileLink: "https://www.barrowneuro.org/person/saif-ahmad-phd/"
+  }, {
+    id: 3,
+    name: "Syed Shadab Raza",
+    position: "Ph.D., FRSB, Associate Professor & PI",
+    institution: "Laboratory for Stem Cell & Restorative Neurology",
+    specialization: "Stem Cell & Restorative Neurology",
+    image: "https://elmcindia.org/assets/images/shadab.jpg",
+    profileLink: "https://elmcindia.org/stemcell"
+  }, {
+    id: 4,
+    name: "Lokendra Sharma",
+    position: "Associate Professor",
+    institution: "Sanjay Gandhi Postgraduate Institute of Medical Sciences",
+    specialization: "Medical Sciences",
+    image: "",
+    profileLink: "https://www.linkedin.com/in/lokendra-sharma-3b455632/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
+  }, {
+    id: 5,
+    name: "Mohammad Shamsul Ola",
+    position: "Professor, Faculty",
+    institution: "King Saud University - كلية العلوم",
+    specialization: "Sciences",
+    image: "http://faculty.ksu.edu.sa/sites/default/files/styles/prof_list_image/public/photo_13.jpg?itok=jFSLgYqq",
+    profileLink: "https://faculty.ksu.edu.sa/en/mola"
+  }, {
+    id: 6,
+    name: "Dr. Murali Kumarasamy",
+    position: "Assistant Professor",
+    institution: "Department of Biotechnology, NIPER Hajipur",
+    specialization: "Biotechnology",
+    image: "https://www.niperhajipur.ac.in/wp-content/uploads/2023/11/Murali-696x686.jpg",
+    profileLink: "https://www.niperhajipur.ac.in/murali-kumarasamy/#"
+  }, {
+    id: 7,
+    name: "Md. Margoob Ahmad",
+    position: "Doctor of Philosophy, Scientist-II",
+    institution: "Indira Gandhi Institute of Medical Sciences",
+    specialization: "Medical Research",
+    image: "https://i1.rgstatic.net/ii/profile.image/11431281232593801-1711733346412_Q512/Md-Ahmad-19.jpg",
+    profileLink: "https://www.researchgate.net/profile/Md-Ahmad-19"
+  }, {
+    id: 8,
+    name: "Dr. Mohd Akram",
+    position: "Professor, Department of Preventive and Social Medicine",
+    institution: "School of Unani Medical Education",
+    specialization: "Unani Medicine",
+    image: "https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=qL2r1zQAAAAJ&citpid=3",
+    profileLink: "https://scholar.google.com/citations?user=qL2r1zQAAAAJ&hl=en&authuser=1"
+  }, {
+    id: 9,
+    name: "Vahab Ali",
+    position: "Research Scientist",
+    institution: "Rajendra Memorial Research Institute of Medical Sciences",
+    specialization: "Medical Research",
+    image: "https://www.rmrims.org.in/staff/img/vali.jpg",
+    profileLink: "https://scholar.google.com/citations?user=afantZoAAAAJ&hl=en&oi=ao"
+  }];
+  const projects = [{
+    id: 1,
+    title: "Generation of hepatocellular carcinoma reactive designer T cells based on induced pluripotent stem cells",
+    description: "ICMR funded project developing iPSC-derived T cells for liver cancer treatment",
+    partners: ["ICMR", "Central University of South Bihar"],
+    funding: "ICMR Grant: 92 Lakhs",
+    duration: "2024-2027",
+    status: "Active",
+    publications: 8,
+    grantNumber: "IIRPSG-2024-01-05271"
+  }, {
+    id: 2,
+    title: "Evaluation of Unani Drug on FoxP3 expressing in Regulatory T cells in the Modulation of Rheumatoid Arthritis",
+    description: "Research on FoxP3 modulation in Rheumatoid Arthritis using traditional Unani medicine",
+    partners: ["CCRUM", "Ministry of Ayush", "Central University of South Bihar"],
+    funding: "CCRUM Grant: 30.15 Lakhs",
+    duration: "2024-2027",
+    status: "Active",
+    publications: 5,
+    grantNumber: "F.No-TECH-21013/11/2024-CCRUM-HQ"
+  }, {
+    id: 3,
+    title: "Study of the Telomerase Regulation in Female Breast Cancer Patient of Arsenic Affected region of Bihar",
+    description: "Investigating telomerase activity in breast cancer patients from arsenic-affected areas",
+    partners: ["Bihar Council on Science & Technology", "Central University of South Bihar"],
+    funding: "BCST Grant: 2 Lakhs",
+    duration: "2022-2024",
+    status: "Active",
+    publications: 3,
+    grantNumber: "BCST-RD=01/2022-769"
+  }];
+  const consultancy = [{
+    id: 1,
+    title: "Antioxidants and Sex differences study in free radical mediated brain stroke",
+    country: "Kingdom of Saudi Arabia",
+    organization: "National Science, Technology and Innovation Plan (KACST)",
+    year: "2015",
+    status: "Approved",
+    focus: "Hormonal and oxidative stress signaling in stroke"
+  }, {
+    id: 2,
+    title: "Protective role of adenosine Kinase inhibition in Traumatic Optic Neuropathy",
+    country: "Kingdom of Saudi Arabia",
+    organization: "King Abdul Aziz University",
+    year: "2016",
+    status: "Submitted",
+    focus: "Neuroprotective mechanisms"
+  }];
+  const meetings = [{
+    id: 1,
+    title: "Annual Indo-US Biotechnology Summit 2024",
+    date: "March 15-17, 2024",
+    location: "New Delhi, India",
+    type: "International Conference",
+    role: "Keynote Speaker"
+  }, {
+    id: 2,
+    title: "Global Stem Cell Research Symposium",
+    date: "January 22-24, 2024",
+    location: "Boston, USA",
+    type: "Research Collaboration",
+    role: "Panel Discussion"
+  }, {
+    id: 3,
+    title: "4th Asian Congress for Alternatives to Animal Experiments",
+    date: "December 12-14, 2024",
+    location: "Jamia Hamdard, New Delhi",
+    type: "Academic Conference",
+    role: "Invited Speaker"
+  }, {
+    id: 4,
+    title: "Immuncon-2023 Golden Jubilee Conference",
+    date: "October 5-8, 2023",
+    location: "AIIMS, New Delhi",
+    type: "National Conference",
+    role: "National Speaker"
+  }];
+  const patents = [{
+    id: 1,
+    title: "Establishment of a Maurine Stromal Cell Line Expressing Two Notch Ligands and MHC-II protein",
+    university: "Pennsylvania State University",
+    number: "2012-3908",
+    inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
+    year: "2012"
+  }, {
+    id: 2,
+    title: "Generation of tumor-specific T lymphocytes from induced pluripotent stem cells",
+    university: "Pennsylvania State University",
+    number: "2011-3814",
+    inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
+    year: "2011"
+  }];
+  return <Layout>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -216,11 +184,11 @@ const Collaboration = () => {
           <div className="mt-8 flex justify-center space-x-6 text-sm">
             <div className="flex items-center space-x-2">
               <Users className="w-5 h-5 text-yellow-400" />
-              <span>50+ Active Collaborators</span>
+              <span>25+ Active Collaborators</span>
             </div>
             <div className="flex items-center space-x-2">
               <Globe className="w-5 h-5 text-yellow-400" />
-              <span>15+ Countries</span>
+              <span>10+ Countries</span>
             </div>
             <div className="flex items-center space-x-2">
               <Award className="w-5 h-5 text-yellow-400" />
@@ -241,22 +209,14 @@ const Collaboration = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {collaborators.map((collaborator) => (
-              <Card key={collaborator.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-gray-50 to-blue-50">
+            {collaborators.map(collaborator => <Card key={collaborator.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-gray-50 to-blue-50">
                 <CardContent className="p-6 text-center">
                   <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-lg bg-gray-200">
-                    {collaborator.image ? (
-                      <img 
-                        src={collaborator.image} 
-                        alt={collaborator.name}
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.style.display = 'none';
-                          target.nextElementSibling?.classList.remove('hidden');
-                        }}
-                      />
-                    ) : null}
+                    {collaborator.image ? <img src={collaborator.image} alt={collaborator.name} className="w-full h-full object-cover" onError={e => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                  target.nextElementSibling?.classList.remove('hidden');
+                }} /> : null}
                     <div className={`w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center ${collaborator.image ? 'hidden' : ''}`}>
                       <span className="text-white font-bold text-xl">{collaborator.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</span>
                     </div>
@@ -271,17 +231,12 @@ const Collaboration = () => {
                     <p className="text-sm text-blue-900">{collaborator.specialization}</p>
                   </div>
                   
-                  <Button 
-                    size="sm" 
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700"
-                    onClick={() => window.open(collaborator.profileLink, '_blank')}
-                  >
+                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700" onClick={() => window.open(collaborator.profileLink, '_blank')}>
                     <ExternalLink className="w-4 h-4 mr-2" />
                     Check out profile
                   </Button>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -297,8 +252,7 @@ const Collaboration = () => {
           </div>
           
           <div className="space-y-8">
-            {projects.map((project) => (
-              <Card key={project.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
+            {projects.map(project => <Card key={project.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
                 <CardHeader>
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex-1">
@@ -318,12 +272,10 @@ const Collaboration = () => {
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Partners</h4>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        {project.partners.map((partner, index) => (
-                          <li key={index} className="flex items-center">
+                        {project.partners.map((partner, index) => <li key={index} className="flex items-center">
                             <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
                             {partner}
-                          </li>
-                        ))}
+                          </li>)}
                       </ul>
                     </div>
                     
@@ -356,8 +308,7 @@ const Collaboration = () => {
                     </div>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -373,17 +324,14 @@ const Collaboration = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {consultancy.map((item) => (
-              <Card key={item.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+            {consultancy.map(item => <Card key={item.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-2">
                       <Building className="w-5 h-5 text-blue-600" />
                       <span className="text-sm font-medium text-blue-600">{item.country}</span>
                     </div>
-                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${
-                      item.status === 'Approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'
-                    }`}>
+                    <div className={`px-3 py-1 rounded-full text-xs font-medium ${item.status === 'Approved' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
                       {item.status}
                     </div>
                   </div>
@@ -397,8 +345,7 @@ const Collaboration = () => {
                     {item.year}
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -414,8 +361,7 @@ const Collaboration = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {patents.map((patent) => (
-              <Card key={patent.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
+            {patents.map(patent => <Card key={patent.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-2">
@@ -429,8 +375,7 @@ const Collaboration = () => {
                   <p className="text-sm text-gray-600 mb-3">Patent No: {patent.number}</p>
                   <p className="text-sm text-gray-700">Inventors: {patent.inventors}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -446,8 +391,7 @@ const Collaboration = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {meetings.map((meeting) => (
-              <Card key={meeting.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-white shadow-lg">
+            {meetings.map(meeting => <Card key={meeting.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-white shadow-lg">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl mb-4 flex items-center justify-center">
                     <Microscope className="w-6 h-6 text-white" />
@@ -473,8 +417,7 @@ const Collaboration = () => {
                     <div className="text-sm text-blue-900">{meeting.role}</div>
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
           
           <div className="text-center mt-12">
@@ -513,8 +456,6 @@ const Collaboration = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Collaboration;
