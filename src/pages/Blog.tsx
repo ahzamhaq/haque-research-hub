@@ -1,11 +1,8 @@
 import { useState } from "react";
-import { Calendar, Eye, Heart, MessageCircle, Share2, Play, Image, MapPin, Users, Award, Presentation, BookOpen, Video, Camera, ChevronLeft, ChevronRight } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Badge } from "@/components/ui/badge";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Layout from "@/components/Layout";
+import { BlogHero } from "@/components/blog/BlogHero";
+import { BlogCard } from "@/components/blog/BlogCard";
+import { BlogNewsletter } from "@/components/blog/BlogNewsletter";
 
 const Blog = () => {
   const [posts] = useState([
@@ -174,158 +171,9 @@ const Blog = () => {
     }
   ]);
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
-
-  const getEventIcon = (type: string) => {
-    switch (type) {
-      case 'ceremony': return Award;
-      case 'conference': return Users;
-      case 'event': return Presentation;
-      case 'visit': return MapPin;
-      case 'presentation': return BookOpen;
-      default: return Calendar;
-    }
-  };
-
-  const getEventColor = (type: string) => {
-    switch (type) {
-      case 'ceremony': return 'from-purple-500 to-pink-500';
-      case 'conference': return 'from-blue-500 to-indigo-500';
-      case 'event': return 'from-green-500 to-teal-500';
-      case 'visit': return 'from-orange-500 to-red-500';
-      case 'presentation': return 'from-cyan-500 to-blue-500';
-      default: return 'from-gray-500 to-slate-500';
-    }
-  };
-
-  const getMediaIcon = (mediaType: string) => {
-    switch (mediaType) {
-      case 'video': return Play;
-      case 'gallery': return Camera;
-      default: return Image;
-    }
-  };
-
-  const handleMediaClick = (post: any) => {
-    if (post.media.type === 'video' && post.media.url) {
-      window.open(post.media.url, '_blank');
-    } else if (post.media.type === 'gallery' && post.media.videos && post.media.videos.length > 0) {
-      window.open(post.media.videos[0], '_blank');
-    }
-  };
-
-  const MediaGallery = ({ post }: { post: any }) => {
-    const [selectedImage, setSelectedImage] = useState<string | null>(null);
-    
-    if (post.media.type === 'gallery' && post.media.images) {
-      return (
-        <div className="space-y-4">
-          <Carousel className="w-full">
-            <CarouselContent>
-              {post.media.images.map((image: string, index: number) => (
-                <CarouselItem key={index}>
-                  <div className="relative">
-                    <img 
-                      src={image}
-                      alt={`${post.title} - Image ${index + 1}`}
-                      className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-                      onClick={() => setSelectedImage(image)}
-                    />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="left-2" />
-            <CarouselNext className="right-2" />
-          </Carousel>
-          
-          {post.media.videos && post.media.videos.length > 0 && (
-            <div className="mt-4">
-              <h4 className="text-lg font-semibold mb-2">Related Videos</h4>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {post.media.videos.map((video: string, index: number) => (
-                  <div key={index} className="relative">
-                    <div 
-                      className="bg-gray-100 h-32 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
-                      onClick={() => window.open(video, '_blank')}
-                    >
-                      <Play className="w-8 h-8 text-gray-600" />
-                      <span className="ml-2 text-sm text-gray-600">Video {index + 1}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      );
-    }
-
-    if (post.media.type === 'video' && post.media.url) {
-      return (
-        <div className="space-y-4">
-          <div 
-            className="bg-gray-100 h-80 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
-            onClick={() => window.open(post.media.url, '_blank')}
-          >
-            <div className="text-center">
-              <Play className="w-16 h-16 text-gray-600 mx-auto mb-2" />
-              <span className="text-gray-600">Click to watch video</span>
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    if (post.media.type === 'image' && post.media.url) {
-      return (
-        <div className="space-y-4">
-          <img 
-            src={post.media.url}
-            alt={post.title}
-            className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
-            onClick={() => setSelectedImage(post.media.url)}
-          />
-        </div>
-      );
-    }
-
-    return null;
-  };
-
   return (
     <Layout>
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl md:text-6xl font-black mb-6">
-            Academic <span className="text-blue-300">Chronicles</span>
-          </h1>
-          <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-8">
-            Journey through our academic milestones, ceremonies, and collaborative experiences through rich visual storytelling.
-          </p>
-          <div className="flex justify-center space-x-6 text-sm">
-            <div className="flex items-center space-x-2">
-              <Video className="w-5 h-5 text-red-400" />
-              <span>Video Documentation</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Camera className="w-5 h-5 text-green-400" />
-              <span>Photo Galleries</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Award className="w-5 h-5 text-yellow-400" />
-              <span>Live Coverage</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      <BlogHero />
 
       {/* Main Content */}
       <section className="py-20 bg-gray-50">
@@ -338,126 +186,14 @@ const Blog = () => {
           </div>
 
           <div className="grid grid-cols-1 gap-12">
-            {posts.map((post) => {
-              const EventIcon = getEventIcon(post.type);
-              const MediaIcon = getMediaIcon(post.media.type);
-              
-              return (
-                <Card key={post.id} className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 bg-white">
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    {/* Media Section */}
-                    <div className="relative">
-                      <div className="sticky top-8">
-                        {/* Event Type Badge */}
-                        <div className="absolute top-4 left-4 z-10">
-                          <div className={`flex items-center space-x-2 bg-gradient-to-r ${getEventColor(post.type)} text-white rounded-full px-4 py-2 shadow-lg`}>
-                            <EventIcon className="w-4 h-4" />
-                            <span className="text-sm font-semibold capitalize">{post.type}</span>
-                          </div>
-                        </div>
-
-                        {/* Media Type Indicator */}
-                        <div className="absolute top-4 right-4 z-10">
-                          <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
-                            <MediaIcon className={`w-5 h-5 ${post.media.type === 'video' ? 'text-red-600' : post.media.type === 'gallery' ? 'text-purple-600' : 'text-blue-600'}`} />
-                          </div>
-                        </div>
-
-                        <MediaGallery post={post} />
-                      </div>
-                    </div>
-
-                    {/* Content Section */}
-                    <CardContent className="p-8">
-                      <div className="flex items-center space-x-4 text-sm mb-4 text-gray-500">
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(post.date)}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <MapPin className="w-4 h-4" />
-                          <span className="truncate">{post.location}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Users className="w-4 h-4" />
-                          <span>{post.attendees}</span>
-                        </div>
-                      </div>
-
-                      <h3 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight">
-                        {post.title}
-                      </h3>
-                      
-                      <p className="text-gray-600 mb-4 leading-relaxed text-lg">
-                        {post.excerpt}
-                      </p>
-                      
-                      <p className="text-gray-700 mb-6 leading-relaxed">
-                        {post.content}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {post.tags.map((tag, index) => (
-                          <Badge 
-                            key={index}
-                            variant="secondary"
-                            className="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors"
-                          >
-                            {tag}
-                          </Badge>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                        <div className="flex items-center space-x-6 text-gray-500">
-                          <div className="flex items-center space-x-2">
-                            <Eye className="w-4 h-4" />
-                            <span className="text-sm font-medium">{post.views}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <Heart className="w-4 h-4" />
-                            <span className="text-sm font-medium">{post.likes}</span>
-                          </div>
-                          <div className="flex items-center space-x-2">
-                            <MessageCircle className="w-4 h-4" />
-                            <span className="text-sm font-medium">{post.comments}</span>
-                          </div>
-                        </div>
-                        
-                        <div className="flex items-center space-x-3">
-                          <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
-                            <Share2 className="w-4 h-4" />
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </div>
-                </Card>
-              );
-            })}
+            {posts.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Newsletter Signup */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated with Our Events</h2>
-          <p className="text-blue-100 mb-8">
-            Subscribe to get notified about upcoming ceremonies, meetings, and research events.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 rounded-lg text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50"
-            />
-            <Button className="bg-white text-blue-600 hover:bg-blue-50 font-semibold">
-              Subscribe
-            </Button>
-          </div>
-        </div>
-      </section>
+      <BlogNewsletter />
     </Layout>
   );
 };
