@@ -43,31 +43,31 @@ const Index = () => {
   const recentEvents = [
     {
       id: 1,
-      title: "Annual Biotechnology Research Symposium 2024",
-      excerpt: "A remarkable gathering showcasing cutting-edge biotechnology innovations and research findings.",
-      date: "2024-06-15",
-      type: "event",
+      title: "Celebrating the MSc 2023–25 Convocation – SEBES, CUSB",
+      excerpt: "A proud moment attending the convocation ceremony for MSc students of the School of Earth, Biological and Environmental Sciences at Central University of South Bihar.",
+      date: "2025-03-15",
+      type: "ceremony",
       media: {
-        type: "video",
-        thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop"
+        type: "gallery",
+        thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=400&fit=crop&auto=format&q=80"
       },
-      location: "Central University of South Bihar",
-      attendees: 150,
+      location: "SEBES, Central University of South Bihar",
+      attendees: 80,
       views: 245
     },
     {
       id: 2,
-      title: "PhD Students Research Excellence Awards 2024",
-      excerpt: "Annual recognition ceremony honoring outstanding PhD students for exceptional research contributions.",
-      date: "2024-05-28",
-      type: "ceremony",
+      title: "Science Day PURSE Grant Felicitation Ceremony",
+      excerpt: "Attended as delegates in Science Day for Felicitation Ceremony of PURSE grant with special lectures on 'Empowering Indian Youth for Global Leadership in Science and Innovation for Viksit Bharat.'",
+      date: "2025-02-28",
+      type: "event",
       media: {
-        type: "gallery",
-        thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=250&fit=crop"
+        type: "video",
+        thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=400&fit=crop&auto=format&q=80"
       },
-      location: "SEBES Auditorium, CUSB",
-      attendees: 120,
-      views: 298
+      location: "Vigyan Bhawan, New Delhi",
+      attendees: 200,
+      views: 189
     }
   ];
 
@@ -305,6 +305,7 @@ Department of Biotechnology</p>
                         src={event.media.thumbnail} 
                         alt={event.title} 
                         className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" 
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                     </div>

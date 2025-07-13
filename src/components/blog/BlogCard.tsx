@@ -1,9 +1,16 @@
 
-import { Calendar, Eye, Heart, MessageCircle, Share2, MapPin, Users, Award, Presentation, BookOpen, Play, Camera, Image } from "lucide-react";
+import { Calendar, Eye, Heart, MessageCircle, Share2, MapPin, Users, Award, Presentation, BookOpen, Play, Camera, Image, Link, Twitter, Facebook } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { MediaGallery } from "./MediaGallery";
+import { useToast } from "@/hooks/use-toast";
 
 interface BlogPost {
   id: number;
@@ -71,8 +78,33 @@ const formatDate = (dateString: string) => {
 };
 
 export const BlogCard = ({ post }: BlogCardProps) => {
+  const { toast } = useToast();
   const EventIcon = getEventIcon(post.type);
   const MediaIcon = getMediaIcon(post.media.type);
+
+  const handleShare = (platform: string) => {
+    const url = window.location.href;
+    const text = `${post.title} - ${post.excerpt}`;
+    
+    switch (platform) {
+      case 'copy':
+        navigator.clipboard.writeText(url);
+        toast({
+          title: "Link copied!",
+          description: "The link has been copied to your clipboard.",
+        });
+        break;
+      case 'twitter':
+        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'facebook':
+        window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
+        break;
+      case 'linkedin':
+        window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+        break;
+    }
+  };
 
   return (
     <Card className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 bg-white">
@@ -157,9 +189,31 @@ export const BlogCard = ({ post }: BlogCardProps) => {
             </div>
             
             <div className="flex items-center space-x-3">
-              <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
-                <Share2 className="w-4 h-4" />
-              </Button>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
+                    <Share2 className="w-4 h-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onClick={() => handleShare('copy')}>
+                    <Link className="w-4 h-4 mr-2" />
+                    Copy Link
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleShare('twitter')}>
+                    <Twitter className="w-4 h-4 mr-2" />
+                    Share on Twitter
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleShare('facebook')}>
+                    <Facebook className="w-4 h-4 mr-2" />
+                    Share on Facebook
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onClick={() => handleShare('linkedin')}>
+                    <Users className="w-4 h-4 mr-2" />
+                    Share on LinkedIn
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           </div>
         </CardContent>

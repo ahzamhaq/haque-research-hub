@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import { Play, Camera } from "lucide-react";
+import { Play, Camera, ExternalLink } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 
 interface MediaGalleryProps {
@@ -14,6 +14,11 @@ interface MediaGalleryProps {
     };
   };
 }
+
+const getVideoThumbnail = (videoUrl: string) => {
+  // For OneDrive videos, we'll use a placeholder thumbnail
+  return "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&h=450&fit=crop&auto=format&q=80";
+};
 
 export const MediaGallery = ({ post }: MediaGalleryProps) => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -31,6 +36,7 @@ export const MediaGallery = ({ post }: MediaGalleryProps) => {
                     alt={`${post.title} - Image ${index + 1}`}
                     className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
                     onClick={() => setSelectedImage(image)}
+                    loading="lazy"
                   />
                 </div>
               </CarouselItem>
@@ -41,17 +47,31 @@ export const MediaGallery = ({ post }: MediaGalleryProps) => {
         </Carousel>
         
         {post.media.videos && post.media.videos.length > 0 && (
-          <div className="mt-4">
-            <h4 className="text-lg font-semibold mb-2">Related Videos</h4>
+          <div className="mt-6">
+            <h4 className="text-lg font-semibold mb-4 text-gray-800">Related Videos</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {post.media.videos.map((video: string, index: number) => (
-                <div key={index} className="relative">
+                <div key={index} className="relative group">
                   <div 
-                    className="bg-gray-100 h-32 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+                    className="relative bg-gray-900 h-40 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg"
                     onClick={() => window.open(video, '_blank')}
                   >
-                    <Play className="w-8 h-8 text-gray-600" />
-                    <span className="ml-2 text-sm text-gray-600">Video {index + 1}</span>
+                    <img 
+                      src={getVideoThumbnail(video)}
+                      alt={`Video ${index + 1} thumbnail`}
+                      className="w-full h-full object-cover opacity-80"
+                    />
+                    <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                      <div className="bg-white/90 rounded-full p-3 group-hover:scale-110 transition-transform">
+                        <Play className="w-6 h-6 text-gray-900 fill-current" />
+                      </div>
+                    </div>
+                    <div className="absolute top-2 right-2">
+                      <ExternalLink className="w-4 h-4 text-white" />
+                    </div>
+                    <div className="absolute bottom-2 left-2 right-2">
+                      <p className="text-white text-sm font-medium">Video {index + 1}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -66,12 +86,24 @@ export const MediaGallery = ({ post }: MediaGalleryProps) => {
     return (
       <div className="space-y-4">
         <div 
-          className="bg-gray-100 h-80 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+          className="relative bg-gray-900 h-80 rounded-lg overflow-hidden cursor-pointer hover:scale-105 transition-transform duration-300 shadow-lg group"
           onClick={() => window.open(post.media.url, '_blank')}
         >
-          <div className="text-center">
-            <Play className="w-16 h-16 text-gray-600 mx-auto mb-2" />
-            <span className="text-gray-600">Click to watch video</span>
+          <img 
+            src={getVideoThumbnail(post.media.url)}
+            alt={`${post.title} video thumbnail`}
+            className="w-full h-full object-cover opacity-80"
+          />
+          <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+            <div className="bg-white/90 rounded-full p-4 group-hover:scale-110 transition-transform">
+              <Play className="w-8 h-8 text-gray-900 fill-current" />
+            </div>
+          </div>
+          <div className="absolute top-4 right-4">
+            <ExternalLink className="w-5 h-5 text-white" />
+          </div>
+          <div className="absolute bottom-4 left-4 right-4">
+            <p className="text-white text-lg font-semibold">Click to watch video</p>
           </div>
         </div>
       </div>
@@ -84,8 +116,9 @@ export const MediaGallery = ({ post }: MediaGalleryProps) => {
         <img 
           src={post.media.url}
           alt={post.title}
-          className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+          className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity shadow-lg"
           onClick={() => setSelectedImage(post.media.url)}
+          loading="lazy"
         />
       </div>
     );

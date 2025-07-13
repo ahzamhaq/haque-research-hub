@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import Layout from "@/components/Layout";
 import { BlogHero } from "@/components/blog/BlogHero";
@@ -15,16 +16,16 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "ceremony",
       media: {
-        type: "gallery",
+        type: "gallery" as const,
         images: [
           "https://i.postimg.cc/yWtJYHsJ/image1.jpg",
           "https://i.postimg.cc/8FzkmKTQ/image2.jpg"
         ],
         videos: [
-          "https://screenapp.io/app/#/shared/WrGs7JyIlH",
-          "https://screenapp.io/app/#/shared/aMWL4a6n82"
+          "https://1drv.ms/v/c/88f158d94a1c365f/EZ9sJtn1kfVKq6ZKjNszDaoBSbn4luRX6T0hawFiaQRV6g?e=PkEMXS",
+          "https://1drv.ms/v/c/88f158d94a1c365f/Eey8oECX9EJCiR532zOdRBwBQkWxN_RHtrEnJvFDV36XMQ?e=egZf4a"
         ],
-        thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400&h=300&fit=crop"
+        thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "SEBES, Central University of South Bihar",
       attendees: 80,
@@ -42,9 +43,9 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "event",
       media: {
-        type: "video",
-        url: "https://screenapp.io/app/#/shared/idmpZziikx",
-        thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop"
+        type: "video" as const,
+        url: "https://1drv.ms/v/c/88f158d94a1c365f/EfSKdyRXp3xBhwnHhw35troB6PNdl94-uoazsFO3rcETEQ?e=N8SOWQ",
+        thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "Vigyan Bhawan, New Delhi",
       attendees: 200,
@@ -62,9 +63,9 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "visit",
       media: {
-        type: "image",
+        type: "image" as const,
         url: "https://i.postimg.cc/8jvxxhZF/image.jpg",
-        thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop"
+        thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "Hamdard Laboratories, Ghaziabad",
       attendees: 15,
@@ -82,13 +83,13 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "conference",
       media: {
-        type: "gallery",
+        type: "gallery" as const,
         images: [
           "https://i.postimg.cc/2b2BkbTh/image1.jpg",
           "https://i.postimg.cc/v1v4hgJk/image2.jpg",
           "https://i.postimg.cc/rzsDGpQZ/image3.jpg"
         ],
-        thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop"
+        thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "Vigyan Bhawan, New Delhi",
       attendees: 300,
@@ -106,9 +107,9 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "ceremony",
       media: {
-        type: "video",
+        type: "video" as const,
         url: "https://1drv.ms/v/c/88f158d94a1c365f/Ebqpm42FAtFIp7ioyzgd7IgBIepH9QX-m0MNYeFPdqIYhQ?e=ckab8r",
-        thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop"
+        thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "SEBES, Central University of South Bihar",
       attendees: 120,
@@ -126,7 +127,7 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "visit",
       media: {
-        type: "gallery",
+        type: "gallery" as const,
         images: [
           "https://i.postimg.cc/NKRFGJxR/image1.jpg",
           "https://i.postimg.cc/7CD653Bd/image2.jpg",
@@ -135,7 +136,7 @@ const Blog = () => {
         videos: [
           "https://1drv.ms/v/c/88f158d94a1c365f/Ebk3--sP3alNpJUOy1qbsZ8B8K1Sh6snOV3I20D765KLAg?e=NIiuje"
         ],
-        thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop"
+        thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "Central University of South Bihar",
       attendees: 50,
@@ -153,14 +154,14 @@ const Blog = () => {
       author: "Prof. Rizwanul Haque",
       type: "presentation",
       media: {
-        type: "gallery",
+        type: "gallery" as const,
         images: [
           "https://i.postimg.cc/S2xcMFZB/image1.jpg",
           "https://i.postimg.cc/5YKL57T6/image2.jpg",
           "https://i.postimg.cc/8s3LjYLY/image3.jpg",
           "https://i.postimg.cc/njW99s9m/image4.jpg"
         ],
-        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=300&fit=crop"
+        thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "IISER Pune",
       attendees: 25,
