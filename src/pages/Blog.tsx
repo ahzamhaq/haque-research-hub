@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar, Eye, Heart, MessageCircle, Share2, Play, Image, MapPin, Users, Award, Presentation, BookOpen } from "lucide-react";
+import { Calendar, Eye, Heart, MessageCircle, Share2, Play, Image, MapPin, Users, Award, Presentation, BookOpen, Video, Camera } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -11,54 +11,82 @@ const Blog = () => {
     {
       id: 1,
       title: "Annual Biotechnology Research Symposium 2024",
-      excerpt: "Highlights from our recent symposium featuring groundbreaking research presentations and collaborative discussions.",
+      excerpt: "A remarkable gathering of researchers, students, and industry experts showcasing cutting-edge biotechnology innovations and collaborative research findings.",
       date: "2024-06-15",
       author: "Prof. Rizwanul Haque",
-      type: "photo",
-      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop",
+      type: "event",
+      media: {
+        type: "video",
+        url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop",
+        thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=300&fit=crop"
+      },
+      location: "Central University of South Bihar",
+      attendees: 150,
       views: 245,
       likes: 32,
       comments: 8,
-      tags: ["Research", "Symposium", "Biotechnology"]
+      tags: ["Research", "Symposium", "Biotechnology", "Academic Event"]
     },
     {
       id: 2,
-      title: "ICMR Funded Project Meeting - iPSC Research Update",
-      excerpt: "Progress review meeting for our ICMR funded project on iPSC-derived T cells for hepatocellular carcinoma treatment.",
+      title: "ICMR Funded Project Review Meeting",
+      excerpt: "Comprehensive progress review and milestone discussion for our groundbreaking iPSC-derived T cells research project targeting hepatocellular carcinoma treatment.",
       date: "2024-06-10",
       author: "Prof. Rizwanul Haque",
-      type: "video",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=600&h=400&fit=crop",
+      type: "meeting",
+      media: {
+        type: "image",
+        url: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=800&h=600&fit=crop",
+        thumbnail: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=300&fit=crop"
+      },
+      location: "Department of Biotechnology, CUSB",
+      attendees: 25,
       views: 189,
       likes: 24,
       comments: 5,
-      tags: ["ICMR", "iPSC", "Cancer Research"]
+      tags: ["ICMR", "iPSC", "Cancer Research", "Project Review"]
     },
     {
       id: 3,
-      title: "International Collaboration Meeting - Penn State Alumni Network",
-      excerpt: "Reconnecting with colleagues from Penn State College of Medicine to discuss future collaborative opportunities.",
+      title: "International Collaboration Ceremony - Penn State Alumni Network",
+      excerpt: "A prestigious ceremony celebrating the strengthening of international research collaborations and the Penn State alumni network in biotechnology research.",
       date: "2024-06-05",
       author: "Prof. Rizwanul Haque",
-      type: "photo",
-      image: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=400&fit=crop",
+      type: "ceremony",
+      media: {
+        type: "gallery",
+        images: [
+          "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop"
+        ],
+        thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=400&h=300&fit=crop"
+      },
+      location: "University Conference Hall",
+      attendees: 80,
       views: 156,
       likes: 18,
       comments: 12,
-      tags: ["Collaboration", "Penn State", "Alumni"]
+      tags: ["Collaboration", "Penn State", "Alumni", "International"]
     },
     {
       id: 4,
-      title: "PhD Students Research Presentation Session",
-      excerpt: "Monthly research presentation session where our PhD students share their latest findings and methodologies.",
+      title: "PhD Students Research Excellence Awards 2024",
+      excerpt: "Annual recognition ceremony honoring outstanding PhD students for their exceptional research contributions and academic achievements in biotechnology.",
       date: "2024-05-28",
       author: "Prof. Rizwanul Haque",
-      type: "video",
-      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=600&h=400&fit=crop",
+      type: "ceremony",
+      media: {
+        type: "video",
+        url: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop",
+        thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=300&fit=crop"
+      },
+      location: "SEBES Auditorium, CUSB",
+      attendees: 120,
       views: 298,
       likes: 41,
       comments: 15,
-      tags: ["PhD Students", "Presentations", "Research"]
+      tags: ["PhD Students", "Awards", "Research Excellence", "Academic Achievement"]
     }
   ]);
 
@@ -163,28 +191,68 @@ const Blog = () => {
     });
   };
 
+  const getEventIcon = (type: string) => {
+    switch (type) {
+      case 'ceremony': return Award;
+      case 'meeting': return Users;
+      case 'event': return Presentation;
+      default: return Calendar;
+    }
+  };
+
+  const getEventColor = (type: string) => {
+    switch (type) {
+      case 'ceremony': return 'from-purple-500 to-pink-500';
+      case 'meeting': return 'from-blue-500 to-indigo-500';
+      case 'event': return 'from-green-500 to-teal-500';
+      default: return 'from-gray-500 to-slate-500';
+    }
+  };
+
+  const getMediaIcon = (mediaType: string) => {
+    switch (mediaType) {
+      case 'video': return Play;
+      case 'gallery': return Camera;
+      default: return Image;
+    }
+  };
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-black mb-6">
-            Academic <span className="text-blue-300">Activities</span>
+            Events & <span className="text-blue-300">Ceremonies</span>
           </h1>
-          <p className="text-xl text-blue-200 max-w-3xl mx-auto">
-            Explore our research updates, workshops, conferences, and invited presentations showcasing cutting-edge work in biotechnology and stem cell research.
+          <p className="text-xl text-blue-200 max-w-3xl mx-auto mb-8">
+            Discover our latest ceremonies, meetings, and academic events through rich visual storytelling and comprehensive coverage.
           </p>
+          <div className="flex justify-center space-x-6 text-sm">
+            <div className="flex items-center space-x-2">
+              <Video className="w-5 h-5 text-red-400" />
+              <span>Video Coverage</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Camera className="w-5 h-5 text-green-400" />
+              <span>Photo Galleries</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Award className="w-5 h-5 text-yellow-400" />
+              <span>Live Events</span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Main Content */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Tabs defaultValue="blog-posts" className="w-full">
+          <Tabs defaultValue="events" className="w-full">
             <TabsList className="grid w-full grid-cols-4 mb-8">
-              <TabsTrigger value="blog-posts" className="flex items-center space-x-2">
-                <Image className="w-4 h-4" />
-                <span>Blog Posts</span>
+              <TabsTrigger value="events" className="flex items-center space-x-2">
+                <Camera className="w-4 h-4" />
+                <span>Events</span>
               </TabsTrigger>
               <TabsTrigger value="workshops" className="flex items-center space-x-2">
                 <BookOpen className="w-4 h-4" />
@@ -200,91 +268,136 @@ const Blog = () => {
               </TabsTrigger>
             </TabsList>
 
-            {/* Blog Posts Tab */}
-            <TabsContent value="blog-posts">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                {posts.map((post) => (
-                  <Card key={post.id} className="group hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden border-0 bg-white">
-                    <div className="relative">
-                      <img 
-                        src={post.image} 
-                        alt={post.title}
-                        className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <div className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
-                          {post.type === 'video' ? (
-                            <Play className="w-4 h-4 text-blue-600" />
-                          ) : (
-                            <Image className="w-4 h-4 text-green-600" />
-                          )}
-                          <span className="text-sm font-medium capitalize">{post.type}</span>
-                        </div>
-                      </div>
-                      {post.type === 'video' && (
-                        <div className="absolute inset-0 flex items-center justify-center">
-                          <div className="w-16 h-16 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                            <Play className="w-8 h-8 text-blue-600 fill-current" />
-                          </div>
-                        </div>
-                      )}
-                    </div>
+            {/* Events Tab */}
+            <TabsContent value="events">
+              <div className="space-y-8">
+                <div className="text-center mb-12">
+                  <h2 className="text-4xl font-bold text-gray-900 mb-4">Recent Events & Ceremonies</h2>
+                  <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Experience our academic journey through immersive visual documentation of ceremonies, meetings, and milestone events.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {posts.map((post) => {
+                    const EventIcon = getEventIcon(post.type);
+                    const MediaIcon = getMediaIcon(post.media.type);
                     
-                    <CardContent className="p-8">
-                      <div className="flex items-center space-x-4 text-sm text-gray-500 mb-4">
-                        <div className="flex items-center space-x-1">
-                          <Calendar className="w-4 h-4" />
-                          <span>{formatDate(post.date)}</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Eye className="w-4 h-4" />
-                          <span>{post.views}</span>
-                        </div>
-                      </div>
-                      
-                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                        {post.title}
-                      </h3>
-                      
-                      <p className="text-gray-600 mb-4 leading-relaxed">
-                        {post.excerpt}
-                      </p>
-                      
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {post.tags.map((tag, index) => (
-                          <span 
-                            key={index}
-                            className="px-3 py-1 bg-blue-100 text-blue-800 text-xs font-medium rounded-full"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                      
-                      <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                        <div className="flex items-center space-x-4 text-sm text-gray-500">
-                          <div className="flex items-center space-x-1">
-                            <Heart className="w-4 h-4" />
-                            <span>{post.likes}</span>
+                    return (
+                      <Card key={post.id} className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden border-0 bg-white">
+                        <div className="relative">
+                          <div className="relative overflow-hidden">
+                            <img 
+                              src={post.media.thumbnail || post.media.url} 
+                              alt={post.title}
+                              className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                           </div>
-                          <div className="flex items-center space-x-1">
-                            <MessageCircle className="w-4 h-4" />
-                            <span>{post.comments}</span>
+                          
+                          {/* Event Type Badge */}
+                          <div className="absolute top-4 left-4">
+                            <div className={`flex items-center space-x-2 bg-gradient-to-r ${getEventColor(post.type)} text-white rounded-full px-4 py-2 shadow-lg`}>
+                              <EventIcon className="w-4 h-4" />
+                              <span className="text-sm font-semibold capitalize">{post.type}</span>
+                            </div>
+                          </div>
+
+                          {/* Media Type Indicator */}
+                          <div className="absolute top-4 right-4">
+                            <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
+                              <MediaIcon className={`w-5 h-5 ${post.media.type === 'video' ? 'text-red-600' : post.media.type === 'gallery' ? 'text-purple-600' : 'text-blue-600'}`} />
+                            </div>
+                          </div>
+
+                          {/* Play Button for Videos */}
+                          {post.media.type === 'video' && (
+                            <div className="absolute inset-0 flex items-center justify-center">
+                              <div className="w-20 h-20 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
+                                <Play className="w-10 h-10 text-red-600 fill-current ml-1" />
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Gallery Indicator */}
+                          {post.media.type === 'gallery' && (
+                            <div className="absolute bottom-4 right-4">
+                              <div className="bg-black/70 text-white rounded-full px-3 py-1 text-sm font-medium">
+                                +{post.media.images?.length || 0} photos
+                              </div>
+                            </div>
+                          )}
+
+                          {/* Event Details Overlay */}
+                          <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                            <div className="flex items-center space-x-4 text-sm mb-2">
+                              <div className="flex items-center space-x-1">
+                                <Calendar className="w-4 h-4" />
+                                <span>{formatDate(post.date)}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <MapPin className="w-4 h-4" />
+                                <span className="truncate">{post.location}</span>
+                              </div>
+                              <div className="flex items-center space-x-1">
+                                <Users className="w-4 h-4" />
+                                <span>{post.attendees}</span>
+                              </div>
+                            </div>
                           </div>
                         </div>
                         
-                        <div className="flex items-center space-x-2">
-                          <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
-                            <Share2 className="w-4 h-4" />
-                          </Button>
-                          <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                            Read More
-                          </Button>
-                        </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+                        <CardContent className="p-8">
+                          <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight">
+                            {post.title}
+                          </h3>
+                          
+                          <p className="text-gray-600 mb-6 leading-relaxed text-lg">
+                            {post.excerpt}
+                          </p>
+                          
+                          <div className="flex flex-wrap gap-2 mb-6">
+                            {post.tags.map((tag, index) => (
+                              <Badge 
+                                key={index}
+                                variant="secondary"
+                                className="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors"
+                              >
+                                {tag}
+                              </Badge>
+                            ))}
+                          </div>
+                          
+                          <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+                            <div className="flex items-center space-x-6 text-gray-500">
+                              <div className="flex items-center space-x-2">
+                                <Eye className="w-4 h-4" />
+                                <span className="text-sm font-medium">{post.views}</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <Heart className="w-4 h-4" />
+                                <span className="text-sm font-medium">{post.likes}</span>
+                              </div>
+                              <div className="flex items-center space-x-2">
+                                <MessageCircle className="w-4 h-4" />
+                                <span className="text-sm font-medium">{post.comments}</span>
+                              </div>
+                            </div>
+                            
+                            <div className="flex items-center space-x-3">
+                              <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
+                                <Share2 className="w-4 h-4" />
+                              </Button>
+                              <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-6">
+                                View Details
+                              </Button>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
               </div>
             </TabsContent>
 
@@ -423,9 +536,9 @@ const Blog = () => {
       {/* Newsletter Signup */}
       <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-600 text-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+          <h2 className="text-3xl font-bold mb-4">Stay Updated with Our Events</h2>
           <p className="text-blue-100 mb-8">
-            Subscribe to get notified about new blog posts and research updates.
+            Subscribe to get notified about upcoming ceremonies, meetings, and research events.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
             <input 

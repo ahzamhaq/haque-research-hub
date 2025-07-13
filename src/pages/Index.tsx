@@ -1,15 +1,16 @@
 import { Link } from "react-router-dom";
-import { ArrowUp, Book, FileText, Mail, Users, ArrowRight, Star, Calendar, Eye, Award, MapPin, Microscope, Dna, FlaskConical } from "lucide-react";
+import { ArrowUp, Book, FileText, Mail, Users, ArrowRight, Star, Calendar, Eye, Award, MapPin, Microscope, Dna, FlaskConical, Video, Camera, Play } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+
 const Index = () => {
   const stats = [{
     label: "Publications",
     value: "63+",
     icon: Book
   }, {
-    label: "H-Index",
+    label: "H-Index", 
     value: "25",
     icon: ArrowUp
   }, {
@@ -21,6 +22,7 @@ const Index = () => {
     value: "9",
     icon: Users
   }];
+
   const researchHighlights = [{
     title: "iPSC-derived T Cells",
     description: "Revolutionary designer T cells for hepatocellular carcinoma treatment through ICMR funded research",
@@ -37,28 +39,64 @@ const Index = () => {
     icon: FlaskConical,
     color: "from-green-400 to-teal-500"
   }];
-  const recentPosts = [{
-    id: 1,
-    title: "Annual Biotechnology Research Symposium 2024",
-    excerpt: "Highlights from our recent symposium featuring groundbreaking research presentations.",
-    date: "2024-06-15",
-    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop",
-    views: 245
-  }, {
-    id: 2,
-    title: "ICMR Funded Project Meeting",
-    excerpt: "Progress review meeting for our iPSC-derived T cells research project.",
-    date: "2024-06-10",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=250&fit=crop",
-    views: 189
-  }];
+
+  const recentEvents = [
+    {
+      id: 1,
+      title: "Annual Biotechnology Research Symposium 2024",
+      excerpt: "A remarkable gathering showcasing cutting-edge biotechnology innovations and research findings.",
+      date: "2024-06-15",
+      type: "event",
+      media: {
+        type: "video",
+        thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop"
+      },
+      location: "Central University of South Bihar",
+      attendees: 150,
+      views: 245
+    },
+    {
+      id: 2,
+      title: "PhD Students Research Excellence Awards 2024",
+      excerpt: "Annual recognition ceremony honoring outstanding PhD students for exceptional research contributions.",
+      date: "2024-05-28",
+      type: "ceremony",
+      media: {
+        type: "gallery",
+        thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=400&h=250&fit=crop"
+      },
+      location: "SEBES Auditorium, CUSB",
+      attendees: 120,
+      views: 298
+    }
+  ];
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric'
     });
   };
-  return <Layout>
+
+  const getEventIcon = (type: string) => {
+    switch (type) {
+      case 'ceremony': return Award;
+      case 'meeting': return Users;
+      case 'event': return Calendar;
+      default: return Calendar;
+    }
+  };
+
+  const getMediaIcon = (mediaType: string) => {
+    switch (mediaType) {
+      case 'video': return Play;
+      case 'gallery': return Camera;
+      default: return Video;
+    }
+  };
+
+  return (
+    <Layout>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 to-purple-600/20"></div>
@@ -243,63 +281,112 @@ Department of Biotechnology</p>
         </div>
       </section>
 
-      {/* Blog Preview Section */}
+      {/* Events Preview Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Latest Updates</span>
-            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Research Blog</h2>
+            <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Latest Events</span>
+            <h2 className="text-4xl font-bold text-gray-900 mt-2 mb-4">Ceremonies & Academic Events</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Stay updated with our latest meetings, research progress, and collaborative endeavors
+              Experience our academic journey through immersive coverage of ceremonies, meetings, and milestone events
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
-            {recentPosts.map(post => <Card key={post.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] overflow-hidden border-0 bg-white shadow-lg">
-                <div className="relative">
-                  <img src={post.image} alt={post.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300" />
-                  <div className="absolute top-4 left-4">
-                    <div className="bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-sm font-medium text-gray-800">
-                      {formatDate(post.date)}
-                    </div>
-                  </div>
-                </div>
-                
-                <CardContent className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
-                    {post.title}
-                  </h3>
-                  
-                  <p className="text-gray-600 mb-4 leading-relaxed line-clamp-2">
-                    {post.excerpt}
-                  </p>
-                  
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-1 text-sm text-gray-500">
-                      <Eye className="w-4 h-4" />
-                      <span>{post.views}</span>
+            {recentEvents.map(event => {
+              const EventIcon = getEventIcon(event.type);
+              const MediaIcon = getMediaIcon(event.media.type);
+              
+              return (
+                <Card key={event.id} className="group hover:shadow-xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden border-0 bg-white shadow-lg">
+                  <div className="relative">
+                    <div className="relative overflow-hidden">
+                      <img 
+                        src={event.media.thumbnail} 
+                        alt={event.title} 
+                        className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-500" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
                     </div>
                     
-                    <Link to="/blog">
-                      <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                        Read More
-                      </Button>
-                    </Link>
+                    {/* Event Type Badge */}
+                    <div className="absolute top-4 left-4">
+                      <div className="flex items-center space-x-2 bg-white/90 backdrop-blur-sm rounded-full px-3 py-2">
+                        <EventIcon className="w-4 h-4 text-blue-600" />
+                        <span className="text-sm font-medium text-gray-800 capitalize">{event.type}</span>
+                      </div>
+                    </div>
+
+                    {/* Media Type Indicator */}
+                    <div className="absolute top-4 right-4">
+                      <div className="bg-black/70 text-white rounded-full p-2">
+                        <MediaIcon className="w-4 h-4" />
+                      </div>
+                    </div>
+
+                    {/* Event Info Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center space-x-3">
+                          <span>{formatDate(event.date)}</span>
+                          <div className="flex items-center space-x-1">
+                            <Users className="w-3 h-3" />
+                            <span>{event.attendees}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-1">
+                          <Eye className="w-3 h-3" />
+                          <span>{event.views}</span>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                </CardContent>
-              </Card>)}
+                  
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
+                      {event.title}
+                    </h3>
+                    
+                    <p className="text-gray-600 mb-4 leading-relaxed line-clamp-2">
+                      {event.excerpt}
+                    </p>
+
+                    <div className="flex items-center text-sm text-gray-500 mb-4">
+                      <MapPin className="w-4 h-4 mr-1" />
+                      <span className="truncate">{event.location}</span>
+                    </div>
+                    
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-1 text-sm text-gray-500">
+                        <Calendar className="w-4 h-4" />
+                        <span>{formatDate(event.date)}</span>
+                      </div>
+                      
+                      <Link to="/blog">
+                        <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                          View Event
+                        </Button>
+                      </Link>
+                    </div>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
           
           <div className="text-center">
             <Link to="/blog">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
-                View All Blog Posts
+                <Video className="w-5 h-5 mr-2" />
+                View All Events & Ceremonies
                 <ArrowRight className="w-5 h-5 ml-2" />
               </Button>
             </Link>
           </div>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
+
 export default Index;
