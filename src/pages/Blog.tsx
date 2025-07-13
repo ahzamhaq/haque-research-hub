@@ -1,10 +1,10 @@
-
 import { useState } from "react";
-import { Calendar, Eye, Heart, MessageCircle, Share2, Play, Image, MapPin, Users, Award, Presentation, BookOpen, Video, Camera } from "lucide-react";
+import { Calendar, Eye, Heart, MessageCircle, Share2, Play, Image, MapPin, Users, Award, Presentation, BookOpen, Video, Camera, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Layout from "@/components/Layout";
 
 const Blog = () => {
@@ -220,6 +220,85 @@ const Blog = () => {
     }
   };
 
+  const MediaGallery = ({ post }: { post: any }) => {
+    const [selectedImage, setSelectedImage] = useState<string | null>(null);
+    
+    if (post.media.type === 'gallery' && post.media.images) {
+      return (
+        <div className="space-y-4">
+          <Carousel className="w-full">
+            <CarouselContent>
+              {post.media.images.map((image: string, index: number) => (
+                <CarouselItem key={index}>
+                  <div className="relative">
+                    <img 
+                      src={image}
+                      alt={`${post.title} - Image ${index + 1}`}
+                      className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+                      onClick={() => setSelectedImage(image)}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="left-2" />
+            <CarouselNext className="right-2" />
+          </Carousel>
+          
+          {post.media.videos && post.media.videos.length > 0 && (
+            <div className="mt-4">
+              <h4 className="text-lg font-semibold mb-2">Related Videos</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {post.media.videos.map((video: string, index: number) => (
+                  <div key={index} className="relative">
+                    <div 
+                      className="bg-gray-100 h-32 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+                      onClick={() => window.open(video, '_blank')}
+                    >
+                      <Play className="w-8 h-8 text-gray-600" />
+                      <span className="ml-2 text-sm text-gray-600">Video {index + 1}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    if (post.media.type === 'video' && post.media.url) {
+      return (
+        <div className="space-y-4">
+          <div 
+            className="bg-gray-100 h-80 rounded-lg flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+            onClick={() => window.open(post.media.url, '_blank')}
+          >
+            <div className="text-center">
+              <Play className="w-16 h-16 text-gray-600 mx-auto mb-2" />
+              <span className="text-gray-600">Click to watch video</span>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    if (post.media.type === 'image' && post.media.url) {
+      return (
+        <div className="space-y-4">
+          <img 
+            src={post.media.url}
+            alt={post.title}
+            className="w-full h-80 object-cover rounded-lg cursor-pointer hover:opacity-90 transition-opacity"
+            onClick={() => setSelectedImage(post.media.url)}
+          />
+        </div>
+      );
+    }
+
+    return null;
+  };
+
   return (
     <Layout>
       {/* Hero Section */}
@@ -258,62 +337,39 @@ const Blog = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 gap-12">
             {posts.map((post) => {
               const EventIcon = getEventIcon(post.type);
               const MediaIcon = getMediaIcon(post.media.type);
               
               return (
-                <Card key={post.id} className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] overflow-hidden border-0 bg-white">
-                  <div className="relative">
-                    <div className="relative overflow-hidden">
-                      <img 
-                        src={post.media.thumbnail || post.media.url} 
-                        alt={post.title}
-                        className="w-full h-72 object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-                    </div>
-                    
-                    {/* Event Type Badge */}
-                    <div className="absolute top-4 left-4">
-                      <div className={`flex items-center space-x-2 bg-gradient-to-r ${getEventColor(post.type)} text-white rounded-full px-4 py-2 shadow-lg`}>
-                        <EventIcon className="w-4 h-4" />
-                        <span className="text-sm font-semibold capitalize">{post.type}</span>
-                      </div>
-                    </div>
-
-                    {/* Media Type Indicator */}
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
-                        <MediaIcon className={`w-5 h-5 ${post.media.type === 'video' ? 'text-red-600' : post.media.type === 'gallery' ? 'text-purple-600' : 'text-blue-600'}`} />
-                      </div>
-                    </div>
-
-                    {/* Play Button for Videos */}
-                    {(post.media.type === 'video' || (post.media.type === 'gallery' && post.media.videos)) && (
-                      <div 
-                        className="absolute inset-0 flex items-center justify-center cursor-pointer"
-                        onClick={() => handleMediaClick(post)}
-                      >
-                        <div className="w-20 h-20 bg-white/95 backdrop-blur-sm rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-2xl">
-                          <Play className="w-10 h-10 text-red-600 fill-current ml-1" />
+                <Card key={post.id} className="group hover:shadow-2xl transition-all duration-500 overflow-hidden border-0 bg-white">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Media Section */}
+                    <div className="relative">
+                      <div className="sticky top-8">
+                        {/* Event Type Badge */}
+                        <div className="absolute top-4 left-4 z-10">
+                          <div className={`flex items-center space-x-2 bg-gradient-to-r ${getEventColor(post.type)} text-white rounded-full px-4 py-2 shadow-lg`}>
+                            <EventIcon className="w-4 h-4" />
+                            <span className="text-sm font-semibold capitalize">{post.type}</span>
+                          </div>
                         </div>
-                      </div>
-                    )}
 
-                    {/* Gallery Indicator */}
-                    {post.media.type === 'gallery' && (
-                      <div className="absolute bottom-4 right-4">
-                        <div className="bg-black/70 text-white rounded-full px-3 py-1 text-sm font-medium">
-                          +{post.media.images?.length || 0} photos
+                        {/* Media Type Indicator */}
+                        <div className="absolute top-4 right-4 z-10">
+                          <div className="bg-white/90 backdrop-blur-sm rounded-full p-2">
+                            <MediaIcon className={`w-5 h-5 ${post.media.type === 'video' ? 'text-red-600' : post.media.type === 'gallery' ? 'text-purple-600' : 'text-blue-600'}`} />
+                          </div>
                         </div>
-                      </div>
-                    )}
 
-                    {/* Event Details Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <div className="flex items-center space-x-4 text-sm mb-2">
+                        <MediaGallery post={post} />
+                      </div>
+                    </div>
+
+                    {/* Content Section */}
+                    <CardContent className="p-8">
+                      <div className="flex items-center space-x-4 text-sm mb-4 text-gray-500">
                         <div className="flex items-center space-x-1">
                           <Calendar className="w-4 h-4" />
                           <span>{formatDate(post.date)}</span>
@@ -327,60 +383,55 @@ const Blog = () => {
                           <span>{post.attendees}</span>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                  
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight">
-                      {post.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 mb-4 leading-relaxed">
-                      {post.excerpt}
-                    </p>
-                    
-                    <p className="text-gray-700 mb-6 leading-relaxed text-sm">
-                      {post.content}
-                    </p>
-                    
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {post.tags.map((tag, index) => (
-                        <Badge 
-                          key={index}
-                          variant="secondary"
-                          className="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                    
-                    <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                      <div className="flex items-center space-x-6 text-gray-500">
-                        <div className="flex items-center space-x-2">
-                          <Eye className="w-4 h-4" />
-                          <span className="text-sm font-medium">{post.views}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <Heart className="w-4 h-4" />
-                          <span className="text-sm font-medium">{post.likes}</span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <MessageCircle className="w-4 h-4" />
-                          <span className="text-sm font-medium">{post.comments}</span>
-                        </div>
+
+                      <h3 className="text-3xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors leading-tight">
+                        {post.title}
+                      </h3>
+                      
+                      <p className="text-gray-600 mb-4 leading-relaxed text-lg">
+                        {post.excerpt}
+                      </p>
+                      
+                      <p className="text-gray-700 mb-6 leading-relaxed">
+                        {post.content}
+                      </p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {post.tags.map((tag, index) => (
+                          <Badge 
+                            key={index}
+                            variant="secondary"
+                            className="px-3 py-1 bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
                       </div>
                       
-                      <div className="flex items-center space-x-3">
-                        <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
-                          <Share2 className="w-4 h-4" />
-                        </Button>
-                        <Button size="sm" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-6">
-                          Read More
-                        </Button>
+                      <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+                        <div className="flex items-center space-x-6 text-gray-500">
+                          <div className="flex items-center space-x-2">
+                            <Eye className="w-4 h-4" />
+                            <span className="text-sm font-medium">{post.views}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <Heart className="w-4 h-4" />
+                            <span className="text-sm font-medium">{post.likes}</span>
+                          </div>
+                          <div className="flex items-center space-x-2">
+                            <MessageCircle className="w-4 h-4" />
+                            <span className="text-sm font-medium">{post.comments}</span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center space-x-3">
+                          <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
+                            <Share2 className="w-4 h-4" />
+                          </Button>
+                        </div>
                       </div>
-                    </div>
-                  </CardContent>
+                    </CardContent>
+                  </div>
                 </Card>
               );
             })}
