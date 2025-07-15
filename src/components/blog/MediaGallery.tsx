@@ -11,12 +11,17 @@ interface MediaGalleryProps {
       url?: string;
       images?: string[];
       videos?: string[];
+      videoCover?: string;
+      videoCovers?: string[];
     };
   };
 }
 
-const getVideoThumbnail = (videoUrl: string) => {
-  // For OneDrive videos, we'll use a placeholder thumbnail
+const getVideoThumbnail = (videoUrl: string, index?: number, videoCovers?: string[]) => {
+  if (videoCovers && videoCovers[index!]) {
+    return videoCovers[index!];
+  }
+  // Fallback thumbnail
   return "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&h=450&fit=crop&auto=format&q=80";
 };
 
@@ -57,7 +62,7 @@ export const MediaGallery = ({ post }: MediaGalleryProps) => {
                     onClick={() => window.open(video, '_blank')}
                   >
                     <img 
-                      src={getVideoThumbnail(video)}
+                      src={getVideoThumbnail(video, index, post.media.videoCovers)}
                       alt={`Video ${index + 1} thumbnail`}
                       className="w-full h-full object-cover opacity-80"
                     />
@@ -90,7 +95,7 @@ export const MediaGallery = ({ post }: MediaGalleryProps) => {
           onClick={() => window.open(post.media.url, '_blank')}
         >
           <img 
-            src={getVideoThumbnail(post.media.url)}
+            src={post.media.videoCover || getVideoThumbnail(post.media.url!)}
             alt={`${post.title} video thumbnail`}
             className="w-full h-full object-cover opacity-80"
           />

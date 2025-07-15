@@ -3,7 +3,7 @@ import { useState } from "react";
 import Layout from "@/components/Layout";
 import { BlogHero } from "@/components/blog/BlogHero";
 import { BlogCard } from "@/components/blog/BlogCard";
-import { BlogNewsletter } from "@/components/blog/BlogNewsletter";
+
 
 const Blog = () => {
   const [posts] = useState([
@@ -18,12 +18,16 @@ const Blog = () => {
       media: {
         type: "gallery" as const,
         images: [
-          "https://i.postimg.cc/yWtJYHsJ/image1.jpg",
-          "https://i.postimg.cc/8FzkmKTQ/image2.jpg"
+          "https://i.postimg.cc/D0bfsyWt/covo-photo1.jpg",
+          "https://i.postimg.cc/vTVzKj2p/convo-photo-2.jpg"
         ],
         videos: [
           "https://1drv.ms/v/c/88f158d94a1c365f/EZ9sJtn1kfVKq6ZKjNszDaoBSbn4luRX6T0hawFiaQRV6g?e=PkEMXS",
           "https://1drv.ms/v/c/88f158d94a1c365f/Eey8oECX9EJCiR532zOdRBwBQkWxN_RHtrEnJvFDV36XMQ?e=egZf4a"
+        ],
+        videoCovers: [
+          "https://i.postimg.cc/8PgB5Z0z/Screenshot-2025-07-15-180548.png",
+          "https://i.postimg.cc/4xNc7qbs/cover-convo.jpg"
         ],
         thumbnail: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop&auto=format&q=80"
       },
@@ -45,6 +49,7 @@ const Blog = () => {
       media: {
         type: "video" as const,
         url: "https://1drv.ms/v/c/88f158d94a1c365f/EfSKdyRXp3xBhwnHhw35troB6PNdl94-uoazsFO3rcETEQ?e=N8SOWQ",
+        videoCover: "https://i.postimg.cc/yxmfdth0/purse-cover.jpg",
         thumbnail: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "Vigyan Bhawan, New Delhi",
@@ -64,7 +69,7 @@ const Blog = () => {
       type: "visit",
       media: {
         type: "image" as const,
-        url: "https://i.postimg.cc/8jvxxhZF/image.jpg",
+        url: "https://i.postimg.cc/V6yBC4kg/hamdard-laboratory.jpg",
         thumbnail: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "Hamdard Laboratories, Ghaziabad",
@@ -85,9 +90,9 @@ const Blog = () => {
       media: {
         type: "gallery" as const,
         images: [
-          "https://i.postimg.cc/2b2BkbTh/image1.jpg",
-          "https://i.postimg.cc/v1v4hgJk/image2.jpg",
-          "https://i.postimg.cc/rzsDGpQZ/image3.jpg"
+          "https://i.postimg.cc/zfkXCGJQ/unani-meeting2.jpg",
+          "https://i.postimg.cc/BnHvvCR4/unani-meeting.jpg",
+          "https://i.postimg.cc/sfLf98r3/unani-meeting3.jpg"
         ],
         thumbnail: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=800&h=600&fit=crop&auto=format&q=80"
       },
@@ -109,6 +114,7 @@ const Blog = () => {
       media: {
         type: "video" as const,
         url: "https://1drv.ms/v/c/88f158d94a1c365f/Ebqpm42FAtFIp7ioyzgd7IgBIepH9QX-m0MNYeFPdqIYhQ?e=ckab8r",
+        videoCover: "https://i.postimg.cc/Hs5JJH7q/farewell-cover.jpg",
         thumbnail: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=800&h=600&fit=crop&auto=format&q=80"
       },
       location: "SEBES, Central University of South Bihar",
@@ -129,12 +135,15 @@ const Blog = () => {
       media: {
         type: "gallery" as const,
         images: [
-          "https://i.postimg.cc/NKRFGJxR/image1.jpg",
-          "https://i.postimg.cc/7CD653Bd/image2.jpg",
-          "https://i.postimg.cc/yg88PVCT/image3.jpg"
+          "https://i.postimg.cc/D0Gzbdmr/jim-visit1.jpg",
+          "https://i.postimg.cc/dt81sBbv/jim-visit2.jpg",
+          "https://i.postimg.cc/fRDbJdsd/jim-visit3.jpg"
         ],
         videos: [
           "https://1drv.ms/v/c/88f158d94a1c365f/Ebk3--sP3alNpJUOy1qbsZ8B8K1Sh6snOV3I20D765KLAg?e=NIiuje"
+        ],
+        videoCovers: [
+          "https://i.postimg.cc/nVKbMPhd/jim-cover.jpg"
         ],
         thumbnail: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=800&h=600&fit=crop&auto=format&q=80"
       },
@@ -156,10 +165,10 @@ const Blog = () => {
       media: {
         type: "gallery" as const,
         images: [
-          "https://i.postimg.cc/S2xcMFZB/image1.jpg",
-          "https://i.postimg.cc/5YKL57T6/image2.jpg",
-          "https://i.postimg.cc/8s3LjYLY/image3.jpg",
-          "https://i.postimg.cc/njW99s9m/image4.jpg"
+          "https://i.postimg.cc/02HtNYDW/IISER-1.jpg",
+          "https://i.postimg.cc/L8cNtmyj/IISER-2.jpg",
+          "https://i.postimg.cc/TwG0sCvw/IISER-3.jpg",
+          "https://i.postimg.cc/9MpbHZcB/IISER-4.jpg"
         ],
         thumbnail: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&auto=format&q=80"
       },
@@ -194,7 +203,7 @@ const Blog = () => {
         </div>
       </section>
 
-      <BlogNewsletter />
+      
     </Layout>
   );
 };

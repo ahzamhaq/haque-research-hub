@@ -25,6 +25,8 @@ interface BlogPost {
     url?: string;
     images?: string[];
     videos?: string[];
+    videoCover?: string;
+    videoCovers?: string[];
     thumbnail?: string;
   };
   location: string;
@@ -172,49 +174,33 @@ export const BlogCard = ({ post }: BlogCardProps) => {
             ))}
           </div>
           
-          <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-            <div className="flex items-center space-x-6 text-gray-500">
-              <div className="flex items-center space-x-2">
-                <Eye className="w-4 h-4" />
-                <span className="text-sm font-medium">{post.views}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Heart className="w-4 h-4" />
-                <span className="text-sm font-medium">{post.likes}</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <MessageCircle className="w-4 h-4" />
-                <span className="text-sm font-medium">{post.comments}</span>
-              </div>
-            </div>
-            
-            <div className="flex items-center space-x-3">
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
-                    <Share2 className="w-4 h-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem onClick={() => handleShare('copy')}>
-                    <Link className="w-4 h-4 mr-2" />
-                    Copy Link
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleShare('twitter')}>
-                    <Twitter className="w-4 h-4 mr-2" />
-                    Share on Twitter
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleShare('facebook')}>
-                    <Facebook className="w-4 h-4 mr-2" />
-                    Share on Facebook
-                  </DropdownMenuItem>
-                  <DropdownMenuItem onClick={() => handleShare('linkedin')}>
-                    <Users className="w-4 h-4 mr-2" />
-                    Share on LinkedIn
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
+          <div className="flex justify-end pt-6 border-t border-gray-100">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button size="sm" variant="ghost" className="text-gray-500 hover:text-blue-600">
+                  <Share2 className="w-4 h-4 mr-2" />
+                  Share
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => handleShare('copy')}>
+                  <Link className="w-4 h-4 mr-2" />
+                  Copy Link
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleShare('twitter')}>
+                  <Twitter className="w-4 h-4 mr-2" />
+                  Share on Twitter
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleShare('facebook')}>
+                  <Facebook className="w-4 h-4 mr-2" />
+                  Share on Facebook
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => handleShare('linkedin')}>
+                  <Users className="w-4 h-4 mr-2" />
+                  Share on LinkedIn
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
         </CardContent>
       </div>
