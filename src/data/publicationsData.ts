@@ -35,7 +35,10 @@ export interface Book {
   status?: string;
 }
 
-export const fullLengthPublications: Publication[] = [
+// Import from corrected file
+export * from './publicationsDataCorrect';
+
+export const fullLengthPublicationsOld: Publication[] = [
   {
     number: 63,
     title: "Promoter methylation correlates with reduced SMAD4 expression in patients with breast cancer",
@@ -132,72 +135,78 @@ export const fullLengthPublications: Publication[] = [
   },
   {
     number: 54,
-    title: "Stem cells are potential source of cancer fighting T cells",
-    authors: "Rizwanul Haque, Santosh Kumar Mishra, Ekta Singh",
-    journal: "Cellular Immunology",
+    title: "Ionotropic receptors mediate olfactory learning and memory in Drosophila",
+    authors: "Md Zeeshan Ali, Anushree, Aarif Ahsan, Mohammad Shamsul Ola, Rizwanul Haque, Jawaid Ahsan",
+    journal: "Insect Science",
     year: "2023",
-    impactFactor: "3.2",
-    doi: "10.1016/j.cellimm.2023.104587",
-    type: "priority",
-    category: "Stem Cell Research"
+    impactFactor: "4.0",
+    doi: "10.1111/1744-7917.13308",
+    issn: "Online ISSN:1744-7917, Print ISSN:1672-9609",
+    category: "Neuroscience"
   },
   {
     number: 53,
-    title: "Arsenic toxicity and its amelioration strategies in plants",
-    authors: "Nitish Kumar, Ghanshyam K Satyapal, Rizwanul Haque",
-    journal: "Environmental Science and Pollution Research",
+    title: "Phenylacetaldehyde induced olfactory conditioning in Drosophila melanogaster (Diptera: Drosophilidae) larvae",
+    authors: "Ali MZ, Anushree A, Bilgrami AL, Ahsan A, Ola MS, Rizwanul Haque, Ahsan J",
+    journal: "J Insect Sci",
     year: "2023",
-    impactFactor: "5.8",
-    doi: "10.1007/s11356-023-26234-0",
-    category: "Environmental Toxicology"
+    impactFactor: "2.2",
+    doi: "10.1093/jisesa/iead112",
+    pmid: "38092368",
+    issn: "EISSN 1536-2442",
+    category: "Entomology"
   },
   {
     number: 52,
-    title: "T cell immunotherapy: Current status and future prospects",
-    authors: "Komal Kumari, Rizwanul Haque, Asheesh Shanker",
-    journal: "Immunotherapy",
+    title: "Mesenchyme-Derived Exosomes: Shaping the Next Era of Stroke Treatment",
+    authors: "Arshi Waseem, Saudamini, Rizwanul Haque, Miroslaw Janowski, Syed Shadab Raza",
+    journal: "Neuroprotection",
     year: "2023",
-    impactFactor: "4.5",
-    doi: "10.2217/imt-2022-0215",
-    type: "rapid",
-    category: "Immunotherapy"
+    impactFactor: "2.8",
+    doi: "10.1002/nep3.30",
+    pmid: "38283953",
+    issn: "ISSN:2770-7296",
+    category: "Neuroscience"
   },
   {
     number: 51,
-    title: "Pluripotent stem cells: A promising approach for regenerative medicine",
-    authors: "Amrita Mondal, Rizwanul Haque",
-    journal: "Stem Cell Reviews and Reports",
+    title: "Coevolution based immunoinformatics approach considering variability of epitopes to combat different strains: A case study using spike protein of SARS-CoV-2",
+    authors: "Saurav Kumar Mishra, Prerna Priya, Gyan Prakash Rai, Rizwanul Haque, Asheesh Shanker",
+    journal: "Computers in Biology and Medicine",
     year: "2023",
-    impactFactor: "7.3",
-    doi: "10.1007/s12015-023-10512-8",
-    category: "Stem Cell Research"
+    impactFactor: "7.7",
+    doi: "10.1016/j.compbiomed.2023.107233",
+    issn: "ISSN 0010-4825",
+    category: "Bioinformatics"
   },
   {
     number: 50,
-    title: "Molecular mechanisms of arsenic carcinogenesis: An updated review",
-    authors: "Archana Chaudhary, Rizwanul Haque, Md. Margoob Ahmad",
-    journal: "Environmental Toxicology and Pharmacology",
-    year: "2022",
-    impactFactor: "4.2",
-    doi: "10.1016/j.etap.2022.103845",
-    category: "Environmental Toxicology"
-  },
-  {
-    number: 49,
-    title: "Role of induced pluripotent stem cells in cancer therapy",
-    authors: "Rizwanul Haque, Amrita Mondal, Komal Kumari",
-    journal: "Cancer Letters",
-    year: "2022",
-    impactFactor: "9.8",
-    doi: "10.1016/j.canlet.2022.215698",
-    type: "cover",
+    title: "Insight into the transcription factors regulating Ischemic stroke and glioma in response to shared stimuli",
+    authors: "Arshi Waseem, Sumaiya Rashid, Khalid Rashid, Mohsin Ali Khan, Rehan Khan, Rizwanul Haque, Pankaj Seth, Syed Shadab Raza",
+    journal: "Seminars in Cancer Biology",
+    year: "2023",
+    impactFactor: "17.012",
+    doi: "10.1016/j.semcancer.2023.04.006",
+    issn: "ISSN 1044-579X",
     category: "Cancer Research"
   },
   {
+    number: 49,
+    title: "MCC950 Regulates Stem Cells Destiny Through Modulating SIRT3-NLRP3 Inflammasome Dynamics During Oxygen Glucose Deprivation",
+    authors: "Prakash R, Kumari N, Siddiqui AJ, Khan AQ, Khan MA, Khan R, Rizwanul Haque, Robertson AA, Boltze J, Raza SS",
+    journal: "Stem Cell Rev Rep",
+    year: "2023",
+    impactFactor: "6.692",
+    doi: "10.1007/s12015-023-10520-6",
+    pmid: "36811746",
+    issn: "ISSN 2629-3269",
+    category: "Stem Cell Research"
+  },
+  {
     number: 48,
-    title: "Immunomodulatory effects of stem cell therapy in autoimmune diseases",
-    authors: "Komal Kumari, Rizwanul Haque, Santosh Kumar Mishra",
-    journal: "Journal of Autoimmunity",
+    title: "Colorectal Cancer (CRC): Investigating the Expression of the Suppressor of Fused (SuFu) Gene and Its Relationship with Several Inflammatory Blood-Based Biomarkers",
+    authors: "Rather, T.B.; Parveiz, I.; Bhat, G.A.; Rashid, G.; Akhtar, K.; Rizwanul Haque.; Ola, M.S.; Ali, M.; Wani, R.A.; Khan, I.Y.; Besina, S.; Mudassar, S.",
+    journal: "Biomedicines",
     year: "2022",
     impactFactor: "14.5",
     doi: "10.1016/j.jaut.2022.102789",
@@ -216,66 +225,68 @@ export const fullLengthPublications: Publication[] = [
   },
   {
     number: 46,
-    title: "Arsenic-induced oxidative stress and its impact on cellular signaling",
-    authors: "Nitish Kumar, Rizwanul Haque, Ghanshyam K Satyapal",
-    journal: "Free Radical Biology and Medicine",
-    year: "2021",
-    impactFactor: "8.9",
-    doi: "10.1016/j.freeradbiomed.2021.09.023",
-    category: "Oxidative Stress"
+    title: "Cloning and functional characterization of arsenite oxidase (aoxB) gene associated with arsenic transformation in Pseudomonas sp. strain AK9",
+    authors: "Satyapal, G. K., Kumar, R., Kumar, S., Singh, R. S., Ranjan, R. K., Kumar, K., Jha, A.K., Singh, N.P., Rizwanul Haque., Shanker, A & Kumar, N.",
+    journal: "Gene",
+    year: "2023",
+    impactFactor: "3.913",
+    doi: "10.1016/j.gene.2022.146926",
+    issn: "ISSN: 0378-1119",
+    category: "Molecular Biology"
   },
   {
     number: 45,
-    title: "Therapeutic potential of mesenchymal stem cells in liver diseases",
-    authors: "Amrita Mondal, Rizwanul Haque, Archana Chaudhary",
-    journal: "Hepatology International",
-    year: "2021",
-    impactFactor: "6.4",
-    doi: "10.1007/s12072-021-10198-7",
-    category: "Stem Cell Research"
+    title: "Modulation of Telomerase Gene in Liver Cancer by Natural Compounds",
+    authors: "Archana Chaudhary, Premlata kumari, Sanobar Nazish, Rizwanul Haque",
+    journal: "Journal of Scientific Research",
+    year: "2022",
+    impactFactor: "1.5",
+    issn: "ISSN No. 0447-9483",
+    category: "Cancer Research"
   },
   {
     number: 44,
-    title: "T cell engineering: Promises and challenges",
-    authors: "Komal Kumari, Asheesh Shanker, Rizwanul Haque",
-    journal: "Nature Reviews Immunology",
-    year: "2021",
-    impactFactor: "81.3",
-    doi: "10.1038/s41577-021-00545-2",
-    type: "cover",
-    category: "Immunotherapy"
+    title: "Combinatorial Effect of Arsenic and Herbal Compounds in Telomerase-Mediated Apoptosis Induction in Liver Cancer",
+    authors: "Chaudhary, A., Bhardwaj, S. K., Khan, A., Srivastava, A., Sinha, K. K., Ali, M., & Rizwanul Haque",
+    journal: "Biological Trace Element Research",
+    year: "2022",
+    impactFactor: "4.081",
+    doi: "10.1007/s12011-022-03156-z",
+    issn: "ISSN: 0163-4984",
+    category: "Cancer Research"
   },
   {
     number: 43,
-    title: "Induced pluripotent stem cells: Generation and applications",
-    authors: "Rizwanul Haque, Santosh Kumar Mishra, Amrita Mondal",
-    journal: "Cell Stem Cell",
+    title: "Induction of Iron Stress in Hepatocellular Carcinoma Cell Lines by Siderophore of Aspergillus nidulans Towards Promising Anticancer Effect",
+    authors: "Khan A, Singh P, Chaudhary A, Rizwanul Haque, Singh P, Mishra AK, Sarkar A, Srivastava A",
+    journal: "Biol Trace Elem Res",
     year: "2021",
-    impactFactor: "25.7",
-    doi: "10.1016/j.stem.2021.02.014",
-    type: "priority",
-    category: "Stem Cell Research"
+    impactFactor: "4.081",
+    doi: "10.1007/s12011-021-02980-z",
+    pmid: "34705190",
+    category: "Cancer Research"
   },
   {
     number: 42,
-    title: "Environmental toxins and their impact on immune system",
-    authors: "Sheikh Raisuddin, Rizwanul Haque, Nitish Kumar",
-    journal: "Environmental Health Perspectives",
-    year: "2020",
-    impactFactor: "11.0",
-    doi: "10.1289/EHP6542",
-    category: "Environmental Health"
+    title: "Analysis of mitochondrial DNA copy number variation in blood and tissue samples of metastatic breast cancer Patients",
+    authors: "Neeraj Kumar Rai, Panjwani G, Rizwanul Haque, Ghosh AK, Sharma L.K*",
+    journal: "Biochemistry and Biophysics Reports",
+    year: "2021",
+    impactFactor: "0.522",
+    doi: "10.1016/j.bbrep.2021.100931",
+    issn: "ISSN: 2405-5808",
+    category: "Cancer Research"
   },
   {
     number: 41,
-    title: "Stem cell therapy in neurodegenerative diseases",
-    authors: "Ekta Singh, Rizwanul Haque, Krishna Prakasha",
-    journal: "Nature Medicine",
+    title: "Differential regulation of mitochondrial complex I and oxidative stress based on metastatic potential of colon cancer cells",
+    authors: "Neeraj Kumar Rai, Meenakshi Tiwari, Rizwanul Haque, Lokendra Kumar Sharma",
+    journal: "Oncology letters",
     year: "2020",
-    impactFactor: "87.2",
-    doi: "10.1038/s41591-020-0987-3",
-    type: "cover",
-    category: "Stem Cell Research"
+    impactFactor: "3.111",
+    doi: "10.3892/ol.2020.12176",
+    issn: "Print ISSN: 1792-1074",
+    category: "Cancer Research"
   },
   {
     number: 40,

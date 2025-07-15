@@ -17,10 +17,11 @@ const Blog = () => {
       type: "ceremony",
       media: {
         type: "gallery" as const,
-        images: [
-          "https://i.postimg.cc/D0bfsyWt/covo-photo1.jpg",
-          "https://i.postimg.cc/vTVzKj2p/convo-photo-2.jpg"
-        ],
+          images: [
+            "https://i.postimg.cc/D0bfsyWt/covo-photo1.jpg",
+            "https://i.postimg.cc/vTVzKj2p/convo-photo-2.jpg",
+            "https://i.postimg.cc/8PCrHs0B/jim-visit5.jpg"
+          ],
         videos: [
           "https://1drv.ms/v/c/88f158d94a1c365f/EZ9sJtn1kfVKq6ZKjNszDaoBSbn4luRX6T0hawFiaQRV6g?e=PkEMXS",
           "https://1drv.ms/v/c/88f158d94a1c365f/Eey8oECX9EJCiR532zOdRBwBQkWxN_RHtrEnJvFDV36XMQ?e=egZf4a"
@@ -134,11 +135,12 @@ const Blog = () => {
       type: "visit",
       media: {
         type: "gallery" as const,
-        images: [
-          "https://i.postimg.cc/D0Gzbdmr/jim-visit1.jpg",
-          "https://i.postimg.cc/dt81sBbv/jim-visit2.jpg",
-          "https://i.postimg.cc/fRDbJdsd/jim-visit3.jpg"
-        ],
+          images: [
+            "https://i.postimg.cc/D0Gzbdmr/jim-visit1.jpg",
+            "https://i.postimg.cc/dt81sBbv/jim-visit2.jpg",
+            "https://i.postimg.cc/fRDbJdsd/jim-visit3.jpg",
+            "https://i.postimg.cc/8PCrHs0B/jim-visit5.jpg"
+          ],
         videos: [
           "https://1drv.ms/v/c/88f158d94a1c365f/Ebk3--sP3alNpJUOy1qbsZ8B8K1Sh6snOV3I20D765KLAg?e=NIiuje"
         ],
