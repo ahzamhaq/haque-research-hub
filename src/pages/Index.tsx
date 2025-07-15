@@ -241,7 +241,7 @@ Department of Biotechnology</p>
               <div>
                 <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">About Professor</span>
                 <h2 className="text-5xl font-black text-gray-900 mt-2 mb-6">
-                  Four Decades of
+                  Two Decades of
                   <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">Scientific Excellence</span>
                 </h2>
