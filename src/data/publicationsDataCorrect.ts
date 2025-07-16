@@ -34,7 +34,10 @@ export interface Book {
   status?: string;
 }
 
-export const fullLengthPublications: Publication[] = [
+// export const fullLengthPublications: Publication[] = [
+import { Publication } from './publicationsData';  // because both are in the same "data" folder
+
+export const publicationsDataCorrect: Publication[] = [
   {
     number: 63,
     title: "Promoter methylation correlates with reduced SMAD4 expression in patients with breast cancer",

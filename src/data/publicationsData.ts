@@ -36,8 +36,15 @@ export interface Book {
 }
 
 // Import from corrected file
-export * from './publicationsDataCorrect';
+// export * from './publicationsDataCorrect';
 
+// export const fullLengthPublicationsOld: Publication[] = [
+import { publicationsDataCorrect } from './publicationsDataCorrect';
+
+// ✅ Assign imported data to the main variable
+export const fullLengthPublications: Publication[] = publicationsDataCorrect;
+
+// ✅ Old Publications (keep your existing ones)
 export const fullLengthPublicationsOld: Publication[] = [
   {
     number: 63,
