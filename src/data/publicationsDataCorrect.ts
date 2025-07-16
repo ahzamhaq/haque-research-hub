@@ -851,14 +851,7 @@ export const books: Book[] = [
   }
 ];
 
-// Research metrics
-export const researchMetrics = {
-  totalPublications: fullLengthPublications.length,
-  totalCitations: 4200,
-  hIndex: 25,
-  totalImpactFactor: 265,
-  yearRange: { start: 2001, end: 2025 }
-};
+
 
 // Categories for filtering
 export const publicationCategories = [
