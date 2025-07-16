@@ -40,7 +40,7 @@ export interface Book {
 
 // export const fullLengthPublicationsOld: Publication[] = [
 import { publicationsDataCorrect } from './publicationsDataCorrect';
-
+import { Publication } from './publicationsDataCorrect';
 // ✅ Assign imported data to the main variable
 export const fullLengthPublications: Publication[] = publicationsDataCorrect;
 
