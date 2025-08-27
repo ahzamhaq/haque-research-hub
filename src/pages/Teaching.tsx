@@ -58,7 +58,7 @@ const Teaching = () => {
 
   const supervision = {
     phdAwarded: 3,
-    phdCurrent: 6,
+    phdCurrent: 8,
     mscCompleted: 25
   };
 
@@ -70,12 +70,71 @@ const Teaching = () => {
   ];
 
   const currentPhdStudents = [
-    { year: "2020", name: "Komal Kumri", fellowship: "" },
-    { year: "2022", name: "Nandani Kumari", fellowship: "CSIR-SRF, GATE" },
-    { year: "2022", name: "Seema Singh Marabhi", fellowship: "GATE, SRF" },
-    { year: "2022", name: "Vikas Kumar", fellowship: "DBT-SRF" },
-    { year: "2024", name: "Naina Sakshi", fellowship: "Non-Net Fellow" },
-    { year: "2024", name: "Srishti Shriya", fellowship: "CSIR-NET, Non-Net Fellow" }
+    { 
+      year: "2020", 
+      name: "Komal Kumri", 
+      fellowship: "", 
+      qualification: "",
+      title: "",
+      image: ""
+    },
+    { 
+      year: "2022", 
+      name: "Vikas Kumar", 
+      fellowship: "DBT-JRF", 
+      qualification: "M.Sc. in Biotechnology",
+      title: "Study on the modulation of Receptor for Activated C Kinase 1 protein in Oral Squamous Cell Carcinoma",
+      image: "/src/assets/students/vikas-kumar.jpg"
+    },
+    { 
+      year: "2022", 
+      name: "Nandani Kumari", 
+      fellowship: "CSIR-SRF", 
+      qualification: "MSc in Zoology",
+      title: "Impact of Arsenic trioxide and natural compound (s) on telomerase modulation in breast cancer cell line",
+      image: "/src/assets/students/nandani-kumari.jpg"
+    },
+    { 
+      year: "2022", 
+      name: "Seema Singh Marabi", 
+      fellowship: "NFST-SRF", 
+      qualification: "MSc in Biotechnology",
+      title: "Modulation of FoxP3 and miRNA by arsenic trioxide in rheumatoid arthritis",
+      image: "/src/assets/students/seema-singh.jpg"
+    },
+    { 
+      year: "2024", 
+      name: "Naina Sakshi", 
+      fellowship: "Non-Net Fellow", 
+      qualification: "",
+      title: "",
+      image: ""
+    },
+    { 
+      year: "2024", 
+      name: "Srishti Shriya", 
+      fellowship: "CSIR-NET, Non-Net Fellow", 
+      qualification: "",
+      title: "",
+      image: ""
+    },
+    { 
+      year: "2025", 
+      name: "Antariksha Banik", 
+      fellowship: "ICMR", 
+      qualification: "MSc Biotechnology (2024)",
+      title: "Generation of Hepatocellular Carcinoma reactive designer T cells based on induced pleuripotent stem cells",
+      image: "/src/assets/students/antariksha-banik.jpg"
+    },
+    { 
+      year: "2024", 
+      name: "Rashid Lateef", 
+      fellowship: "Central Council for Research in Unani Medicine (CCRUM)", 
+      qualification: "MSc in Biochemistry",
+      title: "Evaluation of Unani drug on FoxP3 expressing regulatory T cells in the modulation of rheumatoid arthritis",
+      image: "/src/assets/students/rashid-lateef.jpg",
+      position: "Senior Research Fellow"
+    }
   ];
 
   const thesisEvaluations = {
@@ -337,24 +396,45 @@ const Teaching = () => {
         onClose={() => setSelectedModal(null)}
         title="Current Ph.D. Students Under My Supervision"
       >
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Year</TableHead>
-              <TableHead>Name</TableHead>
-              <TableHead>Fellowship</TableHead>
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {currentPhdStudents.map((student, index) => (
-              <TableRow key={index}>
-                <TableCell>{student.year}</TableCell>
-                <TableCell className="font-medium">{student.name}</TableCell>
-                <TableCell>{student.fellowship}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {currentPhdStudents.map((student, index) => (
+            <Card key={index} className="hover:shadow-lg transition-shadow">
+              <CardContent className="p-6">
+                <div className="flex items-start space-x-4">
+                  {student.image && (
+                    <img 
+                      src={student.image} 
+                      alt={student.name}
+                      className="w-20 h-20 rounded-full object-cover flex-shrink-0"
+                    />
+                  )}
+                  <div className="flex-1">
+                    <div className="flex justify-between items-start mb-2">
+                      <Badge variant="outline">{student.year}</Badge>
+                      {student.position && (
+                        <Badge className="bg-green-100 text-green-800">{student.position}</Badge>
+                      )}
+                    </div>
+                    <h3 className="text-lg font-semibold text-blue-900 mb-2">{student.name}</h3>
+                    {student.qualification && (
+                      <p className="text-gray-700 text-sm mb-2">
+                        <strong>Qualification:</strong> {student.qualification}
+                      </p>
+                    )}
+                    <p className="text-gray-700 text-sm mb-2">
+                      <strong>Fellowship:</strong> {student.fellowship}
+                    </p>
+                    {student.title && (
+                      <p className="text-gray-600 text-sm">
+                        <strong>Research Title:</strong> {student.title}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
       </Modal>
     </Layout>
   );
