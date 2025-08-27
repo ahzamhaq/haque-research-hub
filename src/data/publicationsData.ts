@@ -36,11 +36,7 @@ export interface Book {
 }
 
 // Import from corrected file
-// export * from './publicationsDataCorrect';
-
-// export const fullLengthPublicationsOld: Publication[] = [
 import { publicationsDataCorrect } from './publicationsDataCorrect';
-import { Publication } from './publicationsDataCorrect'; 
 // ✅ Assign imported data to the main variable
 export const fullLengthPublications: Publication[] = publicationsDataCorrect;
 

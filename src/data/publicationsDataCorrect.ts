@@ -1,41 +1,4 @@
-export interface Publication {
-  number: number;
-  title: string;
-  authors: string;
-  journal: string;
-  year: string;
-  impactFactor: string;
-  doi?: string;
-  pmid?: string;
-  issn?: string;
-  status?: string;
-  type?: 'priority' | 'rapid' | 'cover' | 'regular';
-  category?: string;
-}
-
-export interface BookChapter {
-  number: number;
-  title: string;
-  authors: string;
-  book: string;
-  publisher: string;
-  editors?: string;
-  chapter?: string;
-  pages?: string;
-  year?: string;
-}
-
-export interface Book {
-  title: string;
-  authors: string;
-  publisher: string;
-  year?: string;
-  isbn?: string;
-  status?: string;
-}
-
-// export const fullLengthPublications: Publication[] = [
-import { Publication } from './publicationsData';  // because both are in the same "data" folder
+import { Publication, BookChapter, Book } from './publicationsData';
 
 export const publicationsDataCorrect: Publication[] = [
   {

@@ -6,6 +6,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Users, Book, X } from "lucide-react";
 import { useState } from "react";
 
+// Import student images
+import vikasKumarImg from '@/assets/students/vikas-kumar.jpg';
+import nandaniKumariImg from '@/assets/students/nandani-kumari.jpg';
+import seemaSinghImg from '@/assets/students/seema-singh.jpg';
+import antarikshaBanikImg from '@/assets/students/antariksha-banik.jpg';
+import rashidLateefImg from '@/assets/students/rashid-lateef.jpg';
+import srishtiShriyaImg from '@/assets/students/srishti-shriya.jpg';
+import nainaSakshiImg from '@/assets/students/naina-sakshi.jpg';
+import komalKumariImg from '@/assets/students/komal-kumari.jpg';
+
 const Teaching = () => {
   const [selectedModal, setSelectedModal] = useState<string | null>(null);
 
@@ -72,11 +82,11 @@ const Teaching = () => {
   const currentPhdStudents = [
     { 
       year: "2020", 
-      name: "Komal Kumri", 
-      fellowship: "", 
-      qualification: "",
-      title: "",
-      image: ""
+      name: "Komal Kumari", 
+      fellowship: "Non-net fellowship", 
+      qualification: "MSc Biotechnology",
+      title: "Identification of novel immunogenic epitopes based on neoantigens for lung cancer vaccination",
+      image: komalKumariImg
     },
     { 
       year: "2022", 
@@ -84,7 +94,7 @@ const Teaching = () => {
       fellowship: "DBT-JRF", 
       qualification: "M.Sc. in Biotechnology",
       title: "Study on the modulation of Receptor for Activated C Kinase 1 protein in Oral Squamous Cell Carcinoma",
-      image: "/src/assets/students/vikas-kumar.jpg"
+      image: vikasKumarImg
     },
     { 
       year: "2022", 
@@ -92,7 +102,7 @@ const Teaching = () => {
       fellowship: "CSIR-SRF", 
       qualification: "MSc in Zoology",
       title: "Impact of Arsenic trioxide and natural compound (s) on telomerase modulation in breast cancer cell line",
-      image: "/src/assets/students/nandani-kumari.jpg"
+      image: nandaniKumariImg
     },
     { 
       year: "2022", 
@@ -100,31 +110,23 @@ const Teaching = () => {
       fellowship: "NFST-SRF", 
       qualification: "MSc in Biotechnology",
       title: "Modulation of FoxP3 and miRNA by arsenic trioxide in rheumatoid arthritis",
-      image: "/src/assets/students/seema-singh.jpg"
+      image: seemaSinghImg
     },
     { 
-      year: "2024", 
+      year: "2023", 
+      name: "Srishti Shriya", 
+      fellowship: "CSIR Net LS and Non-Net Fellowship", 
+      qualification: "M.Sc Zoology",
+      title: "Identification and Immunological Evaluation of Neoepitopes for Breast Cancer Immunotherapy",
+      image: srishtiShriyaImg
+    },
+    { 
+      year: "2023", 
       name: "Naina Sakshi", 
       fellowship: "Non-Net Fellow", 
-      qualification: "",
-      title: "",
-      image: ""
-    },
-    { 
-      year: "2024", 
-      name: "Srishti Shriya", 
-      fellowship: "CSIR-NET, Non-Net Fellow", 
-      qualification: "",
-      title: "",
-      image: ""
-    },
-    { 
-      year: "2025", 
-      name: "Antariksha Banik", 
-      fellowship: "ICMR", 
-      qualification: "MSc Biotechnology (2024)",
-      title: "Generation of Hepatocellular Carcinoma reactive designer T cells based on induced pleuripotent stem cells",
-      image: "/src/assets/students/antariksha-banik.jpg"
+      qualification: "M.Sc Biotechnology",
+      title: "Nanoconjugation of Aloe-emodin with Arsenic trioxide: Investigating the impact on Shelterin complex and telomere in Liver Cancer Cells",
+      image: nainaSakshiImg
     },
     { 
       year: "2024", 
@@ -132,8 +134,16 @@ const Teaching = () => {
       fellowship: "Central Council for Research in Unani Medicine (CCRUM)", 
       qualification: "MSc in Biochemistry",
       title: "Evaluation of Unani drug on FoxP3 expressing regulatory T cells in the modulation of rheumatoid arthritis",
-      image: "/src/assets/students/rashid-lateef.jpg",
+      image: rashidLateefImg,
       position: "Senior Research Fellow"
+    },
+    { 
+      year: "2025", 
+      name: "Antariksha Banik", 
+      fellowship: "ICMR", 
+      qualification: "MSc Biotechnology (2024)",
+      title: "Generation of Hepatocellular Carcinoma reactive designer T cells based on induced pleuripotent stem cells",
+      image: antarikshaBanikImg
     }
   ];
 
