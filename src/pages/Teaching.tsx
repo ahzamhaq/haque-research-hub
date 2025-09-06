@@ -76,7 +76,7 @@ const Teaching = () => {
       fellowship: "Non-net fellowship", 
       qualification: "MSc Biotechnology",
       title: "Identification of novel immunogenic epitopes based on neoantigens for lung cancer vaccination",
-      image: "/students/Komal-kumari-PhD.jpg"
+      image: "/students/students/Komal-kumari-Phd.jpg"
     },
     { 
       year: "2022", 
@@ -84,7 +84,7 @@ const Teaching = () => {
       fellowship: "DBT-JRF", 
       qualification: "M.Sc. in Biotechnology",
       title: "Study on the modulation of Receptor for Activated C Kinase 1 protein in Oral Squamous Cell Carcinoma",
-      image: "/students/Vikas-Kumar-PhD.jpg"
+      image: "/students/students/Vikas-Kumar-PhD.jpg"
     },
     { 
       year: "2022", 
@@ -92,7 +92,7 @@ const Teaching = () => {
       fellowship: "CSIR-SRF", 
       qualification: "MSc in Zoology",
       title: "Impact of Arsenic trioxide and natural compound (s) on telomerase modulation in breast cancer cell line",
-      image: "/students/Nandani-kumari-PhD.jpg"
+      image: "/students/students/Nandani-kumari-PhD.jpg"
     },
     { 
       year: "2022", 
@@ -100,7 +100,7 @@ const Teaching = () => {
       fellowship: "NFST-SRF", 
       qualification: "MSc in Biotechnology",
       title: "Modulation of FoxP3 and miRNA by arsenic trioxide in rheumatoid arthritis",
-      image: "/students/seema-singh-marabi-PhD.jpg"
+      image: "/students/students/seema-singh-marabi-PhD.jpg"
     },
     { 
       year: "2023", 
@@ -108,7 +108,7 @@ const Teaching = () => {
       fellowship: "CSIR Net LS and Non-Net Fellowship", 
       qualification: "M.Sc Zoology",
       title: "Identification and Immunological Evaluation of Neoepitopes for Breast Cancer Immunotherapy",
-      image: "/students/Shrishti-Sriyis-PhD.jpg"
+      image: "/students/students/Shrishti-Sriyis-Phd.jpg"
     },
     { 
       year: "2023", 
@@ -116,7 +116,7 @@ const Teaching = () => {
       fellowship: "Non-Net Fellow", 
       qualification: "M.Sc Biotechnology",
       title: "Nanoconjugation of Aloe-emodin with Arsenic trioxide: Investigating the impact on Shelterin complex and telomere in Liver Cancer Cells",
-      image: "/students/Naina-Sakshi-PhD.jpg"
+      image: "/students/students/Naina-Sakshi-Phd.jpg"
     },
     { 
       year: "2024", 
@@ -124,7 +124,7 @@ const Teaching = () => {
       fellowship: "Central Council for Research in Unani Medicine (CCRUM)", 
       qualification: "MSc in Biochemistry",
       title: "Evaluation of Unani drug on FoxP3 expressing regulatory T cells in the modulation of rheumatoid arthritis",
-      image: "/students/rashid-lateef-PhD.jpg",
+      image: "/students/students/rashid-lateef-PhD.jpg",
       position: "Senior Research Fellow"
     },
     { 
@@ -133,7 +133,7 @@ const Teaching = () => {
       fellowship: "ICMR", 
       qualification: "MSc Biotechnology (2024)",
       title: "Generation of Hepatocellular Carcinoma reactive designer T cells based on induced pleuripotent stem cells",
-      image: "/students/Antarakshi-baini-PhD.jpg"
+      image: "/students/students/Antarakshi-baini-PhD.jpg"
     }
   ];
 
