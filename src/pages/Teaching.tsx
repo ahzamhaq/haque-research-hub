@@ -396,39 +396,41 @@ const Teaching = () => {
         onClose={() => setSelectedModal(null)}
         title="Current Ph.D. Students Under My Supervision"
       >
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {currentPhdStudents.map((student, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
+              <CardContent className="p-4">
                 <div className="flex items-start space-x-4">
                   {student.image && (
                     <img 
                       src={student.image} 
                       alt={student.name}
-                      className="w-40 h-52 object-cover rounded-lg mb-3"
+                      className="w-20 h-24 object-cover rounded-lg flex-shrink-0"
                     />
                   )}
-                  <div className="flex-1">
-                    <div className="flex justify-between items-start mb-2">
-                      <Badge variant="outline">{student.year}</Badge>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Badge variant="outline" className="text-xs">{student.year}</Badge>
                       {student.position && (
-                        <Badge className="bg-green-100 text-green-800">{student.position}</Badge>
+                        <Badge className="bg-green-100 text-green-800 text-xs">{student.position}</Badge>
                       )}
                     </div>
                     <h3 className="text-lg font-semibold text-blue-900 mb-2">{student.name}</h3>
-                    {student.qualification && (
-                      <p className="text-gray-700 text-sm mb-2">
-                        <strong>Qualification:</strong> {student.qualification}
+                    <div className="space-y-1 text-sm">
+                      {student.qualification && (
+                        <p className="text-gray-700">
+                          <strong>Qualification:</strong> {student.qualification}
+                        </p>
+                      )}
+                      <p className="text-gray-700">
+                        <strong>Fellowship:</strong> {student.fellowship}
                       </p>
-                    )}
-                    <p className="text-gray-700 text-sm mb-2">
-                      <strong>Fellowship:</strong> {student.fellowship}
-                    </p>
-                    {student.title && (
-                      <p className="text-gray-600 text-sm">
-                        <strong>Research Title:</strong> {student.title}
-                      </p>
-                    )}
+                      {student.title && (
+                        <p className="text-gray-600">
+                          <strong>Research Title:</strong> {student.title}
+                        </p>
+                      )}
+                    </div>
                   </div>
                 </div>
               </CardContent>
