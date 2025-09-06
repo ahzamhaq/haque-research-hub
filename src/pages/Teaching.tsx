@@ -6,16 +6,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Users, Book, X } from "lucide-react";
 import { useState } from "react";
 
-// Import student images
-import vikasKumarImg from '@/assets/students/vikas-kumar.jpg';
-import nandaniKumariImg from '@/assets/students/nandani-kumari.jpg';
-import seemaSinghImg from '@/assets/students/seema-singh.jpg';
-import antarikshaBanikImg from '@/assets/students/antariksha-banik.jpg';
-import rashidLateefImg from '@/assets/students/rashid-lateef.jpg';
-import srishtiShriyaImg from '@/assets/students/srishti-shriya.jpg';
-import nainaSakshiImg from '@/assets/students/naina-sakshi.jpg';
-import komalKumariImg from '@/assets/students/komal-kumari.jpg';
-
 const Teaching = () => {
   const [selectedModal, setSelectedModal] = useState<string | null>(null);
 
@@ -86,7 +76,7 @@ const Teaching = () => {
       fellowship: "Non-net fellowship", 
       qualification: "MSc Biotechnology",
       title: "Identification of novel immunogenic epitopes based on neoantigens for lung cancer vaccination",
-      image: komalKumariImg
+      image: "/students/Komal-kumari-PhD.jpg"
     },
     { 
       year: "2022", 
@@ -94,7 +84,7 @@ const Teaching = () => {
       fellowship: "DBT-JRF", 
       qualification: "M.Sc. in Biotechnology",
       title: "Study on the modulation of Receptor for Activated C Kinase 1 protein in Oral Squamous Cell Carcinoma",
-      image: vikasKumarImg
+      image: "/students/Vikas-Kumar-PhD.jpg"
     },
     { 
       year: "2022", 
@@ -102,7 +92,7 @@ const Teaching = () => {
       fellowship: "CSIR-SRF", 
       qualification: "MSc in Zoology",
       title: "Impact of Arsenic trioxide and natural compound (s) on telomerase modulation in breast cancer cell line",
-      image: nandaniKumariImg
+      image: "/students/Nandani-kumari-PhD.jpg"
     },
     { 
       year: "2022", 
@@ -110,7 +100,7 @@ const Teaching = () => {
       fellowship: "NFST-SRF", 
       qualification: "MSc in Biotechnology",
       title: "Modulation of FoxP3 and miRNA by arsenic trioxide in rheumatoid arthritis",
-      image: seemaSinghImg
+      image: "/students/seema-singh-marabi-PhD.jpg"
     },
     { 
       year: "2023", 
@@ -118,7 +108,7 @@ const Teaching = () => {
       fellowship: "CSIR Net LS and Non-Net Fellowship", 
       qualification: "M.Sc Zoology",
       title: "Identification and Immunological Evaluation of Neoepitopes for Breast Cancer Immunotherapy",
-      image: srishtiShriyaImg
+      image: "/students/Shrishti-Sriyis-PhD.jpg"
     },
     { 
       year: "2023", 
@@ -126,7 +116,7 @@ const Teaching = () => {
       fellowship: "Non-Net Fellow", 
       qualification: "M.Sc Biotechnology",
       title: "Nanoconjugation of Aloe-emodin with Arsenic trioxide: Investigating the impact on Shelterin complex and telomere in Liver Cancer Cells",
-      image: nainaSakshiImg
+      image: "/students/Naina-Sakshi-PhD.jpg"
     },
     { 
       year: "2024", 
@@ -134,7 +124,7 @@ const Teaching = () => {
       fellowship: "Central Council for Research in Unani Medicine (CCRUM)", 
       qualification: "MSc in Biochemistry",
       title: "Evaluation of Unani drug on FoxP3 expressing regulatory T cells in the modulation of rheumatoid arthritis",
-      image: rashidLateefImg,
+      image: "/students/rashid-lateef-PhD.jpg",
       position: "Senior Research Fellow"
     },
     { 
@@ -143,7 +133,7 @@ const Teaching = () => {
       fellowship: "ICMR", 
       qualification: "MSc Biotechnology (2024)",
       title: "Generation of Hepatocellular Carcinoma reactive designer T cells based on induced pleuripotent stem cells",
-      image: antarikshaBanikImg
+      image: "/students/Antarakshi-baini-PhD.jpg"
     }
   ];
 
@@ -406,7 +396,7 @@ const Teaching = () => {
         onClose={() => setSelectedModal(null)}
         title="Current Ph.D. Students Under My Supervision"
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {currentPhdStudents.map((student, index) => (
             <Card key={index} className="hover:shadow-lg transition-shadow">
               <CardContent className="p-6">
@@ -415,7 +405,7 @@ const Teaching = () => {
                     <img 
                       src={student.image} 
                       alt={student.name}
-                      className="w-20 h-20 rounded-full object-cover flex-shrink-0"
+                      className="w-40 h-52 object-cover rounded-lg mb-3"
                     />
                   )}
                   <div className="flex-1">
