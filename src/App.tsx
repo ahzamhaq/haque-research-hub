@@ -14,6 +14,8 @@ import Contact from "./pages/Contact";
 import Collaboration from "./pages/Collaboration";
 import Workshop from "./pages/Workshop";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
+import Migrate from "./pages/Migrate";
 
 const queryClient = new QueryClient();
 
@@ -33,6 +35,8 @@ const App = () => (
           <Route path="/collaboration" element={<Collaboration />} />
           <Route path="/workshop" element={<Workshop />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/migrate" element={<Migrate />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
