@@ -149,6 +149,15 @@ const Migrate = () => {
       return;
     }
 
+    // Clear all tables first to prevent duplicates
+    await supabase.from('publications').delete().neq('id', 0);
+    await supabase.from('book_chapters').delete().neq('id', 0);
+    await supabase.from('books').delete().neq('id', 0);
+    await supabase.from('blog_posts').delete().neq('id', 0);
+    await supabase.from('phd_students').delete().neq('id', 0);
+    await supabase.from('research_projects').delete().neq('id', 0);
+    await supabase.from('collaborators').delete().neq('id', 0);
+
     // 1. Publications
     updateSection('publications', { status: 'running' });
     try {

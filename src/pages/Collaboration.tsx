@@ -1,82 +1,15 @@
 import { Link } from "react-router-dom";
-import { Users, MapPin, Calendar, ExternalLink, Mail, Globe, Award, BookOpen, Microscope, FlaskConical, Dna, Building, GraduationCap } from "lucide-react";
+import { Users, MapPin, Calendar, ExternalLink, Mail, Globe, Award, BookOpen, Microscope, Building, GraduationCap, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Layout from "@/components/Layout";
+import { useCollaborators } from "@/hooks/useSupabaseData";
+
 const Collaboration = () => {
-  const collaborators = [{
-    id: 1,
-    name: "Dr. Jianxun (Jim) Song, PhD",
-    position: "R.L. Bricker Endowed Professor",
-    institution: "Texas A&M University",
-    specialization: "Stem Cell Research",
-    image: "https://medicine.tamu.edu/images/people/jim-song1.jpg",
-    profileLink: "https://medicine.tamu.edu/faculty-listings/song.html"
-  }, {
-    id: 2,
-    name: "Dr. Saif Ahmad, PhD",
-    position: "Assistant Professor",
-    institution: "Barrow Neurological Institute",
-    specialization: "Stroke, VCID, TBI",
-    image: "https://www.barrowneuro.org/wp-content/uploads/Ahmad-Saif-200810-green-screen-600x600.jpg",
-    profileLink: "https://www.barrowneuro.org/person/saif-ahmad-phd/"
-  }, {
-    id: 3,
-    name: "Syed Shadab Raza",
-    position: "Ph.D., FRSB, Associate Professor & PI",
-    institution: "Laboratory for Stem Cell & Restorative Neurology",
-    specialization: "Stem Cell & Restorative Neurology",
-    image: "https://elmcindia.org/assets/images/shadab.jpg",
-    profileLink: "https://elmcindia.org/stemcell"
-  }, {
-    id: 4,
-    name: "Lokendra Sharma",
-    position: "Associate Professor",
-    institution: "Sanjay Gandhi Postgraduate Institute of Medical Sciences",
-    specialization: "Medical Sciences",
-    image: "",
-    profileLink: "https://www.linkedin.com/in/lokendra-sharma-3b455632/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
-  }, {
-    id: 5,
-    name: "Mohammad Shamsul Ola",
-    position: "Professor, Faculty",
-    institution: "King Saud University - كلية العلوم",
-    specialization: "Sciences",
-    image: "http://faculty.ksu.edu.sa/sites/default/files/styles/prof_list_image/public/photo_13.jpg?itok=jFSLgYqq",
-    profileLink: "https://faculty.ksu.edu.sa/en/mola"
-  }, {
-    id: 6,
-    name: "Dr. Murali Kumarasamy",
-    position: "Assistant Professor",
-    institution: "Department of Biotechnology, NIPER Hajipur",
-    specialization: "Biotechnology",
-    image: "https://www.niperhajipur.ac.in/wp-content/uploads/2023/11/Murali-696x686.jpg",
-    profileLink: "https://www.niperhajipur.ac.in/murali-kumarasamy/#"
-  }, {
-    id: 7,
-    name: "Md. Margoob Ahmad",
-    position: "Doctor of Philosophy, Scientist-II",
-    institution: "Indira Gandhi Institute of Medical Sciences",
-    specialization: "Medical Research",
-    image: "https://i1.rgstatic.net/ii/profile.image/11431281232593801-1711733346412_Q512/Md-Ahmad-19.jpg",
-    profileLink: "https://www.researchgate.net/profile/Md-Ahmad-19"
-  }, {
-    id: 8,
-    name: "Dr. Mohd Akram",
-    position: "Professor, Department of Preventive and Social Medicine",
-    institution: "School of Unani Medical Education",
-    specialization: "Unani Medicine",
-    image: "https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=qL2r1zQAAAAJ&citpid=3",
-    profileLink: "https://scholar.google.com/citations?user=qL2r1zQAAAAJ&hl=en&authuser=1"
-  }, {
-    id: 9,
-    name: "Vahab Ali",
-    position: "Research Scientist",
-    institution: "Rajendra Memorial Research Institute of Medical Sciences",
-    specialization: "Medical Research",
-    image: "https://www.rmrims.org.in/staff/img/vali.jpg",
-    profileLink: "https://scholar.google.com/citations?user=afantZoAAAAJ&hl=en&oi=ao"
-  }];
+  // DB-driven collaborators
+  const { data: rawCollaborators, isLoading } = useCollaborators();
+
+  // Static data (not in DB yet)
   const projects = [{
     id: 1,
     title: "Generation of hepatocellular carcinoma reactive designer T cells based on induced pluripotent stem cells",
@@ -108,6 +41,7 @@ const Collaboration = () => {
     publications: 3,
     grantNumber: "BCST-RD=01/2022-769"
   }];
+
   const consultancy = [{
     id: 1,
     title: "Antioxidants and Sex differences study in free radical mediated brain stroke",
@@ -125,6 +59,7 @@ const Collaboration = () => {
     status: "Submitted",
     focus: "Neuroprotective mechanisms"
   }];
+
   const meetings = [{
     id: 1,
     title: "Annual Indo-US Biotechnology Summit 2024",
@@ -154,6 +89,7 @@ const Collaboration = () => {
     type: "National Conference",
     role: "National Speaker"
   }];
+
   const patents = [{
     id: 1,
     title: "Establishment of a Maurine Stromal Cell Line Expressing Two Notch Ligands and MHC-II protein",
@@ -169,16 +105,29 @@ const Collaboration = () => {
     inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque",
     year: "2011"
   }];
-  return <Layout>
+
+  // Map DB collaborators — fallback to empty array for image/profileLink not in DB schema
+  const collaborators = (rawCollaborators ?? []).map((c: any, index: number) => ({
+    id: c.id ?? index + 1,
+    name: c.name,
+    position: c.position,
+    institution: c.institution,
+    specialization: c.specialization,
+    image: c.image_url ?? "",
+    profileLink: c.profile_link ?? "#"
+  }));
+
+  return (
+    <Layout>
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 via-indigo-900 to-purple-900 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl font-black mb-6">
-            Colleagues & 
+            Colleagues &
             <span className="text-yellow-400"> Collaborations</span>
           </h1>
           <p className="text-xl text-blue-200 max-w-3xl mx-auto leading-relaxed">
-            Building bridges across institutions and continents to advance scientific knowledge 
+            Building bridges across institutions and continents to advance scientific knowledge
             and foster innovation in biotechnology research
           </p>
           <div className="mt-8 flex justify-center space-x-6 text-sm">
@@ -207,37 +156,50 @@ const Collaboration = () => {
               Distinguished researchers and institutions that have partnered with us in advancing scientific frontiers
             </p>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {collaborators.map(collaborator => <Card key={collaborator.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-gray-50 to-blue-50">
-                <CardContent className="p-6 text-center">
-                  <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-lg bg-gray-200">
-                    {collaborator.image ? <img src={collaborator.image} alt={collaborator.name} className="w-full h-full object-cover" onError={e => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                  target.nextElementSibling?.classList.remove('hidden');
-                }} /> : null}
-                    <div className={`w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center ${collaborator.image ? 'hidden' : ''}`}>
-                      <span className="text-white font-bold text-xl">{collaborator.name.split(' ').map(n => n[0]).join('').slice(0, 2)}</span>
+
+          {isLoading ? (
+            <div className="flex flex-col items-center justify-center py-16">
+              <Loader2 className="w-8 h-8 animate-spin text-blue-600 mb-3" />
+              <p className="text-gray-500">Loading collaborators...</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {collaborators.map(collaborator => (
+                <Card key={collaborator.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-gradient-to-br from-gray-50 to-blue-50">
+                  <CardContent className="p-6 text-center">
+                    <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden shadow-lg bg-gray-200">
+                      {collaborator.image ? (
+                        <img src={collaborator.image} alt={collaborator.name} className="w-full h-full object-cover" onError={e => {
+                          const target = e.target as HTMLImageElement;
+                          target.style.display = 'none';
+                          (target.nextElementSibling as HTMLElement)?.classList.remove('hidden');
+                        }} />
+                      ) : null}
+                      <div className={`w-full h-full bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center ${collaborator.image ? 'hidden' : ''}`}>
+                        <span className="text-white font-bold text-xl">{collaborator.name.split(' ').map((n: string) => n[0]).join('').slice(0, 2)}</span>
+                      </div>
                     </div>
-                  </div>
-                  
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{collaborator.name}</h3>
-                  <p className="text-sm text-blue-600 font-medium mb-1">{collaborator.position}</p>
-                  <p className="text-sm text-gray-600 mb-3">{collaborator.institution}</p>
-                  
-                  <div className="bg-blue-100 rounded-lg p-3 mb-4">
-                    <p className="text-xs text-blue-800 font-medium">Specialization</p>
-                    <p className="text-sm text-blue-900">{collaborator.specialization}</p>
-                  </div>
-                  
-                  <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700" onClick={() => window.open(collaborator.profileLink, '_blank')}>
-                    <ExternalLink className="w-4 h-4 mr-2" />
-                    Check out profile
-                  </Button>
-                </CardContent>
-              </Card>)}
-          </div>
+
+                    <h3 className="text-lg font-bold text-gray-900 mb-2">{collaborator.name}</h3>
+                    <p className="text-sm text-blue-600 font-medium mb-1">{collaborator.position}</p>
+                    <p className="text-sm text-gray-600 mb-3">{collaborator.institution}</p>
+
+                    <div className="bg-blue-100 rounded-lg p-3 mb-4">
+                      <p className="text-xs text-blue-800 font-medium">Specialization</p>
+                      <p className="text-sm text-blue-900">{collaborator.specialization}</p>
+                    </div>
+
+                    {collaborator.profileLink !== "#" && (
+                      <Button size="sm" className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700" onClick={() => window.open(collaborator.profileLink, '_blank')}>
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Check out profile
+                      </Button>
+                    )}
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -250,9 +212,10 @@ const Collaboration = () => {
               Current major research initiatives with significant funding and impact
             </p>
           </div>
-          
+
           <div className="space-y-8">
-            {projects.map(project => <Card key={project.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
+            {projects.map(project => (
+              <Card key={project.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
                 <CardHeader>
                   <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between">
                     <div className="flex-1">
@@ -266,19 +229,21 @@ const Collaboration = () => {
                     </div>
                   </div>
                 </CardHeader>
-                
+
                 <CardContent className="pt-0">
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Partners</h4>
                       <ul className="text-sm text-gray-600 space-y-1">
-                        {project.partners.map((partner, index) => <li key={index} className="flex items-center">
+                        {project.partners.map((partner, index) => (
+                          <li key={index} className="flex items-center">
                             <div className="w-2 h-2 bg-blue-400 rounded-full mr-2"></div>
                             {partner}
-                          </li>)}
+                          </li>
+                        ))}
                       </ul>
                     </div>
-                    
+
                     <div>
                       <h4 className="font-semibold text-gray-900 mb-2">Project Details</h4>
                       <div className="space-y-2 text-sm text-gray-600">
@@ -294,21 +259,13 @@ const Collaboration = () => {
                           <BookOpen className="w-4 h-4 mr-2 text-gray-400" />
                           {project.publications} Publications
                         </div>
-                        <div className="text-xs text-gray-500">
-                          Grant: {project.grantNumber}
-                        </div>
+                        <div className="text-xs text-gray-500">Grant: {project.grantNumber}</div>
                       </div>
-                    </div>
-                    
-                    <div className="flex flex-col justify-end">
-                      <Button className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                        <ExternalLink className="w-4 h-4 mr-2" />
-                        View Details
-                      </Button>
                     </div>
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -322,9 +279,10 @@ const Collaboration = () => {
               Advisory roles and consultation services for international research projects
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {consultancy.map(item => <Card key={item.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
+            {consultancy.map(item => (
+              <Card key={item.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-gradient-to-br from-blue-50 to-indigo-50">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-2">
@@ -335,17 +293,16 @@ const Collaboration = () => {
                       {item.status}
                     </div>
                   </div>
-                  
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{item.title}</h3>
                   <p className="text-sm text-gray-600 mb-3">{item.organization}</p>
                   <p className="text-sm text-gray-700 mb-4">{item.focus}</p>
-                  
                   <div className="flex items-center text-sm text-gray-500">
                     <Calendar className="w-4 h-4 mr-1" />
                     {item.year}
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -359,9 +316,10 @@ const Collaboration = () => {
               Intellectual property contributions to stem cell and immunotherapy research
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {patents.map(patent => <Card key={patent.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
+            {patents.map(patent => (
+              <Card key={patent.id} className="hover:shadow-xl transition-all duration-300 border-0 bg-white shadow-lg">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center space-x-2">
@@ -370,12 +328,12 @@ const Collaboration = () => {
                     </div>
                     <div className="text-sm text-gray-500">{patent.year}</div>
                   </div>
-                  
                   <h3 className="text-lg font-bold text-gray-900 mb-3">{patent.title}</h3>
                   <p className="text-sm text-gray-600 mb-3">Patent No: {patent.number}</p>
                   <p className="text-sm text-gray-700">Inventors: {patent.inventors}</p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -389,18 +347,17 @@ const Collaboration = () => {
               International gatherings where collaborative research and future partnerships are fostered
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {meetings.map(meeting => <Card key={meeting.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-white shadow-lg">
+            {meetings.map(meeting => (
+              <Card key={meeting.id} className="group hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0 bg-white shadow-lg">
                 <CardContent className="p-6">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl mb-4 flex items-center justify-center">
                     <Microscope className="w-6 h-6 text-white" />
                   </div>
-                  
                   <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                     {meeting.title}
                   </h3>
-                  
                   <div className="space-y-2 text-sm text-gray-600 mb-4">
                     <div className="flex items-center">
                       <Calendar className="w-4 h-4 mr-2 text-gray-400" />
@@ -411,15 +368,15 @@ const Collaboration = () => {
                       {meeting.location}
                     </div>
                   </div>
-                  
                   <div className="bg-blue-50 rounded-lg p-3">
                     <div className="text-xs text-blue-600 font-medium mb-1">Role</div>
                     <div className="text-sm text-blue-900">{meeting.role}</div>
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
-          
+
           <div className="text-center mt-12">
             <Link to="/blog">
               <Button size="lg" className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300">
@@ -436,10 +393,9 @@ const Collaboration = () => {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-black mb-6">Interested in Collaboration?</h2>
           <p className="text-xl text-blue-200 mb-8 leading-relaxed">
-            We welcome opportunities to collaborate on groundbreaking research projects, 
+            We welcome opportunities to collaborate on groundbreaking research projects,
             share expertise, and contribute to the advancement of biotechnology and medical sciences.
           </p>
-          
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
               <Button size="lg" className="bg-gradient-to-r from-yellow-500 to-orange-500 hover:from-yellow-600 hover:to-orange-600 text-black font-bold shadow-lg hover:shadow-xl transition-all duration-300">
@@ -456,6 +412,8 @@ const Collaboration = () => {
           </div>
         </div>
       </section>
-    </Layout>;
+    </Layout>
+  );
 };
+
 export default Collaboration;

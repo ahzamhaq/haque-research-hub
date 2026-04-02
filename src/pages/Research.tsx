@@ -3,126 +3,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Separator } from "@/components/ui/separator";
+import { Loader2 } from "lucide-react";
+import { useResearchProjects } from "@/hooks/useSupabaseData";
 
 const Research = () => {
-  const ongoingProjects = [
-    {
-      title: "iPSC-derived Designer T Cells for HCC Treatment",
-      funding: "ICMR",
-      amount: "₹92 Lakhs",
-      duration: "2024-2027 (36 months)",
-      grantNumber: "IIRPSG-2024-01-05271",
-      description: "Generation of hepatocellular carcinoma reactive designer T cells based on induced pluripotent stem cells",
-      status: "Ongoing",
-      category: "Cancer Immunotherapy",
-      role: "PI"
-    },
-    {
-      title: "FoxP3 Modulation in Rheumatoid Arthritis",
-      funding: "CCRUM",
-      amount: "₹30.15 Lakhs",
-      duration: "2024-2027 (3 years)",
-      grantNumber: "F.No-TECH-21013/11/2024-CCRUM-HQ",
-      description: "Evaluation of Unani Drug on FoxP3 expressing in Regulatory T cells in the Modulation of Rheumatoid Arthritis",
-      status: "Ongoing", 
-      category: "Autoimmune Diseases",
-      role: "PI"
-    },
-    {
-      title: "Telomerase and Breast Cancer in Arsenic-affected Regions",
-      funding: "BCST",
-      amount: "₹2 Lakhs",
-      duration: "2022-2024 (2 years)",
-      grantNumber: "BCST-RD=01/2022-769",
-      description: "Study of the Telomerase Regulation in Female Breast Cancer Patient of Arsenic Affected region of Bihar",
-      status: "Ongoing",
-      category: "Environmental Health",
-      role: "Co-PI"
-    },
-    {
-      title: "Breast Cancer Epigenetic Study",
-      funding: "ICMR",
-      amount: "₹47 Lakhs",
-      duration: "2024-2027 (36 months)",
-      grantNumber: "IIRP-2023-2456",
-      description: "Epigenetic modulation and molecular mechanism involved in development of breast cancer – A case-control study",
-      status: "Ongoing",
-      category: "Cancer Biology",
-      role: "Co-PI"
-    },
-    {
-      title: "DST-FIST Infrastructure Development",
-      funding: "DST",
-      amount: "₹59 Lakhs",
-      grantNumber: "SR/FST/LS-I/2019/513",
-      description: "Department of Biotechnology, SEBES, Central University of South Bihar, FIST- PROJECT (Level-1)",
-      status: "Ongoing",
-      category: "Infrastructure",
-      role: "PI"
-    }
-  ];
+  const { data: allProjects, isLoading } = useResearchProjects();
 
-  const completedProjects = [
-    {
-      title: "Telomerase Regulation in Liver Cancer",
-      funding: "SERB",
-      amount: "₹31.5 Lakhs",
-      duration: "2018-2021",
-      grantNumber: "EMR/2017/004171",
-      description: "Mechanism of telomerase regulation in response of arsenic in liver cancer",
-      status: "Completed",
-      category: "Cancer Biology",
-      role: "PI"
-    },
-    {
-      title: "Corporate funding",
-      funding: "VV Biotech Pvt. Ltd.",
-      amount: "₹1.25 Lakhs",
-      duration: "2020-2024",
-      description: "Characterization and preclinical investigation of our molecules against autoimmune diseases",
-      status: "Completed",
-      category: "Drug Development",
-      role: "PI"
-    }
-  ];
-
-  const usaGrants = [
-    {
-      title: "Tyrosine-specific CTLs from iPS cells on melanoma",
-      funding: "W. W. Smith Charitable Trust",
-      amount: "$100,000",
-      duration: "2010-2012",
-      role: "Co-PI"
-    },
-    {
-      title: "iPS cell-derived highly reactive T lymphocytes on melanoma",
-      funding: "Melanoma Research Foundation",
-      amount: "$100,000",
-      duration: "2010-2012",
-      role: "Co-PI"
-    },
-    {
-      title: "iPS derived regulatory T cells on Lupus",
-      funding: "Barsumian Trust",
-      amount: "$25,000",
-      duration: "2011",
-      role: "Co-PI"
-    },
-    {
-      title: "Survivin and Aurora B in Primary T Lymphocytes",
-      funding: "Pennsylvania Department of Health",
-      amount: "$50,000",
-      duration: "2008-2010",
-      role: "Co-PI"
-    },
-    {
-      title: "Generation of tumor-specific CTLs from HSC",
-      funding: "St. Baldric's Foundation",
-      amount: "$50,000",
-      duration: "2008-2009",
-      role: "Co-PI"
-    }
-  ];
+  // Split by status and region from DB data
+  const ongoingProjects = allProjects.filter((p: any) => p.status === 'Ongoing' && p.region === 'india');
+  const completedProjects = allProjects.filter((p: any) => p.status === 'Completed' && p.region === 'india');
+  const usaGrants = allProjects.filter((p: any) => p.region === 'usa');
 
   const researchInterests = [
     {
@@ -130,7 +20,7 @@ const Research = () => {
       description: "Generation of immune cells mainly platelets, designer T cells and Treg cells from Hematopoietic stem cells (HSC), induced pluripotent stem (iPS) cells and Embryonic stem (ES) cells for adoptive immunotherapy"
     },
     {
-      title: "Neoantigen-based Vaccine Development", 
+      title: "Neoantigen-based Vaccine Development",
       description: "Identification of novel epitopes from Neoantigen/Antigen for the generation of novel epitope based vaccine for the treatment of Cancer and other diseases"
     },
     {
@@ -175,11 +65,22 @@ const Research = () => {
     },
     {
       title: "Generation of tumor-specific T lymphocytes from induced pluripotent stem cells",
-      number: "2011-3814", 
+      number: "2011-3814",
       institution: "Pennsylvania State University",
       inventors: "Jianxun Song, Fengyang Lei, and Rizwanul Haque"
     }
   ];
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <div className="py-32 flex flex-col items-center justify-center">
+          <Loader2 className="w-10 h-10 animate-spin text-blue-600 mb-4" />
+          <p className="text-gray-500 text-lg">Loading research projects...</p>
+        </div>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -261,34 +162,6 @@ const Research = () => {
             </Card>
           </div>
 
-          {/* Research Contribution Overview */}
-          <div className="mb-16">
-            <Card className="bg-gradient-to-r from-blue-50 to-indigo-50 border-blue-200">
-              <CardHeader>
-                <CardTitle className="text-2xl text-blue-900">Research Contribution Overview</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-gray-700 leading-relaxed">
-                  My research interests focus on immunology, particularly stem cells to treat immune-mediated diseases. I specialize in generating immune cells from various stem cell sources for adoptive immunotherapy, contributing to treatments for cancers, asthma, and autoimmune diseases.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                    <div className="text-2xl font-bold text-blue-600">First Report</div>
-                    <div className="text-sm text-gray-600">T lineage cells from iPSCs published in Cellular Immunology</div>
-                  </div>
-                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                    <div className="text-2xl font-bold text-green-600">265+</div>
-                    <div className="text-sm text-gray-600">Total Impact Factor</div>
-                  </div>
-                  <div className="text-center p-4 bg-white rounded-lg shadow-sm">
-                    <div className="text-2xl font-bold text-purple-600">2</div>
-                    <div className="text-sm text-gray-600">Patents Submitted</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
           {/* Main Content Tabs */}
           <Tabs defaultValue="projects" className="w-full">
             <TabsList className="grid w-full grid-cols-5">
@@ -303,31 +176,35 @@ const Research = () => {
               {/* Ongoing Projects */}
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-8">Current Research Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {ongoingProjects.map((project, index) => (
-                    <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-green-500">
-                      <CardHeader>
-                        <div className="flex justify-between items-start mb-2">
-                          <Badge className="bg-green-100 text-green-800">{project.status}</Badge>
-                          <Badge variant="outline">{project.funding}</Badge>
-                        </div>
-                        <CardTitle className="text-lg text-blue-900">{project.title}</CardTitle>
-                        <div className="flex flex-wrap gap-2">
-                          <Badge variant="secondary">{project.category}</Badge>
-                          <Badge variant="outline" className="text-xs">{project.role}</Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-2">
-                        <p className="text-gray-600 text-sm">{project.description}</p>
-                        <div className="text-xs text-gray-500 space-y-1">
-                          <div><strong>Amount:</strong> {project.amount}</div>
-                          <div><strong>Duration:</strong> {project.duration}</div>
-                          {project.grantNumber && <div><strong>Grant:</strong> {project.grantNumber}</div>}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                {ongoingProjects.length === 0 ? (
+                  <p className="text-gray-500 text-center py-8">No ongoing projects found.</p>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {ongoingProjects.map((project: any, index: number) => (
+                      <Card key={project.id ?? index} className="hover:shadow-lg transition-shadow border-l-4 border-l-green-500">
+                        <CardHeader>
+                          <div className="flex justify-between items-start mb-2">
+                            <Badge className="bg-green-100 text-green-800">{project.status}</Badge>
+                            <Badge variant="outline">{project.funding}</Badge>
+                          </div>
+                          <CardTitle className="text-lg text-blue-900">{project.title}</CardTitle>
+                          <div className="flex flex-wrap gap-2">
+                            <Badge variant="secondary">{project.category}</Badge>
+                            <Badge variant="outline" className="text-xs">{project.role}</Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                          <p className="text-gray-600 text-sm">{project.description}</p>
+                          <div className="text-xs text-gray-500 space-y-1">
+                            <div><strong>Amount:</strong> {project.amount}</div>
+                            <div><strong>Duration:</strong> {project.duration}</div>
+                            {project.grant_number && <div><strong>Grant:</strong> {project.grant_number}</div>}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <Separator />
@@ -335,31 +212,35 @@ const Research = () => {
               {/* Completed Projects */}
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-8">Completed Projects</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {completedProjects.map((project, index) => (
-                    <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-blue-500">
-                      <CardHeader>
-                        <div className="flex justify-between items-start mb-2">
-                          <Badge className="bg-blue-100 text-blue-800">{project.status}</Badge>
-                          <Badge variant="outline">{project.funding}</Badge>
-                        </div>
-                        <CardTitle className="text-lg text-blue-900">{project.title}</CardTitle>
-                        <div className="flex flex-wrap gap-2">
-                          <Badge variant="secondary">{project.category}</Badge>
-                          <Badge variant="outline" className="text-xs">{project.role}</Badge>
-                        </div>
-                      </CardHeader>
-                      <CardContent className="space-y-2">
-                        <p className="text-gray-600 text-sm">{project.description}</p>
-                        <div className="text-xs text-gray-500 space-y-1">
-                          <div><strong>Amount:</strong> {project.amount}</div>
-                          <div><strong>Duration:</strong> {project.duration}</div>
-                          {project.grantNumber && <div><strong>Grant:</strong> {project.grantNumber}</div>}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
+                {completedProjects.length === 0 ? (
+                  <p className="text-gray-500 text-center py-8">No completed projects found.</p>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {completedProjects.map((project: any, index: number) => (
+                      <Card key={project.id ?? index} className="hover:shadow-lg transition-shadow border-l-4 border-l-blue-500">
+                        <CardHeader>
+                          <div className="flex justify-between items-start mb-2">
+                            <Badge className="bg-blue-100 text-blue-800">{project.status}</Badge>
+                            <Badge variant="outline">{project.funding}</Badge>
+                          </div>
+                          <CardTitle className="text-lg text-blue-900">{project.title}</CardTitle>
+                          <div className="flex flex-wrap gap-2">
+                            <Badge variant="secondary">{project.category}</Badge>
+                            <Badge variant="outline" className="text-xs">{project.role}</Badge>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                          <p className="text-gray-600 text-sm">{project.description}</p>
+                          <div className="text-xs text-gray-500 space-y-1">
+                            <div><strong>Amount:</strong> {project.amount}</div>
+                            <div><strong>Duration:</strong> {project.duration}</div>
+                            {project.grant_number && <div><strong>Grant:</strong> {project.grant_number}</div>}
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                )}
               </div>
             </TabsContent>
 
@@ -419,23 +300,27 @@ const Research = () => {
 
             <TabsContent value="usa-grants" className="space-y-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-8">International Grants (USA)</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {usaGrants.map((grant, index) => (
-                  <Card key={index} className="hover:shadow-lg transition-shadow border-l-4 border-l-purple-500">
-                    <CardHeader>
-                      <CardTitle className="text-lg text-blue-900">{grant.title}</CardTitle>
-                      <div className="flex justify-between items-center">
-                        <Badge variant="outline">{grant.funding}</Badge>
-                        <Badge className="bg-purple-100 text-purple-800">{grant.role}</Badge>
-                      </div>
-                    </CardHeader>
-                    <CardContent className="space-y-2">
-                      <div><strong>Amount:</strong> {grant.amount}</div>
-                      <div><strong>Duration:</strong> {grant.duration}</div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              {usaGrants.length === 0 ? (
+                <p className="text-gray-500 text-center py-8">No USA grants found.</p>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {usaGrants.map((grant: any, index: number) => (
+                    <Card key={grant.id ?? index} className="hover:shadow-lg transition-shadow border-l-4 border-l-purple-500">
+                      <CardHeader>
+                        <CardTitle className="text-lg text-blue-900">{grant.title}</CardTitle>
+                        <div className="flex justify-between items-center">
+                          <Badge variant="outline">{grant.funding}</Badge>
+                          <Badge className="bg-purple-100 text-purple-800">{grant.role}</Badge>
+                        </div>
+                      </CardHeader>
+                      <CardContent className="space-y-2">
+                        <div><strong>Amount:</strong> {grant.amount}</div>
+                        <div><strong>Duration:</strong> {grant.duration}</div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
             </TabsContent>
           </Tabs>
         </div>
