@@ -5,20 +5,24 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Book, FileText, Award, ExternalLink, BarChart3 } from "lucide-react";
-import { fullLengthPublications, bookChapters, books, researchMetrics } from '@/data/publicationsData';
+import { Book, FileText, Award, ExternalLink, BarChart3, Loader2 } from "lucide-react";
+import { researchMetrics } from '@/data/publicationsData';
+import { usePublications, useBookChapters, useBooks } from '@/hooks/useSupabaseData';
 import PublicationCard from '@/components/publications/PublicationCard';
 import PublicationPagination from '@/components/publications/PublicationPagination';
 import PublicationStats from '@/components/publications/PublicationStats';
 
 const Publications = () => {
-  // Simplified states - removed filtering
   const [showStats, setShowStats] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(20);
 
-  // Use all publications without filtering
-  const filteredPublications = fullLengthPublications;
+  // Fetch from Supabase
+  const { data: publications, isLoading: pubLoading } = usePublications();
+  const { data: bookChapters, isLoading: chapLoading } = useBookChapters();
+  const { data: books, isLoading: booksLoading } = useBooks();
+
+  const filteredPublications = publications ?? [];
 
   // Paginate results
   const totalPages = Math.ceil(filteredPublications.length / itemsPerPage);
@@ -38,6 +42,17 @@ const Publications = () => {
     setCurrentPage(1);
   };
 
+  if (pubLoading || chapLoading || booksLoading) {
+    return (
+      <Layout>
+        <div className="py-32 flex flex-col items-center justify-center">
+          <Loader2 className="w-10 h-10 animate-spin text-blue-600 mb-4" />
+          <p className="text-gray-500 text-lg">Loading publications from database...</p>
+        </div>
+      </Layout>
+    );
+  }
+
   return (
     <Layout>
       <div className="py-16">
@@ -48,7 +63,7 @@ const Publications = () => {
               Scientific <span className="text-blue-600">Publications</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Comprehensive collection of {researchMetrics.totalPublications} peer-reviewed publications with {researchMetrics.totalCitations}+ citations and H-index of {researchMetrics.hIndex}
+              Comprehensive collection of {filteredPublications.length} peer-reviewed publications with {researchMetrics.totalCitations}+ citations and H-index of {researchMetrics.hIndex}
             </p>
           </div>
 
