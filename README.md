@@ -8,6 +8,8 @@ The application is built with a React-Vite-TypeScript frontend and integrated wi
 
 The website is live and deployed at [rizwanulhaque.com](https://rizwanulhaque.com/).
 
+> **Note:** If the main domain is unavailable or shows a connection error, the site is also accessible at the fallback URL: [rizwanul-haque-portfolio.netlify.app](https://rizwanul-haque-portfolio.netlify.app/)
+
 ---
 
 ## ✨ Key Features
